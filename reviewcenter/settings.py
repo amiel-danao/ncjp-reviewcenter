@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authentication',
     'system'
 ]
 
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'reviewcenter.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'system.context_processors.global_context',
             ],
         },
     },
@@ -148,4 +151,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = "system.CustomUser"
+AUTH_USER_MODEL = "authentication.CustomUser"
+
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'text-bg-secondary',
+    messages.INFO: 'text-bg-info',
+    messages.SUCCESS: 'text-bg-success',
+    messages.WARNING: 'text-bg-warning',
+    messages.ERROR: 'text-bg-danger',
+ }

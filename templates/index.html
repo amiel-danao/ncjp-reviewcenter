@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mycss %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<style>
+.img:before{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    background-image: url('{% static "img/joker.png" %}');
+    background-size: cover;
+    transition: -webkit-transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+}
+</style>
+
+{% endblock mycss %}
+
+{% block content %}
+<section class="slider text-center" id="slider" 
+    style="background-image:url('{% static "img/enroll/section_enroll1.jpg" %}');">
+    <div class="slider-overlay">
+        <div class="slider-content">
+            <div class="icons">
+                <i class="fa fa-windows"></i>
+            </div>
+            <br>
+            <div class="text">      <!-- jquery typed effect -->
+                
+            </div>
+                <div class="cta-div">
+                    <a href="#contact" class="btn1">CONTACT US</a>
+                    <a href="#myservice_section" class="btn2">LEARN TODAY</a>
+                </div>
+                <br><br>
+                <div class="social-networks">
+                    <a href="" class="fa fa-facebook"></a>
+                    <a href="" class="fa fa-twitter"></a>
+                    <a href="" class="fa fa-instagram"></a>
+                    <a href="" class="fa fa-reddit"></a>
+                    <a href="" class="fa fa-linkedin"></a>
+                    <a href="" class="fa fa-cog"></a>
+                </div>
+            </div>
+    </div>
+</section>
+{% include 'partials/_works.html' %}
+
+{% include 'partials/_facilities.html' %}
+
+{% include 'partials/_courses.html' %}
+
+{% include 'partials/_available_courses.html' %}
+
+{% include 'partials/_team.html' %}
+
+{% include 'partials/_faqs.html' %}
+
+{% include 'partials/_contact_us.html' %}
+
+<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+
+{% include 'partials/_login_modal.html' %}
+
+
+{% endblock %}
+
+
+
+{% block my_scripts %}
+<script src="{% static 'js/owl.carousel.min.js' %}" type="text/javascript" ></script>
+<script src="{% static 'js/owl.carousel.js' %}" type="text/javascript" ></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}" type="text/javascript" ></script>
+<script src="{% static 'js/jquery.ripples-min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/typed.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+
+
+
+
+
+<script>
+	// var modal = document.getElementById('id01');
+	// window.onclick = function(event) {
+    //     if (event.target == modal) {
+    //         modal.style.display = "none";
+    //     }
+    // }
+    document.querySelector('.img-btn').addEventListener('click', function()
+        {
+            document.querySelector('.cont').classList.toggle('s-signup')
+        }
+    );
+</script>
+
+<script>
+//scroll to top
+$(window).scroll(function(){
+			if ($(this).scrollTop() > 100) {
+				$('.scrollup').fadeIn();
+				} else {
+				$('.scrollup').fadeOut();
+			}
+		});
+		$('.scrollup').click(function(){
+			$("html, body").animate({ scrollTop: 0 }, 1000);
+				return false;
+		});
+</script>
+
+<script type="text/javascript">
+    let items = document.querySelectorAll('.carousel .carousel-item')
+
+    items.forEach((el) => {
+        const minPerSlide = 3
+        let next = el.nextElementSibling
+        for (var i=1; i<minPerSlide; i++) {
+            if (!next) {
+                // wrap carousel by using first child
+                next = items[0]
+            }
+            let cloneChild = next.cloneNode(true)
+            el.appendChild(cloneChild.children[0])
+            next = next.nextElementSibling
+        }
+    })
+
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        const myModalAlternative = bootstrap.Modal.getOrCreateInstance('#loginModal');
+        {% if form.errors %}
+        myModalAlternative.show();
+        {% endif %}
+
+        // $('.btn-close').on('click', function(){
+        //     console.log($(this));
+        //     myModalAlternative.hide();
+        // });
+    });
+    
+    
+</script>
+
+{% endblock my_scripts %}

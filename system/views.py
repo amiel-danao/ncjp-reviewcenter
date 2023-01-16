@@ -1,5 +1,6 @@
-from django.http import HttpResponse
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 
 def index(request):
-    return HttpResponse("Welcome to your app index page")
+    return render(request=request, template_name='index.html')

@@ -1,0 +1,355 @@
+{% load static %}
+<section id="facilities" class="mb-5 p-4">
+<h1 class="d-flex justify-content-center">Facilities</h1>
+<div class="container mt-3" >
+    
+    <!-- <p><span class="tip" data-tip="my-tip">Hello world</span></p>
+
+<div id="my-tip" class="tip-content visually-hidden">
+    <h2>Tip title</h2>
+    <p>This is my tip content</p>
+</div> -->
+
+    <div class="row text-dark">
+      <div class="col card mx-2">
+        <img class="card-img-top" src="{% static 'uploadimg/1420351723-3a-test-review-centre.jpg ' %}">
+        <div class="card-body">
+          <h5 class="card-title text-center">3A Test Review Centre</h5>
+
+        </div>
+        <div class="card-footer">
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1">Details</button>
+              </div>
+          </div>
+      </div>
+
+      <div class="col card mx-2">
+        <img class="card-img-top" src="{% static 'uploadimg/285219746_978113586237726_5170053900162711238_n.jpg' %}">
+        <div class="card-body">
+          <h5 class="card-title text-center">Ncst Institute Of Industrial Research And Training Ncst Iirt Cepz Incorporated</h5>
+          
+        </div>
+        <div class="card-footer">
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal2">Details</button>
+              </div>
+          </div>
+      </div>
+
+      <div class="col card mx-2">
+        <img class="card-img-top" src="{% static 'uploadimg/cevac.png' %}">
+        <div class="card-body">
+            <h5 class="card-title text-center">CEVAS Civil Service Review Center in Dasmarinas Imus Carmona Gen Trias Cavite</h5>
+          
+        </div>
+        <div class="card-footer">
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal3">Details</button>
+              </div>
+          </div>
+      </div>
+      
+    </div>
+
+
+  </div>
+
+
+  
+  
+</section>
+
+
+<div class="modal fade" id="modal1" tabindex="-1">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+            <div class="container d-flex flex-column">
+            <img class="img-fluid" src="{% static 'uploadimg/1420351723-3a-test-review-centre.jpg ' %}" >
+                
+                <div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#automotive" aria-selected="true" role="tab">NC</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-bs-toggle="tab" href="#web" aria-selected="false" tabindex="-1" role="tab">DETAILS</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-bs-toggle="tab" href="#food" aria-selected="false" tabindex="-1" role="tab">JOIN US</a>
+                    </li>
+                </ul>
+                <div class="tab-content" style="width:300px;">
+                    <div id="automotive" class="container tab-pane active" role="tabpanel">
+                    <br>
+                    <div id="accordion">
+                        <div class="card">
+                        <div class="card-header" style="height:40px">
+                            <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseOne" aria-expanded="false"> NC-I </a>
+                        </div>
+                        <div id="collapseOne" style="" class="collapse" data-bs-parent="#accordion">
+                            <div class="card-body">
+                            <p>computer technician</p>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="card">
+                        <div class="card-header" style="height:40px">
+                            <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false"> NC-II </a>
+                        </div>
+                        <div id="collapseTwo" style="" class="collapse show" data-bs-parent="#accordion">
+                            <div class="card-body">
+                            <p>web</p>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="card">
+                        <div class="card-header" style="height:40px">
+                            <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false"> NC-III </a>
+                        </div>
+                        <div id="collapseThree" style="" class="collapse" data-bs-parent="#accordion">
+                            <div class="card-body">
+                            <p>food</p>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="card">
+                        <div class="card-header" style="height:40px">
+                            <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false"> NC-IV </a>
+                        </div>
+                        <div id="collapseThree" style="" class="collapse" data-bs-parent="#accordion">
+                            <div class="card-body">
+                            <p>automotive</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div id="web" class="container tab-pane fade" role="tabpanel">
+                    <br>
+                    <h5>National College of Science and Technology - Institute of Industrial Research and Training</h5>
+                    <p>Located in: 7-Eleven Dasma 2</p>
+                    <p>Address: National College Of Science and Technology in General Trias Cavite, Emilio Aguinaldo Highway, Dasmarias City, 4114 Cavite</p>
+                    <p>Address: National College Of Science and Technology in General Trias Cavite, Emilio Aguinaldo Highway, Dasmarias City, 4114 Cavite</p>
+                    </div>
+                    <div id="food" class="container tab-pane fade" role="tabpanel">
+                    <h4>Upgrade</h4>
+                    <p>Video tutorials</p>
+                    <p>Profile Dashboard</p>
+                    <p>Quizes</p>
+                    <p>NC</p>
+                    <p>Job national</p>
+                    <div class="d-flex justify-content-end">
+                        <div class="btn style=" height:30px;top:-4px"="" tn-primary"="" onclick="document.getElementById('id01').style.display='block'">
+                        <img src="{% static 'icons/dollar.png' %}" style="width:15px;height:25px">Subscription
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>
+    </div>
+</div>
+</div>
+
+
+<div class="modal fade" id="modal2" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">    
+                
+                    <div class="container d-flex flex-column">
+                      <div>
+                        <img class="img-fluid" src="{% static 'uploadimg/285219746_978113586237726_5170053900162711238_n.jpg ' %}">
+                      </div>
+                      <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#crew" aria-selected="true" role="tab">NC</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#guard" aria-selected="false" tabindex="-1" role="tab">DETAILS</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#janitor" aria-selected="false" tabindex="-1" role="tab">JOIN US</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content" style="width:300px;">
+                          <div id="crew" class="container tab-pane active" role="tabpanel">
+                            <br>
+                            <div id="accordion">
+                              <div class="card">
+                                <div class="card-header" style="height:40px">
+                                  <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseOne" aria-expanded="false"> NC-I </a>
+                                </div>
+                                <div id="collapseOne" style="height:40px" class="collapse show" data-bs-parent="#accordion">
+                                  <div class="card-body">
+                                    <p>security</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header" style="height:40px">
+                                  <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false"> NC-II </a>
+                                </div>
+                                <div id="collapseTwo" style="" class="collapse" data-bs-parent="#accordion">
+                                  <div class="card-body">
+                                    <p>guard</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header" style="height:40px">
+                                  <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false"> NC-III </a>
+                                </div>
+                                <div id="collapseThree" style="" class="collapse show" data-bs-parent="#accordion">
+                                  <div class="card-body">
+                                    <p>janitor</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header" style="height:40px">
+                                  <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false"> NC-IV </a>
+                                </div>
+                                <div id="collapseThree" style="" class="collapse show" data-bs-parent="#accordion">
+                                  <div class="card-body">
+                                    <p>crew</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="guard" class="container tab-pane fade" role="tabpanel">
+                            <br>
+                            <h5>National College of Science and Technology - Institute of Industrial Research and Training</h5>
+                            <p>Located in: 7-Eleven Dasma 2</p>
+                            <p>Address: National College Of Science and Technology in General Trias Cavite, Emilio Aguinaldo Highway, Dasmarias City, 4114 Cavite</p>
+                            <p>Address: National College Of Science and Technology in General Trias Cavite, Emilio Aguinaldo Highway, Dasmarias City, 4114 Cavite</p>
+                          </div>
+                          <div id="janitor" class="container tab-pane fade" role="tabpanel">
+                            <h4>Upgrade</h4>
+                            <p>Video tutorials</p>
+                            <p>Profile Dashboard</p>
+                            <p>Quizes</p>
+                            <p>NC</p>
+                            <p>Job national</p>
+                            <div class="d-flex justify-content-end">
+                              <div class="btn style=" height:30px;top:-4px"="" tn-primary"="" onclick="document.getElementById('id01').style.display='block'">
+                                <img src="{% static 'icons/dollar.png' %}" style="width:15px;height:25px">Subscription
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal3" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">    
+            <div class="container d-flex flex-column">
+            <div>
+                <img src="{% static 'uploadimg/cevac.png' %}" style="width:300px;height:200px">
+            </div>
+            <div>
+                <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#manicure" aria-selected="true" role="tab">NC</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-bs-toggle="tab" href="#automotive" aria-selected="false" tabindex="-1" role="tab">DETAILS</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-bs-toggle="tab" href="#autocad" aria-selected="false" tabindex="-1" role="tab">JOIN US</a>
+                </li>
+                </ul>
+                <div class="tab-content" style="width:300px;">
+                <div id="manicure" class="container tab-pane active" role="tabpanel">
+                    <br>
+                    <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" style="height:40px">
+                        <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseOne" aria-expanded="false"> NC-I </a>
+                        </div>
+                        <div id="collapseOne" style="height:40px" class="collapse show" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            <p>chef</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" style="height:40px">
+                        <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false"> NC-II </a>
+                        </div>
+                        <div id="collapseTwo" style="" class="collapse" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            <p>automotive</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" style="height:40px">
+                        <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false"> NC-III </a>
+                        </div>
+                        <div id="collapseThree" style="" class="collapse show" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            <p>autocad</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" style="height:40px">
+                        <a class="btn collapsed" style="height:30px;top:-4px" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false"> NC-IV </a>
+                        </div>
+                        <div id="collapseThree" style="" class="collapse show" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            <p>manicure</p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div id="automotive" class="container tab-pane fade">
+                    <br>
+                    <h5>National College of Science and Technology - Institute of Industrial Research and Training</h5>
+                    <p>Located in: 7-Eleven Dasma 2</p>
+                    <p>Address: National College Of Science and Technology in General Trias Cavite, Emilio Aguinaldo Highway, Dasmarias City, 4114 Cavite</p>
+                    <p>Address: National College Of Science and Technology in General Trias Cavite, Emilio Aguinaldo Highway, Dasmarias City, 4114 Cavite</p>
+                </div>
+                <div id="autocad" class="container tab-pane fade" role="tabpanel">
+                    <h4>Upgrade</h4>
+                    <p>Video tutorials</p>
+                    <p>Profile Dashboard</p>
+                    <p>Quizes</p>
+                    <p>NC</p>
+                    <p>Job national</p>
+                    <div class="d-flex justify-content-end">
+                    <div class="btn style=" height:30px;top:-4px"="" tn-primary"="" onclick="document.getElementById('id01').style.display='block'">
+                        <img src="{% static 'icons/dollar.png' %}" style="width:15px;height:25px">Subscription
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

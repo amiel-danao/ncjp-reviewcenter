@@ -1,0 +1,100 @@
+{% load static %} 
+<div id="loginModal" class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="containermodal">
+          <form class="sign-in animate" action="{% url 'authentication:login' %}" method="POST" autocomplete="" > 
+            {% csrf_token %} 
+            <div class="cont">
+              <div class="form sign-in" style="overflow-y: scroll;">
+                <div class="imgcontainer">
+                  <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span> -->
+                </div>
+                <h2>Sign In</h2> {% for message in messages %} <div class="toast align-items-center {{ message.tags }} border-0 mx-auto mb-1" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="d-flex">
+                    <div class="toast-body">
+                      {{ message }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                </div> {% endfor %} <label>
+                  <span>Email Address</span>
+                  <input type="email" name="username" value="{{ form.email.value }}" required>
+                </label>
+                <label>
+                  <span>Password</span>
+                  <input type="password" name="password" required>
+                </label>
+                <button type="submit" name="login" value="Login" class="submit">Sign In</button>
+                <p class="forgot-pass">
+                  <a href="{% url 'admin:index' %}">Admin</a>
+                </p>
+                <p class="forgot-pass">
+                  <a href="forgot-password.php">Forgot Password ?</a>
+                </p>
+          </form>
+          <div class="social-media">
+            <ul>
+              <li>
+                <img src="{% static 'img/facebook.png' %}">
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="sub-cont">
+          <div class="img">
+            <div class="img-text m-up">
+              <h2>New here?</h2>
+              <p>Sign up and discover great amount of new opportunities!</p>
+            </div>
+            <div class="img-text m-in">
+              <h2>One of us?</h2>
+              <p>If you already has an account, just sign in. We've missed you!</p>
+            </div>
+            <div class="img-btn">
+              <span class="m-up">Sign Up</span>
+              <span class="m-in">Sign In</span>
+            </div>
+          </div>
+          <form class="form sign-up" action="{% url 'authentication:register' %}" method="POST" autocomplete="" style="overflow-y: scroll;"> 
+            {% csrf_token %} <div class="imgcontainer">
+              <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+              <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span> -->
+            </div>
+            <h2>Sign Up</h2> {% for message in messages %} <div class="toast align-items-center {{ message.tags }} border-0 mx-auto mb-1" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="d-flex">
+                <div class="toast-body">
+                  {{ message }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+            </div> {% endfor %} <label>
+              <span>Username</span>
+              <input type="text" name="username" class="username" value="{{ form.username.value }}" required>
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" value="{{ form.email.value }}" required>
+            </label>
+            <label>
+              <span>Password</span>
+              <input type="password" name="password1" required>
+            </label>
+            <label>
+              <span>Confirm Password</span>
+              <input type="password" name="password2" required>
+            </label>
+            <button type="submit" name="signup" value="Signup" class="submit">Sign Up Now</button>
+            
+            
+            <a type="button" href="{% url 'authentication:verification' %}">Didn't receive email verification? Click Here</a>
+            
+        </form>
+        
+
+          
+        </div>
+      </div>
+    </div>
+  </div>

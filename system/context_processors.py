@@ -8,12 +8,13 @@ OPENING_HOUR = 9
 CLOSING_HOUR = 21
 SCHEDULE_DATEFORMAT = "%Y-%m-%d, %I:%M %p"
 SCHEDULE_DATEFORMAT_24H = "%Y-%m-%d, %H:%M"
+EMAIL_VERIFY_SUBJECT = 'NCJP - Email Verification'
 
 
 def global_context(request):
     return {
-        'app_title': admin.site.site_title,
-        'app_short_title': 'Review Center',
+        'app_title': 'National Certification and Job Placement',
+        'app_short_title': 'NCJP',
         'app_description': 'NCST Review Center',
         'app_schedule': 'Mon - Fri : 09.00 AM - 09.00 PM',
         'app_location': '',

@@ -1,0 +1,50 @@
+{% load static %}
+
+<section id="work" class="mb-5 p-4">
+    <h2 class="p-3 text-center">OUR WORKS</h2>
+    <!-- <div class="container text-center my-3"> -->
+        <div class="row mx-auto my-auto justify-content-center">
+            <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="col-md-4">
+                            <div class="card  ">
+                                <div class="card-img">
+                                    <img src="{% static 'uploadimg/cooking.jpeg' %}" style="width:300px;height:200px">
+                                </div>
+                                <!-- <div class="card-img-overlay text-white">Cooking</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="col-md-4">
+                            <div class="card  ">
+                                <div class="card-img">
+                                    <img src="{% static 'uploadimg/Computer_technician_05.jpg' %}" style="width:300px;height:200px">
+                                </div>
+                                <!-- <div class="card-img-overlay text-white">Technician</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="col-md-4">
+                            <div class="card  ">
+                                <div class="card-img">
+                                    <img src="{% static 'uploadimg/barista-bartender.jpg' %}" style="width:300px;height:200px">
+                                </div>
+                                <!-- <div class="card-img-overlay text-white">Bartender</div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    <!-- </div> -->
+  </section>
+

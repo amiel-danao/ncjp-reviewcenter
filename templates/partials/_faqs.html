@@ -1,0 +1,64 @@
+{% load static %}
+
+<section class="faq" id="myfaq">
+    <h2 class="text-center text-uppercase">About Us</h2>
+    <div class="container">
+    <div class="row">
+    
+      <div class="col-7">
+        <div class="panel-group accordion" id="accordian">
+          <div class="panel panel-default ">
+            <div class="panel-heading" id="headingOne">
+              <h4 class="panel-title">
+                <a href="#faq1" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">what is your website is about ?</a>
+              </h4>
+            </div>
+            <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordian">
+              <div class="panel-body">
+                <p> pogi ko </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default ">
+            <div class="panel-heading" id="headingTwo">
+              <h4 class="panel-title">
+                <a href="#faq2" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="true" aria-controls="faq2">How to rate the videos ?</a>
+              </h4>
+            </div>
+            <div id="faq2" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordian">
+              <div class="panel-body">
+                <p> Go to view videos section and select your favourite TV show and give ratting there </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default ">
+            <div class="panel-heading" id="headingThree">
+              <h4 class="panel-title">
+                <a href="#faq3" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="true" aria-controls="faq3">how to log in ?</a>
+              </h4>
+            </div>
+            <div id="faq3" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordian">
+              <div class="panel-body">
+                <p> goto bingeflix.com/login and from there you can login </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default ">
+            <div class="panel-heading" id="headingFour">
+              <h4 class="panel-title">
+                <a href="#faq4" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="true" aria-controls="faq4">how to pay</a>
+              </h4>
+            </div>
+            <div id="faq4" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordian">
+              <div class="panel-body">
+                <p> you need to click me </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+          <img class="img-fluid" src="{% static 'img/faq1.png' %}">
+      </div>
+    </div>
+  </section>
