@@ -1,0 +1,21 @@
+{% extends 'faq/base.html' %}
+{% block title %}FAQ | choose Question{% endblock %}
+{% block heading %}choose a FAQ Question{% endblock %}
+{% load static %}
+
+{% block forum %}
+<h1 class="mb-3">FAQs</h1>
+
+<div class="list-group">
+    {% for question in questions %}
+        
+        <a href= "{% url 'faq:question_detail' question.slug %}" class="list-group-item list-group-item-action list-group-item-light">{{question.question}}</a>
+    {% endfor %}
+
+</div>
+
+{% if can_add_question %}
+    <hr>
+    <a type="button" class="btn btn-success" href="{% url 'faq:add_question' %}">add new question</a>
+{% endif %}
+{% endblock %}

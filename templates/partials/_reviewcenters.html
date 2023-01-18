@@ -1,0 +1,26 @@
+{% load static %}
+<div class="container text-center">
+    <div class="row">
+    
+    {% for reviewcenter in reviewcenters %}
+        <div class="col-4 p-3 text-dark">
+            <div class="card h-100" >
+                <img class="card-img-top" src="{{ reviewcenter.thumbnail.url }}" class="card-img-top" alt="{{ reviewcenter.name }}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ reviewcenter.name }}</h5>
+                  <p class="card-text">{{ reviewcenter.description }}</p>
+                  
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'system:reviewcenter_detail' slug=reviewcenter.slug %}" class="btn btn-primary">
+                        <img class="dollar-sign" src="{% static 'icons/dollar.png' %}">
+                        Descriptions
+                        </a>
+                  </div>
+              </div>
+        </div>
+        {% empty %}
+        <h1>No Review Centers available at this time.</h1>
+        {% endfor %}
+    </div>
+  </div>

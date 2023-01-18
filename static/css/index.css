@@ -33,11 +33,7 @@
 }
 
 
-.card-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
-}
+
 
 
 
@@ -416,7 +412,6 @@ button{
 
 
 .sign-in{
-  padding-top: 65px;
   -webkit-transition-timing-function:ease-out;
           transition-timing-function:ease-out;
 }
@@ -555,108 +550,7 @@ video {
 
 
 
-footer{
-	padding:50px 0 0 0;
-	color:#f8f8f8;
-}
 
-footer a {
-	color:#fff;
-}
-
-footer a:hover {
-	color: #00bcd4;
-}
-
-footer h1, footer h2, footer h3, footer h4, footer h5, footer h6{
-	color: #00bcd4;
-}
-
-footer address {
-	line-height:1.6em;
-	color: rgba(255, 255, 255, 0.78);
-}
-
-footer h5 a:hover, footer a:hover {
-	text-decoration:none;
-}
-
-ul.social-network {
-	list-style:none;
-	margin:0;
-}
-
-ul.social-network li {
-	display:inline;
-	margin: 0 5px;
-	border: 1px solid #535456;
-	padding: 5px 0 0;
-	width: 32px;
-	display: inline-block;
-	text-align: center;
-	height: 32px;
-	vertical-align: baseline;
-}
-
-#sub-footer{
-	text-shadow:none;
-	color:#f5f5f5;
-	padding:0;
-	padding-top:30px;
-	margin:20px 0 0 0;
-	background: #232527;
-}
-
-#sub-footer p{
-	margin:0;
-	padding:0;
-}
-
-#sub-footer span{
-	color: rgba(255, 255, 255, 0.63);
-}
-
-.copyright {
-	text-align:left;
-	font-size:12px;
-}
-
-#sub-footer ul.social-network {
-	float:right;
-}
-footer .col-lg-1, footer .col-lg-2, footer .col-lg-3, footer .col-lg-4, footer .col-lg-5, footer .col-lg-6, 
-	footer .col-lg-7, footer .col-lg-8, footer .col-lg-9, footer .col-lg-10, footer .col-lg-11, footer .col-lg-12{
-		margin-bottom:20px;
-	}
-
-	#sub-footer ul.social-network {
-		float:left;
-	}
-
-  .widget img.pull-left {
-	float:left;
-	margin:0 15px 15px 0;
-}
-
-.widget .flickr_badge {
-	width:100%;
-}
-.widget .flickr_badge img { margin: 0 9px 20px 0; }
-
-footer .widget .flickr_badge {
-    width: 100%;
-}
-footer .widget .flickr_badge img {
-    margin: 0 9px 20px 0;
-}
-
-footer{background: #282a2c;}
-footer ul.link-list li a{
-	color: rgba(255, 255, 255, 0.63);
-}
-footer ul.link-list li a:hover {
-	color: #00bcd4;
-}
 /* --- Heading style --- */
 
 h4.heading {

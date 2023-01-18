@@ -1,0 +1,12 @@
+{% extends 'faq/question_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block question_content %}
+<h1>Post A Comment</h1>
+<a href="{{question.get_absolute_url}}"><h3>{{question.question}}</h3></a>
+<form method="post">
+    {% csrf_token %}
+    {{form|crsipy}}
+    <input class="btn btn-success" type="submit">
+</form>
+{% endblock %}

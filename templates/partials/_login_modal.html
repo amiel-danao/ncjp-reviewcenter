@@ -1,16 +1,14 @@
 {% load static %} 
 <div id="loginModal" class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="containermodal">
+          <div class="cont">
           <form class="sign-in animate" action="{% url 'authentication:login' %}" method="POST" autocomplete="" > 
             {% csrf_token %} 
-            <div class="cont">
+            
               <div class="form sign-in" style="overflow-y: scroll;">
-                <div class="imgcontainer">
-                  <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-                  <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span> -->
-                </div>
+                <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
                 <h2>Sign In</h2> {% for message in messages %} <div class="toast align-items-center {{ message.tags }} border-0 mx-auto mb-1" role="alert" aria-live="assertive" aria-atomic="true">
                   <div class="d-flex">
                     <div class="toast-body">
@@ -33,15 +31,18 @@
                 <p class="forgot-pass">
                   <a href="forgot-password.php">Forgot Password ?</a>
                 </p>
+                <div class="social-media text-center">
+                  <ul class="px-0">
+                    <li>
+                      <img src="{% static 'img/facebook.png' %}">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            
           </form>
-          <div class="social-media">
-            <ul>
-              <li>
-                <img src="{% static 'img/facebook.png' %}">
-              </li>
-            </ul>
-          </div>
-        </div>
+        
+          
         <div class="sub-cont">
           <div class="img">
             <div class="img-text m-up">
@@ -62,7 +63,9 @@
               <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
               <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span> -->
             </div>
-            <h2>Sign Up</h2> {% for message in messages %} <div class="toast align-items-center {{ message.tags }} border-0 mx-auto mb-1" role="alert" aria-live="assertive" aria-atomic="true">
+            <h2>Sign Up</h2> 
+            {% for message in messages %} 
+            <div class="toast align-items-center {{ message.tags }} border-0 mx-auto mb-1" role="alert" aria-live="assertive" aria-atomic="true">
               <div class="d-flex">
                 <div class="toast-body">
                   {{ message }}
@@ -87,14 +90,13 @@
             </label>
             <button type="submit" name="signup" value="Signup" class="submit">Sign Up Now</button>
             
-            
-            <a type="button" href="{% url 'authentication:verification' %}">Didn't receive email verification? Click Here</a>
-            
+            <div class="text-center">
+            <a type="button" href="{% url 'authentication:verification' %}">Didn't receive an email verification? Click Here</a>
+            </div>
         </form>
-        
-
-          
+      </div>
+    </div>
+        </div>
         </div>
       </div>
     </div>
-  </div>

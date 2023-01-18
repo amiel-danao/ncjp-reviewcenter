@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,7 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
-    'system'
+    'system',
+    'faq',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +139,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-LOGIN_URL = '/login/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = "/media/"
+
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 # login details danielc / ofhNrp21f5bkj3xj
@@ -152,6 +161,9 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "authentication.CustomUser"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
 MESSAGE_TAGS = {
@@ -161,3 +173,14 @@ MESSAGE_TAGS = {
     messages.WARNING: 'text-bg-warning',
     messages.ERROR: 'text-bg-danger',
  }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+FAQ_SETTINGS = ['allow_multiple_answers',
+    'logged_in_users_can_add_question', 'logged_in_users_can_answer_question', 'no_votes ', 'no_answer_votes', 'no_question_votes', 'no_category_description',
+                    'no_category']

@@ -9,7 +9,7 @@ CLOSING_HOUR = 21
 SCHEDULE_DATEFORMAT = "%Y-%m-%d, %I:%M %p"
 SCHEDULE_DATEFORMAT_24H = "%Y-%m-%d, %H:%M"
 EMAIL_VERIFY_SUBJECT = 'NCJP - Email Verification'
-
+EMAIL_VERIFY_SENDER = 'ncjp@gmail.com'
 
 def global_context(request):
     return {

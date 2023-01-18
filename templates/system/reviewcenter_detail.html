@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+    
+      <div class="col-12 p-3 text-dark">
+          <div class="card" >
+              <div class="card-header">
+                <h5 class="card-title">{{ reviewcenter.name }}</h5>
+              </div>
+              <img class="img-fluid" src="{{ reviewcenter.thumbnail.url }}" class="card-img-top" alt="{{ reviewcenter.name }}">
+              <div class="card-body">
+                
+                <p class="card-text">{{ reviewcenter.description }}</p>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

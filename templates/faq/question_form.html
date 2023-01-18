@@ -1,0 +1,11 @@
+{% extends 'faq/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}FAQ | Ask Question{% endblock %}
+{% block heading %}Ask Question{% endblock %}
+{% block forum %}
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input class="btn btn-success" type="submit">
+</form>
+{% endblock %}

@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from authentication.forms import LoginForm, RegisterForm
 from authentication.models import CustomUser
-from system.context_processors import EMAIL_VERIFY_SUBJECT
+from system.context_processors import EMAIL_VERIFY_SENDER, EMAIL_VERIFY_SUBJECT
 from system.models import Student
 
 
@@ -52,7 +52,7 @@ def send_verification_email(email, link):
     send_mail(
         EMAIL_VERIFY_SUBJECT,
         f'To verify your account, please follow this link: {link} \n Please disregard this email if you do not create this account!',
-        'ncst.kiosk.gmail.com',
+        EMAIL_VERIFY_SENDER,
         (email, ),
         fail_silently=False,
     )
@@ -60,9 +60,11 @@ def send_verification_email(email, link):
 def verify_account_view(request, id):
     if request.method == "GET":
         account = CustomUser.objects.get(id=id)
-        account.is_active = True
-        account.save()
-        return render(request=request, template_name='registration/verified.html')
+        if not account.is_active:
+            account.is_active = True
+            account.save()
+            messages.success(request, f'Your account is now verified, Proceed to login')
+        return render(request=request, template_name='index.html')
     return HttpResponseBadRequest()
 
 
@@ -80,13 +82,13 @@ def send_verification(request):
                     return redirect('authentication:login')
             except CustomUser.DoesNotExist:
                 messages.error(request, f'User with email {email} is not yet registered')
-                return redirect('authentication:register')
+                return redirect('system:index')
             try:
                 domain = request.get_host()
                 link = reverse('authentication:create', kwargs={'id':user.id})
-                send_verification_email(request.POST.get('email'), f'{domain}{link}')
+                send_verification_email(email, f'{domain}{link}')
                 messages.success(request, f'An email verification was sent to {email}.')
-                return redirect('authentication:register')
+                return redirect('system:index')
             except SMTPDataError as error:
                 messages.error(request, f'{error}\n Please try again later.')
                 return redirect('system:index')

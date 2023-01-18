@@ -1,0 +1,36 @@
+{% load crispy_forms_tags %}
+<h3>comments</h3>
+
+<div class="list-group mb-4">
+    {% for comment in question.faqcomment_set.all %}
+    <a href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h3></h3>
+            <small class="text-muted">{{comment.post_time|timesince}} ago</small>
+        </div>
+        <p class="mb-1">{{ comment.comment }}</p>
+      <small class="text-muted">posted by {% if comment.user%}{{comment.user}}{% else %}anonymous{% endif %}</small>
+    </a>
+    {% endfor %}
+</div>
+
+<!-- <ul>
+    {% for comment in question.faqcomment_set.all %}
+        <li><h4>{{comment.comment}}</h4>
+            posted by {% if comment.user%}{{comment.user}}{% else %}anonymous{% endif %} {{comment.post_time|timesince}} ago</li>
+    {% endfor %}
+</ul> -->
+{% if add_new_comment_allowed %}
+    {% if category_enabled %}
+    <form method="post" class="form" action="{% url 'faq:add_comment' question.category.slug question.slug %}">
+    {% else %}
+    <form method="post" class="form" action="{% url 'faq:add_comment' question.slug %}">
+    {% endif %}
+    <fieldset>
+        <legend>Post Your Comment Here:</legend>
+        {% csrf_token %}
+        {{comment_form|crispy}}
+        <input class="btn btn-success" type="submit" name="post">
+    </fieldset>
+    </form>
+    {% endif %}
