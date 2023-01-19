@@ -1,0 +1,4 @@
+Paypal sample buyer account
+
+email: sb-ju844724898239@personal.example.com
+password: 1?;!R(Es

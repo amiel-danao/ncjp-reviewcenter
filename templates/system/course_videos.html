@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load embed_video_tags %}
+{% block mycss %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.css' %}"> -->
+
+
+<style>
+</style>
+
+{% endblock mycss %}
+
+{% block content %}
+
+    <div class="p-5">
+    {% if course %}
+    <div class="row">
+    <h1>Available videos for <strong>{{course.abbreviation}}</strong>:</h1>
+    <hr>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        {% for video_instance in video_list %}
+
+        {% video video_instance.url as my_video %}
+        
+
+        <div class="card col-3 shadow m-2">
+            <img src="{{ my_video.thumbnail }}" class="card-img-top" alt="{{video_instance.title}}">
+            <div class="card-body">
+              <h5 class="card-title">{{video_instance.title}}</h5>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    {{video_instance.description|slice:"0:20"}}
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        {{video_instance.description|slice:"20:"}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a href="{% url 'system:video_watch' pk=video_instance.pk %}" class="btn btn-primary">Watch now</a>
+            </div>
+          </div>
+        {% endvideo %}
+          
+        {%empty%}
+            <h2 class="fst-italic">There's no available videos at this time...</h2>
+        {%endfor%}
+    </div>
+
+
+</div>
+{% endblock %}
+
+
+
+{% block my_scripts %}
+
+{% endblock my_scripts %}

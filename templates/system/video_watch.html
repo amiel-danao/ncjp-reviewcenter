@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load embed_video_tags %}
+
+{% block mycss %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.css' %}"> -->
+
+
+<style>
+  .fit-cover{
+    object-fit: cover;
+    object-position: left top;
+  }
+</style>
+
+{% endblock mycss %}
+
+{% block content %}
+
+    <div class="p-5">
+    <div class="row">
+    <h1>{{video.title}}</strong>:</h1>
+    <hr>
+    </div>
+
+    <div class="row">
+      <div class="p-2 col-md-8 col-sm-12 text-center">
+        {% video video.url 'medium' %}
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <div class="p-3">
+          <h4>Related videos</h4>
+          <hr>
+          {% for related in related_videos %}
+          {% video related.url as my_video %}
+            
+          <a href="{% url 'system:video_watch' pk=related.id %}">
+            <div class="card mb-3 col shadow">
+              <div class="row g-0">
+                <div class="col-md-6">
+                  
+                  <img src="{{ my_video.thumbnail }}" class="fit-cover w-100 h-100 rounded-start" alt="{{ related.title }}">
+                
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <p class="card-text">{{ related.title }}</p>
+                    <p class="card-text"><small class="text-muted">{{ related.date_posted|timesince }} ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          {% endvideo %}
+          {% empty %}
+          <p class="fst-italic">No related videos...</p>
+          {% endfor %}
+        </div>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col p-3 col-md-8 col-sm-12">
+        <h5>Comments Section</h5>
+
+        <form class="form shadow p-3" method="POST">
+          {% csrf_token %}
+          <div class="form-floating">
+            <textarea class="form-control" name="text" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">What's your comment?</label>
+          </div>
+          <button type="submit" class="btn btn-success">Post Comment</button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col p-3 col-md-8 col-sm-12">
+        {% for comment in video_comments %}
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"></h5>
+              <small class="text-muted">{{comment.date_posted|timesince}} ago</small>
+            </div>
+            <p class="mb-1">{{comment.text}}</p>
+            <small class="text-muted">{{comment.sender}}</small>
+          </a>
+        </div>
+        {% empty %}
+        <h4 class="fst-italic">No comments yet...</h4>
+        {% endfor %}
+    </div>
+    </div>
+
+
+</div>
+{% endblock %}
+
+
+
+{% block my_scripts %}
+
+{% endblock my_scripts %}

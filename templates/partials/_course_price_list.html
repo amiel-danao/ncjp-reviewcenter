@@ -1,0 +1,52 @@
+{% load static %}
+{% load i18n %}
+
+<div>
+    <h2 class="mb-3">{% trans "Paid Courses" %}</h2>
+    <hr>
+    
+    <div class="row mb-5 p-4">
+      {% for cat in paid_course_list %}
+      <div class="card col-4 course-card shadow">
+          <img src="{% if cat.course.thumbnail %}{{cat.course.thumbnail.url}}{% endif %}" class="card-img-top" alt="{{cat.course.name}}">
+          <div class="card-body">
+            <h5 class="card-title">{{cat.course.name}}</h5>
+            
+            <div class="mb-3">
+                {% if cat.previous_price > 0 %}
+                <p class="text-decoration-line-through">${{cat.previous_price}}</p>
+                {% endif %}
+                {% if cat.price > 0 %}
+                <p class="ms-2 text-success fw-bolder">${{cat.price}}</p>
+                {% else %}
+                <strong class="ms-2 text-success fw-bolder">FREE TRIAL</strong>
+                {% endif %}
+            </div>
+
+            <a href="{% url 'system:check_course_payment' pk=cat.id %}" class="btn btn-primary">Browse videos</a>
+          </div>
+      </div>
+      {% empty %}
+        <h5 class="fst-italic">No available Paid courses at this moment.</h5>
+      {% endfor %}
+    </div>
+    
+    <h2 class="mb-3">{% trans "Free Courses" %}</h2>
+    <hr>
+    
+    <div class="row mb-5 p-4">
+        {% for cat in free_course_list %}
+        <div class="card col-4 course-card shadow">
+            <img src="{% if cat.course.thumbnail %}{{cat.course.thumbnail.url}}{% endif %}" class="card-img-top" alt="{{cat.course.name}}">
+            <div class="card-body">
+              <h5 class="card-title">{{cat.course.name}}</h5>
+              <p class="card-text">{{cat.course.description}}</p>
+              <a href="{% url 'system:course_videos' pk=cat.id %}" class="btn btn-primary">Browse videos</a>
+            </div>
+        </div>
+        {% empty %}
+            <h5 class="fst-italic">No available Free courses at this moment.</h5>
+        {% endfor %}
+      </div>
+
+</div>

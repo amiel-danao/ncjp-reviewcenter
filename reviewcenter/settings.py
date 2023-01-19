@@ -44,10 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
+    'embed_video',
     'system',
     'faq',
     'crispy_forms',
     'crispy_bootstrap5',
+    'mcq',
+    'quiz',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -184,3 +188,13 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 FAQ_SETTINGS = ['allow_multiple_answers',
     'logged_in_users_can_add_question', 'logged_in_users_can_answer_question', 'no_votes ', 'no_answer_votes', 'no_question_votes', 'no_category_description',
                     'no_category']
+
+JET_DEFAULT_THEME = 'default'
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
+
+PAYPAL_RECEIVER_EMAIL = 'sb-ujnjo24898241@business.example.com'
+
+PAYPAL_TEST = True

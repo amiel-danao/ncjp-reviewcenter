@@ -98,6 +98,7 @@ class FAQComment(models.Model):
 
     class Meta:
         ordering = ['question', '-post_time']
+        verbose_name = 'FAQ Comment'
 
 
 class AnswerHelpful(models.Model):
