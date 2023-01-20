@@ -92,6 +92,9 @@ class Payment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
     payment_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.user}, {self.course}'
+
 
 class CoursePrice(models.Model):
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)

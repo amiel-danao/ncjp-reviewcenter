@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-(rby5ubl=%2=_8qhhro3nms+(9bsen1-v#kx#(s=hi!c)1oh(t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1',]
+ALLOWED_HOSTS = ['127.0.0.1', '5b10-123-253-51-98.ap.ngrok.io']
 
 
 # Application definition
@@ -45,13 +45,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'embed_video',
+    'paypal.standard.ipn',
     'system',
     'faq',
     'crispy_forms',
     'crispy_bootstrap5',
     'mcq',
     'quiz',
-    'paypal.standard.ipn',
+    'job'
 ]
 
 MIDDLEWARE = [
@@ -198,3 +199,5 @@ XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
 PAYPAL_RECEIVER_EMAIL = 'sb-ujnjo24898241@business.example.com'
 
 PAYPAL_TEST = True
+
+CSRF_TRUSTED_ORIGINS = ['https://5b10-123-253-51-98.ap.ngrok.io']

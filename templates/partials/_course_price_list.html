@@ -7,7 +7,7 @@
     
     <div class="row mb-5 p-4">
       {% for cat in paid_course_list %}
-      <div class="card col-4 course-card shadow">
+      <div class="card col-4 course-card shadow m-2">
           <img src="{% if cat.course.thumbnail %}{{cat.course.thumbnail.url}}{% endif %}" class="card-img-top" alt="{{cat.course.name}}">
           <div class="card-body">
             <h5 class="card-title">{{cat.course.name}}</h5>

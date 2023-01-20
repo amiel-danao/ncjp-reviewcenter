@@ -160,9 +160,9 @@ def process_payment(request, pk):
         'notify_url': 'http://{}{}'.format(host,
                                            reverse('paypal-ipn')),
         'return_url': 'http://{}{}'.format(host,
-                                           reverse('system:payment_done')),
+                                           reverse('system:payment_done', kwargs={'pk': pk})),
         'cancel_return': 'http://{}{}'.format(host,
-                                              reverse('system:dashboard')),
+                                              "%s?menu=review" % reverse('system:dashboard')),
     }
 
     form = PayPalPaymentsForm(initial=paypal_dict)
@@ -170,9 +170,11 @@ def process_payment(request, pk):
 
 @csrf_exempt
 def payment_done(request, pk):
+    course = get_object_or_404(Course, id=pk)
+    course_price = get_object_or_404(CoursePrice, course=course)
+    Payment.objects.create(user=request.user, price=course_price.price, course=course)
 
-
-    return render(request, 'system/payment_done.html')
+    return redirect('system/course_videos.html', pk=pk)
 
 
 @csrf_exempt

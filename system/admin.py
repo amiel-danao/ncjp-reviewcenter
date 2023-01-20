@@ -1,11 +1,12 @@
 from django.contrib import admin
 from authentication.models import CustomUser
-from system.models import CoursePrice, Department, ReviewCenter, Video, VideoComment
+from system.models import CoursePrice, Department, Payment, ReviewCenter, Video, VideoComment
 from django.contrib.auth.models import Group
 from  embed_video.admin  import  AdminVideoMixin
 from django import forms
+from paypal.standard.ipn.models import PayPalIPN
 
-admin.site.unregister(Group)
+admin.site.unregister((Group, PayPalIPN))
 
 # Register your models here.
 @admin.register(CustomUser)
@@ -44,6 +45,10 @@ class VideoCommentAdmin(admin.ModelAdmin):
 @admin.register(ReviewCenter)
 class ReviewCenterAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
+
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    pass
 
 admin.site.site_header = "NCST Review Center"
 admin.site.site_title = "Review Center Admin"
