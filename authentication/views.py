@@ -28,7 +28,7 @@ def register_view(request):
             # login(request, user)
             try:
                 domain = request.get_host()
-                link = reverse('system:create', kwargs={'id':user.id})
+                link = reverse('authentication:create', kwargs={'id':user.id})
                 send_verification_email(request.POST.get('email'), f'{domain}{link}')
                 messages.success(request, "Registration successful. Please check your email to verify your account.")
                 return redirect('system:index')
