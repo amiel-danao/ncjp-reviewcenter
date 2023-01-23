@@ -8,7 +8,7 @@
                 <img class="card-img-top" src="{{ reviewcenter.thumbnail.url }}" class="card-img-top" alt="{{ reviewcenter.name }}">
                 <div class="card-body">
                   <h5 class="card-title">{{ reviewcenter.name }}</h5>
-                  <p class="card-text">{{ reviewcenter.description }}</p>
+                  <p class="card-text">{{ reviewcenter.description|safe }}</p>
                   
                 </div>
                 <div class="card-footer">

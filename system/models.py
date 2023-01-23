@@ -1,3 +1,4 @@
+from django_extensions.db.fields import AutoSlugField
 from  embed_video.fields  import  EmbedVideoField
 import re
 from django.db import models
@@ -35,8 +36,7 @@ class ReviewCenter(models.Model):
         return reverse("reviewcenter_detail", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):  # new
-        if not self.slug:
-            self.slug = slugify(self.title)
+        self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
 
 
@@ -67,17 +67,18 @@ class Course(models.Model):
     level = models.PositiveIntegerField(default=1, validators=(MinValueValidator(1), ))
     major = models.CharField(max_length=60, blank=True, default='')
 
-    category = models.CharField(
+    category = models.SlugField(
         verbose_name=_("Category"),
-        max_length=250, blank=True,
-        unique=True, null=True)
+        default='',
+        max_length=255,
+        unique=True,)
 
     objects = CourseManager()
 
     def save(self, *args, **kwargs):  # new
-        if not self.category:
-            self.category = slugify(self.name)
+        self.category = slugify(self.name)
         return super().save(*args, **kwargs)
+
 
     class Meta:
         verbose_name = _("Course")
@@ -105,6 +106,7 @@ class CoursePrice(models.Model):
     def __str__(self):
         return self.course.name
 
+
 class Video(models.Model):
     title = models.CharField(max_length=100, blank=False, default='')
     description = models.CharField(max_length=1000, blank=False, default='')
@@ -113,6 +115,11 @@ class Video(models.Model):
     url = EmbedVideoField()
     date_posted = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
+    slug = models.SlugField(max_length=255, default='', unique=True)
+
+    def save(self, *args, **kwargs):  # new
+        self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -125,3 +132,21 @@ class VideoComment(models.Model):
 
     def __str__(self):
         return f'{str(self.video)}, {self.sender}, {self.text[:20]}, {self.date_posted}'
+
+class ReviewCourse(models.Model):
+    title = models.CharField(max_length=120, blank=False, default='')
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
+    active = models.BooleanField(default=True)
+
+
+    def __str__(self):
+        return self.title
+
+class ReviewMaterial(models.Model):
+    review_course = models.ForeignKey(ReviewCourse, on_delete=models.CASCADE)
+    title = models.CharField(max_length=120, blank=False, default='')
+    content = models.CharField(max_length=1024, blank=True, default='')
+    image = models.ImageField(upload_to='review_materials/', blank=False)
+
+    def __str__(self):
+        return self.title

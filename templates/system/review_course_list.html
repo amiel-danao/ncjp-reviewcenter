@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+    <div class="p-5">
+        <h1 class="mb-2">Review materials for {{ course }}</h1>
+        <hr>
+
+        <div class="list-group">        
+            
+        {% for review_course in review_course_list %}    
+            <a href="{% url 'system:review_materials' course_slug=course.category pk=review_course.id %}" class="list-group-item list-group-item-action list-group-item-light">{{ review_course.title }}</a>
+        {% empty %}
+            <h1 class="p-5 text-center list-group-item list-group-item-action list-group-item-light">There's no review materials for this course yet...</h1>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

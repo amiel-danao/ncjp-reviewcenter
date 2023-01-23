@@ -34,18 +34,18 @@
               <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse_{{ forloop.counter }}">
                     {{video_instance.description|slice:"0:20"}}
                     </button>
                   </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div id="collapse_{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         {{video_instance.description|slice:"20:"}}
                     </div>
                   </div>
                 </div>
               </div>
-              <a href="{% url 'system:video_watch' pk=video_instance.pk %}" class="btn btn-primary">Watch now</a>
+              <a href="{% url 'system:video_watch' course_slug=video_instance.course.category video_slug=video_instance.slug %}" class="btn btn-primary">Watch now</a>
             </div>
           </div>
         {% endvideo %}

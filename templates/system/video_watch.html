@@ -35,7 +35,7 @@
           {% for related in related_videos %}
           {% video related.url as my_video %}
             
-          <a href="{% url 'system:video_watch' pk=related.id %}">
+          <a href="{% url 'system:video_watch' course_slug=related.course.category video_slug=related.slug %}">
             <div class="card mb-3 col shadow">
               <div class="row g-0">
                 <div class="col-md-6">
@@ -62,6 +62,17 @@
     </div>
     <div class="row">
       <div class="col p-3 col-md-8 col-sm-12">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_video" aria-expanded="true" aria-controls="collapse_collapse_video">
+          <h5>Video Description</h5>
+          </button>
+        </h2>
+        <div id="collapse_video" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+              {{video.description|safe}}
+          </div>
+        </div>
+
         <h5>Comments Section</h5>
 
         <form class="form shadow p-3" method="POST">

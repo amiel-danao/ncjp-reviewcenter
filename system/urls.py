@@ -10,13 +10,15 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path("reviewcenters/<slug:slug>", views.reviewcenter_detail, name="reviewcenter_detail"),
-    path("course_videos/<int:pk>", views.VideoListView.as_view(), name='course_videos'),
-    path('video_watch/<int:pk>', views.VideoDetailView.as_view(), name='video_watch'),
+    path("course_videos/<slug:course_slug>", views.VideoListView.as_view(), name='course_videos'),
+    path('video_watch/<slug:course_slug>/<slug:video_slug>', views.VideoDetailView.as_view(), name='video_watch'),
     path('video_tutorials/', views.free_video_tutorials, name='free_video_tutorials'),
-    path('check_course_payment/<int:pk>', views.check_course_payment, name='check_course_payment'),
+    path('review_materials/<slug:course_slug>/<int:pk>', views.ReviewMaterialListView.as_view(), name='review_materials'),
+    path('review_courses/<slug:course_slug>', views.ReviewCourseListView.as_view(), name='review_courses'),
+    path('check_course_payment/<slug:course_slug>', views.check_course_payment, name='check_course_payment'),
     path('payment/', views.PaymentView.as_view(), name='payment'),
-    path('process-payment/<int:pk>', views.process_payment, name='process_payment'),
-    path('payment-done/<int:pk>', views.payment_done, name='payment_done'),
-    path('payment-cancelled/', views.payment_canceled, name='payment_cancelled')
+    path('process_payment/<slug:course_slug>', views.process_payment, name='process_payment'),
+    path('payment_done/<slug:course_slug>', views.payment_done, name='payment_done'),
+    path('payment_cancelled/', views.payment_canceled, name='payment_cancelled')
     
 ]

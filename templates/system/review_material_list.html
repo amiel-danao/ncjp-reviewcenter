@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+<div class="p-5 row">
+    <div class="col-12">
+        {% if review_course %}
+        <div class="row mb-4">
+            <h1 class="mb-2">{{ review_course.title }}</h1>
+            <hr>
+
+
+            <button id="toggleContents" class="btn btn-primary mb-4 collapse collapse-horizontal multi-collapse" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="collapseWidthExample toggleContents">
+                Table of contents
+            </button>
+
+            <div class="col-4 bg-dark text-white p-5 collapse collapse-horizontal show multi-collapse"  id="collapseWidthExample">
+                <button class="btn btn-primary mb-4" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="collapseWidthExample toggleContents">
+                    Table of contents
+                </button>
+                <div class="list-group">
+                {% for review_material in content_list %}
+                    
+                        <a href="?page={{ forloop.counter }}" class="list-group-item list-group-item-action {% if forloop.counter|stringformat:'s' == request.GET.page %}list-group-item-primary{% endif %}">{{ review_material.title }}</a>
+                    
+                {% empty %}
+
+                    <small>No contents.</small>
+                {% endfor %}
+                </div>
+            </div>
+
+            {% with review_material_list|first as review_material %}            
+
+            <div class="col p-4">
+                <div class="row p-2">
+                    <h1>{{ review_material.title }}</h1>
+                    <hr>
+                </div>
+                <div class="row p-2">
+                    <p>{{ review_material.content | safe }}</p>
+                    <hr>
+                </div>
+                {% if review_material.image %}
+                <div class="row p-2">
+                    <img class="img-fluid" src="{{ review_material.image.url }}">
+                </div>
+                {% endif %}
+            </div>
+            {% endwith %}
+        </div>
+            <div class="row mb-4">
+            {% if is_paginated %}
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        </li>
+                    {% endif %}
+
+                    
+                    {% for item in content_list %}
+                    
+                    <li class="page-item {% if forloop.counter|stringformat:'s' == request.GET.page %}active{% endif %}">
+                        <a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>                        
+                    </li>
+                    {% endfor %}
+                        <!-- <li class="page-item">
+                            <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                        </li> -->
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                    {% endif %}
+                
+
+                </ul>
+            </nav>
+            {% else %}
+                <h3>Reviewer</h3>
+                <p>Review material is not yet available</p>
+            {% endif %}
+            </div>
+
+            {% else %}
+            <div class="row mb-4">
+                <h1 class="p-5 text-center">There's no review materials for this course yet...</h1>
+            </div>
+            {% endif %}
+    </div>
+</div>
+{% endblock %}

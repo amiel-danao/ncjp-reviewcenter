@@ -11,11 +11,7 @@ from django.db.models.signals import pre_save, post_save
 import io
 from django.contrib.auth.models import User
 from django.contrib import messages
-
 from system.models import Course, Department
-
-
-
 
 
 class Quiz(models.Model):

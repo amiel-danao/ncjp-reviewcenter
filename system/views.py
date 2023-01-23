@@ -1,3 +1,6 @@
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 from django.views.decorators.csrf import csrf_exempt
 from paypal.standard.forms import PayPalPaymentsForm
 from decimal import Decimal
@@ -7,17 +10,40 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required as login_required
 from django.urls import reverse
 from system.forms import VideoCommentForm
-from system.models import Course, CoursePrice, Payment, ReviewCenter, Video, VideoComment
+from system.models import Course, CoursePrice, Payment, ReviewCenter, ReviewCourse, ReviewMaterial, Video, VideoComment
 from django.views.generic import DetailView, ListView, CreateView
 from django.views.generic.detail import SingleObjectMixin
 from django.db.models import Q
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.conf import settings
+
+
+class PaidUserOnlyMixin(object):
+
+    def has_permissions(self):
+        # Assumes that your Article model has a foreign key called `auteur`.
+        # obj = self.get_object()
+        course_slug = self.kwargs.get('course_slug', None)
+        if course_slug:
+            course_price = CoursePrice.objects.filter(course__category=course_slug).first()
+
+            if course_price is None:
+                return True
+            existing_payment = Payment.objects.filter(user=self.request.user, course=course_price.course).first()
+            if existing_payment is None and course_price.price > 0:
+                return False
+        return True
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.has_permissions():
+            raise Http404('You do not have permission.')
+        return super(PaidUserOnlyMixin, self).dispatch(
+            request, *args, **kwargs)
 
 
 def index(request):
@@ -42,11 +68,8 @@ def dashboard(request):
 
 class CourseListView(LoginRequiredMixin, ListView):
     model = Course
-    
-    
 
-
-class VideoDetailView(LoginRequiredMixin, FormMixin, DetailView):
+class VideoDetailView(LoginRequiredMixin, PaidUserOnlyMixin, FormMixin, DetailView):
     model = Video
     template_name = 'system/video_watch.html'
     form_class = VideoCommentForm
@@ -62,7 +85,13 @@ class VideoDetailView(LoginRequiredMixin, FormMixin, DetailView):
         return context
 
     def get_success_url(self):
-        return reverse('system:video_watch', kwargs={'pk': self.object.id})
+        return reverse('system:video_watch', kwargs={'course_slug': self.kwargs['course_slug'], 'video_slug': self.object.slug})
+
+    def get_object(self):
+        return get_object_or_404(
+            Video,
+            slug=self.kwargs['video_slug'],
+        )
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -86,14 +115,16 @@ def free_video_tutorials(request):
 
     return render(request=request, template_name='system/course_videos.html', context=context)
 
-class VideoListView(LoginRequiredMixin, ListView):
+class VideoListView(LoginRequiredMixin, PaidUserOnlyMixin, ListView):
     model = Video
     template_name = 'system/course_videos.html'
 
     def get_context_data(self, **kwargs):
         context = super(VideoListView, self).get_context_data(**kwargs)
-
-        course = get_object_or_404(Course, id=self.kwargs['pk'])
+        course_slug = self.kwargs.get('course_slug', None)
+        if course_slug is None:
+            return Http404()
+        course = get_object_or_404(Course, category=course_slug)
         if course is None:
             raise PermissionDenied()
 
@@ -102,19 +133,56 @@ class VideoListView(LoginRequiredMixin, ListView):
 
         return context
 
-# @login_required
-# def course_videos(request, id):
-#     context = {}
-    
-#     course = get_object_or_404(Course, id=id)
 
-#     if course is None:
-#         raise PermissionDenied()
+            
 
-#     context['video_list'] = Video.objects.filter(course=course, active=True)
-#     context['course'] = course
+class ReviewMaterialListView(LoginRequiredMixin, PaidUserOnlyMixin, ListView):
+    model = ReviewMaterial
+    template_name = 'system/review_material_list.html'
+    paginate_by = 1
 
-#     return render(request=request, template_name='system/course_videos.html', context=context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        course_slug = self.kwargs.get('course_slug', None)
+        if course_slug is None:
+            return context
+        pk = self.kwargs.get('pk', None)
+        if pk is None:
+            return context
+        review_course = get_object_or_404(ReviewCourse, id=pk)
+        content_list = ReviewMaterial.objects.filter(review_course=review_course)
+        paginator = Paginator(content_list, self.paginate_by)
+
+        page = self.request.GET.get('page')
+
+        try:
+            review_material_list = paginator.page(page)
+        except PageNotAnInteger:
+            review_material_list = paginator.page(1)
+        except EmptyPage:
+            review_material_list = paginator.page(paginator.num_pages)
+        
+        context['is_paginated'] = True
+        context['review_course'] = review_course
+        context['content_list'] = content_list
+        context['review_material_list'] = review_material_list
+        return context
+
+class ReviewCourseListView(LoginRequiredMixin, PaidUserOnlyMixin, ListView):
+    model = ReviewCourse
+    template_name = 'system/review_course_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        course_slug = self.kwargs.get('course_slug', None)
+        if course_slug is None:
+            return context
+        course = get_object_or_404(Course, category=course_slug)
+        review_course_list = ReviewCourse.objects.filter(course=course)
+            
+        context['course'] = course
+        context['review_course_list'] = review_course_list
+        return context
 
 @login_required
 def reviewcenter_detail(request, slug):
@@ -129,21 +197,34 @@ def reviewcenter_detail(request, slug):
     return render(request, 'system/reviewcenter_detail.html', context)
 
 @login_required
-def check_course_payment(request, pk):
-    course = Course.objects.get(id=pk)
+def check_course_payment(request, course_slug):
+    course = get_object_or_404(Course, category=course_slug)
     existing_payment = Payment.objects.filter(user=request.user, course=course).first()
 
+    next_url = request.GET.get('next', None)
+
     if existing_payment is None:
-        return redirect('system:process_payment', pk)
+        if next_url is None:
+            return redirect('system:process_payment', course_slug)
+        
+        response = redirect('system:process_payment', course_slug)
+        response['Location'] += f'?next={next_url}'
+        return response        
     else:
-        return redirect('system:course_videos', pk=pk)
+        if next_url is None:
+            return redirect(f'system:course_videos', course_slug=course_slug)
+        else:            
+            if course_slug:
+                return redirect(f'system:{next_url}', course_slug=course_slug)
+            else:
+                return redirect(f'system:{next_url}')
+
 
 class PaymentView(LoginRequiredMixin, CreateView):
     model = Payment
 
-
-def process_payment(request, pk):
-    course = get_object_or_404(Course, id=pk)
+def process_payment(request, course_slug):
+    course = get_object_or_404(Course, category=course_slug)
     context = {}
     course_price = CoursePrice.objects.get(course=course)
     context['amount'] = course_price.price
@@ -151,16 +232,21 @@ def process_payment(request, pk):
 
     price = format(course_price.price, '.2f')
 
+    done_url = reverse('system:payment_done', kwargs={'course_slug': course_slug})
+
+    next_url = request.GET.get('next', None)
+    if next_url:
+        done_url = f"%s?next={next_url}" % reverse('system:payment_done', kwargs={'course_slug': course_slug})
+
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
         'amount': str(price),
         'item_name': course.name,
-        'invoice': str(course.id),
+        'invoice': f'{str(course.id)}-{str(request.user.email)}',
         'currency_code': 'USD',
         'notify_url': 'http://{}{}'.format(host,
                                            reverse('paypal-ipn')),
-        'return_url': 'http://{}{}'.format(host,
-                                           reverse('system:payment_done', kwargs={'pk': pk})),
+        'return_url': 'http://{}{}'.format(host, done_url),
         'cancel_return': 'http://{}{}'.format(host,
                                               "%s?menu=review" % reverse('system:dashboard')),
     }
@@ -168,14 +254,22 @@ def process_payment(request, pk):
     form = PayPalPaymentsForm(initial=paypal_dict)
     return render(request, 'system/process_payment.html', {'course': course, 'form': form})
 
+
+
+
+
+
 @csrf_exempt
-def payment_done(request, pk):
-    course = get_object_or_404(Course, id=pk)
+def payment_done(request, course_slug):
+    course = get_object_or_404(Course, category=course_slug)
     course_price = get_object_or_404(CoursePrice, course=course)
     Payment.objects.create(user=request.user, price=course_price.price, course=course)
+    next_url = request.GET.get('next', None)
 
-    return redirect('system/course_videos.html', pk=pk)
-
+    if next_url is None:
+        return redirect('system:course_videos', course_slug=course_slug)
+    else:
+        return redirect(f'system:{next_url}', course_slug=course_slug)
 
 @csrf_exempt
 def payment_canceled(request):

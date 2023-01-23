@@ -23,7 +23,8 @@
                 {% endif %}
             </div>
 
-            <a href="{% url 'system:check_course_payment' pk=cat.id %}" class="btn btn-primary">Browse videos</a>
+            <a href="{% url 'system:check_course_payment' cat.course.category %}?next=course_videos&slug={{cat.course.category}}" class="btn btn-primary mb-2">Browse videos</a>
+            <a href="{% url 'system:check_course_payment' cat.course.category %}?next=review_courses&slug={{cat.course.category}}" class="btn btn-primary mb-2">Review Materials</a>
           </div>
       </div>
       {% empty %}
@@ -40,8 +41,9 @@
             <img src="{% if cat.course.thumbnail %}{{cat.course.thumbnail.url}}{% endif %}" class="card-img-top" alt="{{cat.course.name}}">
             <div class="card-body">
               <h5 class="card-title">{{cat.course.name}}</h5>
-              <p class="card-text">{{cat.course.description}}</p>
-              <a href="{% url 'system:course_videos' pk=cat.id %}" class="btn btn-primary">Browse videos</a>
+              <p class="card-text">{{cat.course.description|safe}}</p>
+              <a href="{% url 'system:course_videos' cat.course.category %}" class="btn btn-primary mb-2">Browse videos</a>
+              <a href="{% url 'system:review_courses' cat.course.category %}" class="btn btn-primary mb-2">Review Materials</a>
             </div>
         </div>
         {% empty %}

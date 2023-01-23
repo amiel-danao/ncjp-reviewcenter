@@ -6,6 +6,7 @@ from job.models import Company, CompanyIndustry, JobPost
 @admin.register(JobPost)
 class JobPostAdmin(admin.ModelAdmin):
     list_display = ('title', 'company', 'position', 'salary_range', 'date_posted')
+    prepopulated_fields = {"slug": ("title", "company")}  # new
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         formfield = super(JobPostAdmin, self).formfield_for_dbfield(db_field, **kwargs)

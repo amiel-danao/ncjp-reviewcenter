@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load render_table from django_tables2 %}
+
+{% block content %}
+
+<div class="row p-3">
+<h1 class="mb-3">Job Listing</h1>
+
+<div class="col-4 border-end">
+    {% for job in jobpost_list%}
+    
+        <div class="card col shadow">
+            <img src="{{job.company.logo.url}}" class="w-25 img-fluid p-2" alt="{{job.company.name}}">
+            <div class="card-body">
+            <a href="{% url 'job:jobpost_detail' slug=job.slug %}"><h4 class="card-link">{{job.title}}</h4></a>
+            <p class="card-text">{{job.company.name}}</p>
+
+            <small>{{job.date_posted|timesince}} ago</small>
+            <a href="#" class="btn btn-primary">More info</a>
+            </div>
+        </div>
+    
+    {% empty %}
+
+    <h4 class="fst-italic">There's no available job for you at this moment...</h4>
+
+    {% endfor %}
+
+</div>
+
+</div>
+{% endblock %}

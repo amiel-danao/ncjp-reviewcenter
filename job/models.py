@@ -1,12 +1,14 @@
+from django.template.defaultfilters import slugify
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.urls import reverse
 
 class CompanyIndustry(models.Model):
     name = models.CharField(max_length=100, blank=False, default='')
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name_plural = 'CompanyIndustries'
+        verbose_name_plural = 'Company Industries'
 
 class Company(models.Model):
     name = models.CharField(max_length=100, blank=False, default='')
@@ -46,6 +48,15 @@ class JobPost(models.Model):
     salary_range = models.CharField(max_length=50, default='', blank=True)
 
     date_posted = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(null=False, unique=True, default='')
     
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("jobpost_detail", kwargs={"slug": self.slug})
+
+    def save(self, *args, **kwargs):  # new
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)

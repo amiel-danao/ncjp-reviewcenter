@@ -1,0 +1,28 @@
+[my questions]
+
+nc2 in main page per reviewcenter?
+
+location of intro video in main page?
+
+dasboard
+	home contents?
+	news contents?
+
+
+[Implemented]
+
+70%
+hosting 
+existing features
+
+
+[Not yet implemented]
+30%
+main page(fixed ui)
+apply to job post
+employer messaging
+forgot password
+Course review page(review materials)
+
+bugfixes:
+bug after paypal payment wrong url redirect

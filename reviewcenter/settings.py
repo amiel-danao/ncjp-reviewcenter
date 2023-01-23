@@ -14,7 +14,7 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,13 +46,14 @@ INSTALLED_APPS = [
     'authentication',
     'embed_video',
     'paypal.standard.ipn',
+    'job',
     'system',
     'faq',
     'crispy_forms',
+    'django_tables2',
     'crispy_bootstrap5',
     'mcq',
     'quiz',
-    'job'
 ]
 
 MIDDLEWARE = [
@@ -199,7 +200,8 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
 
-PAYPAL_RECEIVER_EMAIL = 'sb-ujnjo24898241@business.example.com'
+PAYPAL_RECEIVER_EMAIL = os.getenv('PAYPAL_RECEIVER_EMAIL')
+
 
 PAYPAL_TEST = True
 
