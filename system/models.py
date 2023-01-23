@@ -118,7 +118,7 @@ class Video(models.Model):
     slug = models.SlugField(max_length=255, default='', unique=True, allow_unicode=True)
 
     def save(self, *args, **kwargs):  # new
-        self.slug = slugify(u'self.title')
+        self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
 
     def __str__(self):
