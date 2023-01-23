@@ -26,7 +26,7 @@ class ReviewCenter(models.Model):
     name = models.CharField(max_length=256, blank=False, default='')
     thumbnail = models.ImageField(upload_to='reviewcenters/', blank=False)
     description = models.CharField(max_length=256, blank=False, default='')
-    slug = models.SlugField(max_length=255, null=False, unique=True, default='')
+    slug = models.SlugField(max_length=255, null=False, unique=True, default='', allow_unicode=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -71,7 +71,7 @@ class Course(models.Model):
         verbose_name=_("Category"),
         default='',
         max_length=255,
-        unique=True,)
+        unique=True, allow_unicode=True)
 
     objects = CourseManager()
 
@@ -115,10 +115,10 @@ class Video(models.Model):
     url = EmbedVideoField()
     date_posted = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
-    slug = models.SlugField(max_length=255, default='', unique=True)
+    slug = models.SlugField(max_length=255, default='', unique=True, allow_unicode=True)
 
     def save(self, *args, **kwargs):  # new
-        self.slug = slugify(self.title)
+        self.slug = slugify(u'self.title')
         return super().save(*args, **kwargs)
 
     def __str__(self):
