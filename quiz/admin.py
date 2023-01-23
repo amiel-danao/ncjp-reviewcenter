@@ -66,7 +66,7 @@ class QuizAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', )
     list_filter = ('category',)
     search_fields = ('description', 'category', )
-    prepopulated_fields = {"url": ("title",)}
+    exclude = ('url', )
 
 
 class CourseAdmin(admin.ModelAdmin):
