@@ -22,7 +22,7 @@ main page(fixed ui)
 apply to job post
 employer messaging
 forgot password
-Course review page(review materials)
+[X]Course review page(review materials)
 
 bugfixes:
-bug after paypal payment wrong url redirect
+[X]bug after paypal payment wrong url redirect
