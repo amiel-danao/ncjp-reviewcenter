@@ -48,7 +48,7 @@ class JobPost(models.Model):
     salary_range = models.CharField(max_length=50, default='', blank=True)
 
     date_posted = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(null=False, unique=True, default='')
+    slug = models.SlugField(null=False, unique=True, default='', allow_unicode=True)
     
     def __str__(self):
         return self.title

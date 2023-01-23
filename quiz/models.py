@@ -27,7 +27,7 @@ class Quiz(models.Model):
     url = models.SlugField(
         max_length=60, blank=False,
         help_text=_("a user friendly url"),
-        verbose_name=_("user friendly url"))
+        verbose_name=_("user friendly url"), allow_unicode=True)
 
     category = models.ForeignKey(
         Course, null=True, blank=True,
