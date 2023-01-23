@@ -71,7 +71,7 @@ class QuizAdmin(admin.ModelAdmin):
 
 class CourseAdmin(admin.ModelAdmin):
     search_fields = ('name', )
-    prepopulated_fields = {"category": ("name",)}
+    # prepopulated_fields = {"category": ("name",)}
 
 
 class MCQuestionAdmin(admin.ModelAdmin):
