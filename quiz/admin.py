@@ -71,6 +71,7 @@ class QuizAdmin(admin.ModelAdmin):
 
 class CourseAdmin(admin.ModelAdmin):
     search_fields = ('name', )
+    exclude = ('category', )
     # prepopulated_fields = {"category": ("name",)}
 
 
