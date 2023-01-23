@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load embed_video_tags %}
+{% load system_extras %}
 
 {% block mycss %}
 <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
@@ -40,7 +41,7 @@
               <div class="row g-0">
                 <div class="col-md-6">
                   
-                  <img src="{{ my_video.thumbnail }}" class="fit-cover w-100 h-100 rounded-start" alt="{{ related.title }}">
+                  <img src="{{video_instance.url|youthumbnail:'l'}}" class="fit-cover w-100 h-100 rounded-start" alt="{{ related.title }}">
                 
                 </div>
                 <div class="col-md-6">

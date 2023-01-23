@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load embed_video_tags %}
+{% load system_extras %}
+
 {% block mycss %}
 <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.css' %}"> -->
@@ -28,7 +30,7 @@
         
 
         <div class="card col-3 shadow m-2">
-            <img src="{{ my_video.thumbnail }}" class="card-img-top" alt="{{video_instance.title}}">
+          <img src="{{video_instance.url|youthumbnail:'l'}}" class="card-img-top" alt="{{video_instance.title}}">
             <div class="card-body">
               <h5 class="card-title">{{video_instance.title}}</h5>
               <div class="accordion" id="accordionExample">

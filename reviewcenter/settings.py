@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'mcq',
     'quiz',
+    'youtube_thumbnail',
 ]
 
 MIDDLEWARE = [
