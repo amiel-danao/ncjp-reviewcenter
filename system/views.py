@@ -111,7 +111,9 @@ class VideoDetailView(LoginRequiredMixin, PaidUserOnlyMixin, FormMixin, DetailVi
 @login_required
 def free_video_tutorials(request):
     context = {}
-    context['video_list'] = Video.objects.filter(price=0, active=True)
+
+    free_courses = CoursePrice.objects.filter(price=0).values('course')
+    context['video_list'] = Video.objects.filter(course__in=free_courses, active=True)
 
     return render(request=request, template_name='system/course_videos.html', context=context)
 
