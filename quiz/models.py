@@ -1,3 +1,4 @@
+from django.template.defaultfilters import slugify
 import re
 import json
 from django.db import models
@@ -87,10 +88,12 @@ class Quiz(models.Model):
                     " quizzes."))
 
     def save(self, force_insert=False, force_update=False, *args, **kwargs):
-        self.url = re.sub('\s+', '-', self.url).lower()
+        # self.url = re.sub('\s+', '-', self.url).lower()
 
-        self.url = ''.join(letter for letter in self.url if
-                           letter.isalnum() or letter == '-')
+        # self.url = ''.join(letter for letter in self.url if
+        #                    letter.isalnum() or letter == '-')
+
+        self.url = slugify(self.title)
 
         if self.single_attempt is True:
             self.exam_paper = True
