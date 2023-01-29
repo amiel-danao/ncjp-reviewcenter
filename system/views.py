@@ -14,14 +14,32 @@ from django.http import HttpResponse, HttpResponseForbidden, Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required as login_required
 from django.urls import reverse
+from authentication.forms import StudentProfileForm
+from authentication.models import Student, StudentProgress
 from system.forms import VideoCommentForm
-from system.models import Course, CoursePrice, Payment, ReviewCenter, ReviewCourse, ReviewMaterial, Video, VideoComment
+from system.models import Course, CoursePrice, Payment, ReviewCourse, ReviewMaterial, Video, VideoComment
+from system.models import ReviewCenter
 from django.views.generic import DetailView, ListView, CreateView
 from django.views.generic.detail import SingleObjectMixin
 from django.db.models import Q
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.conf import settings
 
+
+class StudentOnlyMixin(object):
+    def has_permissions(self):
+        # Assumes that your Article model has a foreign key called `auteur`.
+        # obj = self.get_object()
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            return False
+
+        return True
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.has_permissions():
+            raise Http404('You do not have permission.')
+        return super(StudentOnlyMixin, self).dispatch(
+            request, *args, **kwargs)
 
 class PaidUserOnlyMixin(object):
 
@@ -53,9 +71,13 @@ def index(request):
 def dashboard(request):
     context = {}
     menu = request.GET.get('menu', None)
-    if not menu or menu == 'home':
-        pass
-    elif menu == 'reviewcenters':
+
+    create_or_create_progress_if_not_exist(request)
+    # if not menu or menu == 'home':
+    #     pass
+    # progress = get_progress(request)
+    # context['progress'] = progress
+    if not menu or menu == 'reviewcenters':
         context['reviewcenters'] = ReviewCenter.objects.filter(active=True)
     elif menu == 'forums':
         context['can_add_question'] = True
@@ -66,8 +88,15 @@ def dashboard(request):
 
     return render(request=request, template_name='system/dashboard.html', context=context)
 
-class CourseListView(LoginRequiredMixin, ListView):
-    model = Course
+def create_or_create_progress_if_not_exist(request):
+    fetched, _ = StudentProgress.objects.get_or_create(user=request.user)
+    return fetched
+            
+        
+
+
+# class CourseListView(LoginRequiredMixin, ListView):
+#     model = Course
 
 class VideoDetailView(LoginRequiredMixin, PaidUserOnlyMixin, FormMixin, DetailView):
     model = Video
@@ -191,11 +220,16 @@ def reviewcenter_detail(request, slug):
     instance = ReviewCenter.objects.filter(slug__iexact = slug)
     if instance.exists():
         instance = instance.first()
+        progress, created = StudentProgress.objects.get_or_create(user=request.user, review_center=instance)
+        progress.review_center = instance
+        progress.save()
     else:
         return HttpResponse('<h1>Review Center Not Found</h1>')
     context = {
         'reviewcenter': instance
     }
+    context['course_list'] = Course.objects.filter(review_center=instance)
+
     return render(request, 'system/reviewcenter_detail.html', context)
 
 @login_required

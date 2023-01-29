@@ -1,3 +1,5 @@
+from django.views.generic import CreateView, UpdateView, RedirectView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout as authlogout
 from django.core.mail import send_mail
 from django.contrib.auth import views as auth_views
@@ -7,10 +9,11 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
-from authentication.forms import LoginForm, RegisterForm
-from authentication.models import CustomUser
+from authentication.forms import LoginForm, RegisterForm, StudentProfileForm
+from authentication.models import CustomUser, StudentProgress
 from system.context_processors import EMAIL_VERIFY_SENDER, EMAIL_VERIFY_SUBJECT
-from system.models import Student
+from authentication .models import Student
+from system.views import StudentOnlyMixin
 
 
 def register_view(request):
@@ -21,10 +24,11 @@ def register_view(request):
             user = form.save()
             user.is_active = False
             user.save()
-            Student.objects.create(email=user.email, 
+            Student.objects.create(user=user,
                                     first_name=request.POST.get('first_name', ''),
                                     middle_name=request.POST.get('middle_name', ''),
                                     last_name=request.POST.get('last_name', ''))
+            
             # login(request, user)
             try:
                 domain = request.get_host()
@@ -113,3 +117,36 @@ class CustomLoginView(auth_views.LoginView): # 1. <--- note: this is a class-bas
         for key, error in form.error_messages.items():
             messages.error(self.request, error, extra_tags="form_error")
         return self.render_to_response(context)
+
+
+class StudentProfileCreateView(LoginRequiredMixin, CreateView):
+    model = Student
+    form_class = StudentProfileForm
+    template_name = 'system/review_center_regform.html'
+
+    def form_valid(self, form):
+        user = self.request.user
+        form.instance.user = user if user else None
+        return super(StudentProfileCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('lawyer_detail', kwargs={'lawyer_slug': self.object.lawyer_slug})
+
+
+    
+class StudentProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = Student
+    form_class = StudentProfileForm
+    template_name = 'system/review_center_regform.html'
+
+
+class StudentProfileRedirectView(StudentOnlyMixin, RedirectView):
+
+   def get_redirect_url(self):
+
+        student = Student.objects.filter(user=self.request.user).first()
+
+        if student is not None:
+            return reverse("authentication:update_reg_form", kwargs={'pk': student.pk})
+    
+        return reverse("authentication:registration_form")

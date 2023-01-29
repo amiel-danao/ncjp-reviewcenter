@@ -10,16 +10,12 @@ from django.core.validators import MinValueValidator
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
-    
-class Student(models.Model):
-    school_id = models.CharField(max_length=15, blank=True)
-    email = models.EmailField(unique=True, blank=False, default='')
-    first_name = models.CharField(blank=False, default='', max_length=50)
-    middle_name = models.CharField(blank=True, max_length=50)
-    last_name = models.CharField(blank=True, max_length=50)
 
-    def __str__(self):
-        return self.school_id
+class NCChoices(models.IntegerChoices):
+    NC1 = 1, "NC1"
+    NC2 = 2, "NC2"
+    NC3 = 3, "NC3"
+    NC4 = 4, "NC4"
 
 
 class ReviewCenter(models.Model):
@@ -36,7 +32,7 @@ class ReviewCenter(models.Model):
         return reverse("reviewcenter_detail", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):  # new
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
 
 
@@ -64,8 +60,9 @@ class Course(models.Model):
     abbreviation = models.CharField(max_length=16, blank=False, null=False, default='')
     thumbnail = models.ImageField(upload_to='courses/', blank=False, null=True, default=None)
     description = models.CharField(max_length=255, blank=True)
-    level = models.PositiveIntegerField(default=1, validators=(MinValueValidator(1), ))
+    nc_level = models.PositiveIntegerField(default=NCChoices.NC1, choices=NCChoices.choices)
     major = models.CharField(max_length=60, blank=True, default='')
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
 
     category = models.SlugField(
         verbose_name=_("Category"),
@@ -92,6 +89,7 @@ class Payment(models.Model):
     price = models.FloatField(default=0, validators=(MinValueValidator(0),))
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
     payment_date = models.DateTimeField(auto_now_add=True)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
 
     def __str__(self):
         return f'{self.user}, {self.course}'
@@ -102,6 +100,7 @@ class CoursePrice(models.Model):
     price = models.FloatField(default=0, validators=(MinValueValidator(0),))
     previous_price = models.FloatField(default=0, validators=(MinValueValidator(0),))
     active = models.BooleanField(default=True)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
 
     def __str__(self):
         return self.course.name
@@ -116,6 +115,7 @@ class Video(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
     slug = models.SlugField(max_length=255, default='', unique=True, allow_unicode=True)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
 
     def save(self, *args, **kwargs):  # new
         self.slug = slugify(self.title)
@@ -137,7 +137,7 @@ class ReviewCourse(models.Model):
     title = models.CharField(max_length=120, blank=False, default='')
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
     active = models.BooleanField(default=True)
-
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
 
     def __str__(self):
         return self.title
@@ -147,6 +147,9 @@ class ReviewMaterial(models.Model):
     title = models.CharField(max_length=120, blank=False, default='')
     content = models.CharField(max_length=1024, blank=True, default='')
     image = models.ImageField(upload_to='review_materials/', blank=False)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
 
     def __str__(self):
         return self.title
+
+

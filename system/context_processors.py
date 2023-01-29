@@ -3,6 +3,8 @@ import datetime
 from django.utils import timezone
 from django.utils.timezone import get_current_timezone
 
+from authentication.models import StudentProgress
+
 
 OPENING_HOUR = 9
 CLOSING_HOUR = 21
@@ -20,8 +22,38 @@ def global_context(request):
         'app_location': '',
         'app_contact_no': '0995-473-4825',
         'today': get_correct_today(),
-        'min_time': get_correct_today(format='%I:%M')
+        'min_time': get_correct_today(format='%I:%M'),
+        'progress_value': get_progress(request)
     }
+
+
+def get_progress(request):
+    if not request.user.is_authenticated:
+        return None
+
+    path = request.get_full_path()
+    if path == '/':
+        return None
+
+    # if not isinstance(request.user, StudentAccount):
+    #     return None
+    
+    progress = StudentProgress.objects.filter(user=request.user).first()
+    if progress is None:
+        return None
+
+    excluded_fields = ('id', 'user')
+
+    total = len(StudentProgress._meta.fields)-len(excluded_fields)
+    ok_fields = []
+
+    for field in StudentProgress._meta.fields:
+        if field.name not in excluded_fields:
+            value = getattr(progress, field.name)
+            if value is not None:
+                ok_fields.append(field)
+
+    return int(((len(ok_fields)) / total) * 100)
 
 
 def get_correct_today(date=None, format=SCHEDULE_DATEFORMAT):

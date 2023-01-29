@@ -3,21 +3,7 @@
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block content %}
-<div class="p-5">
-<h2>{% trans "Course list" %}</h2>
 
-<div class="row">
-  {% for cat in course_list %}
-  <div class="card col-4 course-card shadow m-2">
-      <img src="{% if cat.thumbnail %}{{cat.thumbnail.url}}{% endif %}" class="card-img-top" alt="{{cat.name}}">
-      <div class="card-body">
-        <h5 class="card-title">{{cat.name}}</h5>
-        <p class="card-text">{{cat.description}}</p>
-        <a href="{% url 'quiz:quiz_category_list_matching' category_name=cat.category %}" class="btn btn-primary">Browse available Exams</a>
-      </div>
-  </div>
-  {% endfor %}
-</div>
 
 <!-- <div class="list-group">  
     {% for cat in course_list %}

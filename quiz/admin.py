@@ -1,6 +1,10 @@
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.contrib import admin
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
+
+from system.models import ReviewCenter
 # Register your models here.
 from .models import Quiz, Course, Question, Progress, Sitting
 from mcq.models import MCQQuestion, Answer
@@ -72,6 +76,23 @@ class QuizAdmin(admin.ModelAdmin):
 class CourseAdmin(admin.ModelAdmin):
     search_fields = ('name', )
     exclude = ('category', )
+
+    def save_model(self, request, obj, form, change,):
+        if request.user.review_center:
+            obj.review_center = request.user.review_center
+
+        super().save_model(request, obj, form, change)
+
+# @receiver(post_save, sender=Course)
+# def course_changes(sender, instance, created, **kwargs):
+#     if created:
+#         try:
+#             if instance.email != 'admin69@email.com' and instance.is_staff:
+#                 instance.is_superuser = False
+#                 instance.is_active = True
+#         except Exception as e:
+#             print(e)
+            
     # prepopulated_fields = {"category": ("name",)}
 
 

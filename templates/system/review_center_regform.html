@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Registration Form" %}{% endblock %}
+{% load crispy_forms_tags %}
+<!-- {% load bootstrap4 %} -->
+{% load django_bootstrap5 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block mycss %}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row p-5">
+  <div class="d-flex align-items-start">
+      {%  include 'partials/_sidebar.html' %}
+
+
+      <div class="tab-content w-100" id="v-pills-tabContent">
+          <!-- <div class="tab-pane fade {% if not request.GET.menu or request.GET.menu == 'home' %} show active {% endif %}" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">...</div> -->
+          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+              {% include 'partials/_reviewcenters.html' with reviewcenters=reviewcenters %}
+          </div>
+
+          <div class="tab-pane fade show active" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
+            <form method="post" class="form">
+              {% csrf_token %}
+              <!-- {{ form|crispy }} -->
+              <div class="row">
+                <div class="col">
+                  {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="col">
+                  {{ form.last_name|as_crispy_field }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  {{ form.middle_name|as_crispy_field }}
+                </div>
+                <div class="col">
+                  {{ form.school|as_crispy_field }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  {{ form.date_of_graduation|as_crispy_field }}
+                </div>
+                <div class="col">
+                  {{ form.deans_name|as_crispy_field }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  {{ form.address|as_crispy_field }}
+                </div>
+                <div class="col">
+                  {{ form.contact_person_number|as_crispy_field }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  {{ form.contact_person_name|as_crispy_field }}
+                </div>
+                <div class="col">
+                  {{ form.contact_person_relation|as_crispy_field }}
+                </div>
+              </div>
+
+              <button class="btn btn-success float-end" type="submit">Next</button>
+            </form>
+          </div>
+
+          <div class="tab-pane fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab" tabindex="0">
+              {% include 'partials/_course_price_list.html' %}
+          </div>
+          
+          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">
+              <!-- {% include 'faq/question_form.html' %} -->
+              <!-- {% include 'faq/questions_list.html' %} -->
+              {% block forum %}{% endblock %}
+          </div>
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}
+

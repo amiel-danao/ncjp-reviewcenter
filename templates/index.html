@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block mycss %}
+{{block.super}}
 <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/index.css' %}">

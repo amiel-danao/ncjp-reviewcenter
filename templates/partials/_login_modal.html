@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="containermodal">
           <div class="cont">
-          <form class="sign-in animate" action="{% url 'authentication:login' %}" method="POST" autocomplete="" > 
+          <form class="sign-in animate text-center" action="{% url 'authentication:login' %}" method="POST" autocomplete="" > 
             {% csrf_token %} 
             
               <div class="form sign-in" style="overflow-y: scroll;">
@@ -24,7 +24,7 @@
                   <span>Password</span>
                   <input type="password" name="password" required>
                 </label>
-                <button type="submit" name="login" value="Login" class="submit">Sign In</button>
+                <button type="submit" name="login" value="Login" class="submit mx-auto">Sign In</button>
                 <p class="forgot-pass">
                   <a href="{% url 'admin:index' %}">Admin</a>
                 </p>
@@ -58,7 +58,7 @@
               <span class="m-in">Sign In</span>
             </div>
           </div>
-          <form class="form sign-up" action="{% url 'authentication:register' %}" method="POST" autocomplete="" style="overflow-y: scroll;"> 
+          <form class="form sign-up text-center" action="{% url 'authentication:register' %}" method="POST" autocomplete="" style="overflow-y: scroll;"> 
             {% csrf_token %} <div class="imgcontainer">
               <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
               <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span> -->
@@ -88,7 +88,7 @@
               <span>Confirm Password</span>
               <input type="password" name="password2" required>
             </label>
-            <button type="submit" name="signup" value="Signup" class="submit">Sign Up Now</button>
+            <button type="submit" name="signup" value="Signup" class="submit mx-auto">Sign Up Now</button>
             
             <div class="text-center">
             <a type="button" href="{% url 'authentication:verification' %}">Didn't receive an email verification? Click Here</a>

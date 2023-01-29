@@ -350,6 +350,7 @@ class Sitting(models.Model):
     objects = SittingManager()
 
     class Meta:
+        verbose_name = 'QuizResult'
         permissions = (("view_sittings", _("Can see completed exams.")),)
 
     def __str__(self) -> str:
