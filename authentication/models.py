@@ -25,7 +25,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, blank=True, on_delete=models.SET_NULL, null=True, default=None)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -75,3 +75,8 @@ class StudentProgress(models.Model):
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, default=None)
     job = models.ForeignKey(JobPost, on_delete=models.SET_NULL, null=True, default=None)
 
+
+
+class CurrentReviewCenter(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)

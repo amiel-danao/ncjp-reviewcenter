@@ -2,41 +2,49 @@
 {% load static %}
 
 {% block content %}
-<div class="container text-center">
-    <div class="row p-5">
-      <h1 class="">Select a review a course</h1>
-      <div class="col-12 p-3 text-dark">
-          <div class="card" >
-              <div class="card-header">
-                <h5 class="card-title">{{ reviewcenter.name }}</h5>
-              </div>
-              <img class="img-fluid" src="{{ reviewcenter.thumbnail.url }}" class="card-img-top" alt="{{ reviewcenter.name }}">
-              <div class="card-body">
-                
-                <p class="card-text">{{ reviewcenter.description }}</p>
-              </div>
-            </div>
-      </div>
-    </div>
+<div class="row p-5">
+<div class="d-flex align-items-start">
+  {%  include 'partials/_sidebar.html' %}
 
-    <div class="row mt-3">
-      <h2>Course list</h2>
-      
-      <div class="col p-5">
-        <div class="row">
-          {% for cat in course_list %}
-          <div class="card col-4 course-card shadow m-2">
-              <img src="{% if cat.thumbnail %}{{cat.thumbnail.url}}{% endif %}" class="card-img-top" alt="{{cat.name}}">
-              <div class="card-body">
-                <h5 class="card-title">{{cat.name}}</h5>
-                <p class="card-text">{{cat.description}}</p>
-                <a href="{% url 'quiz:quiz_category_list_matching' category_name=cat.category %}" class="btn btn-primary">Browse available Exams</a>
+
+  <div class="col">
+  <div class="container text-center">
+      <div class="row p-5">
+        <div class="col-12 p-3 text-dark">
+            <div class="card" >
+                <div class="card-header">
+                  <h5 class="card-title">{{ reviewcenter.name }}</h5>
+                </div>
+                <img class="img-fluid" src="{{ reviewcenter.thumbnail.url }}" class="card-img-top" alt="{{ reviewcenter.name }}">
+                <div class="card-body">
+                  
+                  <p class="card-text">{{ reviewcenter.description }}</p>
+                </div>
               </div>
-          </div>
-          {% empty %}
-          <h1>No available Course for this Review Center</h1>
-          {% endfor %}
         </div>
       </div>
+
+      <div class="row mt-3">
+        <h2>Select Course</h2>
+        
+        <div class="col p-5">
+          <div class="row">
+            {% for cat in course_list %}
+            <div class="card col-4 course-card shadow m-2">
+                <img src="{% if cat.thumbnail %}{{cat.thumbnail.url}}{% endif %}" class="card-img-top" alt="{{cat.name}}">
+                <div class="card-body">
+                  <h5 class="card-title">{{cat.name}}</h5>
+                  <p class="card-text">{{cat.description}}</p>
+                  <a href="{% url 'authentication:registration_redirect_course' course_slug=cat.category %}" class="btn btn-primary">Review</a>
+                  <!-- <a href="{% url 'quiz:quiz_category_list_matching' category_name=cat.category %}" class="btn btn-primary">Browse available Exams</a> -->
+                </div>
+            </div>
+            {% empty %}
+            <h1>No available Course for this Review Center</h1>
+            {% endfor %}
+          </div>
+        </div>
+    </div>
   </div>
+</div>
 {% endblock %}

@@ -3,8 +3,17 @@
 {% block title %}Make Payment{% endblock %}
 
 {% block content %}
-<div class="p-5 text-center">
-    <h4>Pay with PayPal</h4>
-    {{ form.render }}
+<div class="row p-5">
+    <div class="d-flex align-items-start">
+        {%  include 'partials/_sidebar.html' %}
+
+        <div class="col p-5 text-center">
+            <h4>Pay with PayPal</h4>
+
+            
+
+            {{ form.render }}
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -11,6 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
 
+
 class NCChoices(models.IntegerChoices):
     NC1 = 1, "NC1"
     NC2 = 2, "NC2"
@@ -62,7 +63,7 @@ class Course(models.Model):
     description = models.CharField(max_length=255, blank=True)
     nc_level = models.PositiveIntegerField(default=NCChoices.NC1, choices=NCChoices.choices)
     major = models.CharField(max_length=60, blank=True, default='')
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, blank=True, on_delete=models.SET_NULL, null=True, default=None)
 
     category = models.SlugField(
         verbose_name=_("Category"),
@@ -89,10 +90,19 @@ class Payment(models.Model):
     price = models.FloatField(default=0, validators=(MinValueValidator(0),))
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
     payment_date = models.DateTimeField(auto_now_add=True)
+    # first_name = models.CharField(blank=False, default='', max_length=50)
+    # middle_name = models.CharField(blank=True, max_length=50)
+    # last_name = models.CharField(blank=False, max_length=50, default='')
+    # address = models.CharField(blank=False, max_length=50, default='')
     review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
+    student = models.ForeignKey(to='authentication.Student', on_delete=models.SET_NULL, null=True, default=None)
 
     def __str__(self):
-        return f'{self.user}, {self.course}'
+        return f'{self.user}, {self.course}, {self.review_center}'
+
+
+    class Meta:
+        verbose_name = 'Payment Information'
 
 
 class CoursePrice(models.Model):
@@ -129,6 +139,7 @@ class VideoComment(models.Model):
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
     text = models.CharField(max_length=400, blank=False, default='Anonymous comment')
     date_posted = models.DateTimeField(auto_now_add=True)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
 
     def __str__(self):
         return f'{str(self.video)}, {self.sender}, {self.text[:20]}, {self.date_posted}'

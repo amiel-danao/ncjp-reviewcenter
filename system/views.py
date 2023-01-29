@@ -15,7 +15,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required as login_required
 from django.urls import reverse
 from authentication.forms import StudentProfileForm
-from authentication.models import Student, StudentProgress
+from authentication.models import CurrentReviewCenter, Student, StudentProgress
+from system.context_processors import get_progress
 from system.forms import VideoCommentForm
 from system.models import Course, CoursePrice, Payment, ReviewCourse, ReviewMaterial, Video, VideoComment
 from system.models import ReviewCenter
@@ -44,15 +45,31 @@ class StudentOnlyMixin(object):
 class PaidUserOnlyMixin(object):
 
     def has_permissions(self):
-        # Assumes that your Article model has a foreign key called `auteur`.
-        # obj = self.get_object()
-        course_slug = self.kwargs.get('course_slug', None)
+        current, _ = CurrentReviewCenter.objects.get_or_create(user=self.request.user)
+
+        course_slug = self.request.GET.get('course', None)
+
+        if course_slug is None:
+            progress = StudentProgress.objects.filter(user=self.request.user).first()
+            
+            course_price = CoursePrice.objects.filter(course=progress.course, review_center=current.review_center).first()
+            if course_price is None:
+                return True
+
+            existing_payment = Payment.objects.filter(user=self.request.user, course=course_price.course, review_center=current.review_center).first()
+            if existing_payment is None and course_price.price > 0:
+                return False
+            return True
+
+        if current is None or current.review_center is None or course_slug is None:
+            return False
+        
         if course_slug:
-            course_price = CoursePrice.objects.filter(course__category=course_slug).first()
+            course_price = CoursePrice.objects.filter(course__category=course_slug, review_center=current.review_center).first()
 
             if course_price is None:
                 return True
-            existing_payment = Payment.objects.filter(user=self.request.user, course=course_price.course).first()
+            existing_payment = Payment.objects.filter(user=self.request.user, course=course_price.course, review_center=current.review_center).first()
             if existing_payment is None and course_price.price > 0:
                 return False
         return True
@@ -72,25 +89,50 @@ def dashboard(request):
     context = {}
     menu = request.GET.get('menu', None)
 
-    create_or_create_progress_if_not_exist(request)
-    # if not menu or menu == 'home':
-    #     pass
-    # progress = get_progress(request)
-    # context['progress'] = progress
-    if not menu or menu == 'reviewcenters':
+
+    progress_value = get_progress(request)
+
+    last_step = progress_value['last_step']
+    if last_step is None:
         context['reviewcenters'] = ReviewCenter.objects.filter(active=True)
-    elif menu == 'forums':
-        context['can_add_question'] = True
-    elif menu == 'review':
-        context['paid_course_list'] = CoursePrice.objects.filter(price__gt=0, active=True)
-        context['free_course_list'] = CoursePrice.objects.filter(price=0, active=True)
+        return render(request=request, template_name='system/dashboard.html', context=context)
+    last_step_type = type(last_step)
+
+    if last_step_type == ReviewCenter:
+        return redirect('authentication:registration_redirect')
+    elif last_step_type == Course:
+        progress = StudentProgress.objects.filter(user=request.user).first()
+        if progress is not None:
+            course = progress.course
+            if course is not None:
+                course_slug = course.category
+                return redirect('system:check_course_payment', course_slug=course_slug)
+
+        context['reviewcenters'] = ReviewCenter.objects.filter(active=True)
+        return render(request=request, template_name='system/dashboard.html', context=context)
+    elif last_step_type == Student:
+        return redirect('system:course_videos')
+    elif last_step_type == Video:
+        return redirect('system:review_courses')
+    elif last_step_type == ReviewCourse:
+        pass
+    
+
+    # if not menu or menu == 'reviewcenters':
+    #     context['reviewcenters'] = ReviewCenter.objects.filter(active=True)
+    #     context['active_link'] = 'review_centers'
+    # elif menu == 'forums':
+    #     context['can_add_question'] = True
+    # elif menu == 'review':
+    #     context['paid_course_list'] = CoursePrice.objects.filter(price__gt=0, active=True)
+    #     context['free_course_list'] = CoursePrice.objects.filter(price=0, active=True)
     
 
     return render(request=request, template_name='system/dashboard.html', context=context)
 
-def create_or_create_progress_if_not_exist(request):
-    fetched, _ = StudentProgress.objects.get_or_create(user=request.user)
-    return fetched
+# def create_or_create_progress_if_not_exist(request):
+#     fetched, _ = StudentProgress.objects.get_or_create(user=request.user)
+#     return fetched
             
         
 
@@ -117,10 +159,20 @@ class VideoDetailView(LoginRequiredMixin, PaidUserOnlyMixin, FormMixin, DetailVi
         return reverse('system:video_watch', kwargs={'course_slug': self.kwargs['course_slug'], 'video_slug': self.object.slug})
 
     def get_object(self):
-        return get_object_or_404(
+        video = get_object_or_404(
             Video,
             slug=self.kwargs['video_slug'],
         )
+
+        current = CurrentReviewCenter.objects.filter(user=self.request.user).first()
+        progress = StudentProgress.objects.filter(user=self.request.user, review_center=current.review_center).first()
+
+        if progress is None:
+            raise Http404()
+        progress.review_video = video
+        progress.save()
+
+        return video
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -152,17 +204,35 @@ class VideoListView(LoginRequiredMixin, PaidUserOnlyMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(VideoListView, self).get_context_data(**kwargs)
-        course_slug = self.kwargs.get('course_slug', None)
-        if course_slug is None:
-            return Http404()
-        course = get_object_or_404(Course, category=course_slug)
+    
+        current = CurrentReviewCenter.objects.filter(user=self.request.user).first()
+        if current is not None:
+            progress = StudentProgress.objects.filter(user=self.request.user, review_center=current.review_center).first()
+            if progress is not None:
+                course = progress.course
+
         if course is None:
-            raise PermissionDenied()
+            raise Http404()
 
         context['video_list'] = Video.objects.filter(course=course, active=True)
         context['course'] = course
+        context['active_link'] = 'learn'
 
         return context
+
+    def get(self, *args, **kwargs):
+        try:
+            return super().get(*args, **kwargs)
+        except Http404:
+            current = CurrentReviewCenter.objects.filter(user=self.request.user).first()
+            if current is not None:
+                progress = StudentProgress.objects.filter(user=self.request.user, review_center=current.review_center).first()
+                if progress is not None:
+                    course = progress.course
+
+            if course is None:
+                return redirect('authentication:registration_redirect')
+    
 
 
             
@@ -216,10 +286,23 @@ class ReviewCourseListView(LoginRequiredMixin, PaidUserOnlyMixin, ListView):
         return context
 
 @login_required
+def reviewcenter_list(request):
+    context = {}
+    context['reviewcenters'] = ReviewCenter.objects.filter(active=True)
+    
+
+    return render(request=request, template_name='system/dashboard.html', context=context)
+
+
+@login_required
 def reviewcenter_detail(request, slug):
     instance = ReviewCenter.objects.filter(slug__iexact = slug)
     if instance.exists():
         instance = instance.first()
+        current, _ = CurrentReviewCenter.objects.get_or_create(user=request.user)
+        current.review_center = instance
+        current.save()
+
         progress, created = StudentProgress.objects.get_or_create(user=request.user, review_center=instance)
         progress.review_center = instance
         progress.save()
@@ -234,7 +317,19 @@ def reviewcenter_detail(request, slug):
 
 @login_required
 def check_course_payment(request, course_slug):
-    course = get_object_or_404(Course, category=course_slug)
+    course = Course.objects.filter(category=course_slug).first()
+
+    if course is None:
+        current = CurrentReviewCenter.objects.filter(user=request.user).first()
+        progress = StudentProgress.objects.filter(review_center=current)
+
+        if progress is None:
+            return redirect('system:reviewcenter_list')
+
+        course = progress.course
+        if course is None:
+            return redirect('authentication:registration_redirect')
+
     existing_payment = Payment.objects.filter(user=request.user, course=course).first()
 
     next_url = request.GET.get('next', None)
@@ -279,31 +374,29 @@ def process_payment(request, course_slug):
         'amount': str(price),
         'item_name': course.name,
         'invoice': f'{str(course.id)}-{str(request.user.email)}',
-        'currency_code': 'USD',
+        'currency_code': 'PHP',
         'notify_url': 'http://{}{}'.format(host,
                                            reverse('paypal-ipn')),
         'return_url': 'http://{}{}'.format(host, done_url),
-        'cancel_return': 'http://{}{}'.format(host,
-                                              "%s?menu=review" % reverse('system:dashboard')),
+        'cancel_return': 'http://{}{}'.format(host, reverse('system:dashboard')),
     }
 
     form = PayPalPaymentsForm(initial=paypal_dict)
     return render(request, 'system/process_payment.html', {'course': course, 'form': form})
 
 
-
-
-
-
 @csrf_exempt
 def payment_done(request, course_slug):
     course = get_object_or_404(Course, category=course_slug)
     course_price = get_object_or_404(CoursePrice, course=course)
-    Payment.objects.create(user=request.user, price=course_price.price, course=course)
+    progress = StudentProgress.objects.filter(user=request.user).first()
+    review_center = progress.review_center
+    student = Student.objects.filter(user=request.user).first()
+    Payment.objects.get_or_create(user=request.user, price=course_price.price, course=course, review_center=review_center, student=student)
     next_url = request.GET.get('next', None)
 
     if next_url is None:
-        return redirect('system:course_videos', course_slug=course_slug)
+        return redirect('system:course_videos')
     else:
         return redirect(f'system:{next_url}', course_slug=course_slug)
 

@@ -4,8 +4,15 @@
 
 
 {% block content %}
-<div class="p-5 row">
-    <div class="col-12">
+
+<div class="p-5">
+    <div class="row">
+      <div class="d-flex align-items-start">
+    {%  include 'partials/_sidebar.html' %}
+    
+    
+    <div class="col p-5">
+
         {% if review_course %}
         <div class="row mb-4">
             <h1 class="mb-2">{{ review_course.title }}</h1>
@@ -92,5 +99,7 @@
             </div>
             {% endif %}
     </div>
+</div>
+</div>
 </div>
 {% endblock %}

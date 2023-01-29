@@ -18,18 +18,24 @@
 {% endblock mycss %}
 
 {% block content %}
+<div class="p-5">
+<div class="row">
+  <div class="d-flex align-items-start">
+{%  include 'partials/_sidebar.html' %}
 
-    <div class="p-5">
+
+<div class="col p-5">
+
     <div class="row">
     <h1>{{video.title}}</strong>:</h1>
     <hr>
     </div>
 
     <div class="row">
-      <div class="p-2 col-md-8 col-sm-12 text-center">
+      <div class="p-2  text-center">
         {% video video.url 'medium' %}
       </div>
-      <div class="col-md-4 col-sm-12">
+      <!-- <div class="col-md-4 col-sm-12">
         <div class="p-3">
           <h4>Related videos</h4>
           <hr>
@@ -58,7 +64,7 @@
           <p class="fst-italic">No related videos...</p>
           {% endfor %}
         </div>
-      </div>
+      </div> -->
       
     </div>
     <div class="row">
@@ -105,8 +111,9 @@
         {% endfor %}
     </div>
     </div>
-
-
+  </div>
+</div>
+</div>
 </div>
 {% endblock %}
 

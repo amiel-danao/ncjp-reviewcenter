@@ -3,7 +3,7 @@ import datetime
 from django.utils import timezone
 from django.utils.timezone import get_current_timezone
 
-from authentication.models import StudentProgress
+from authentication.models import CurrentReviewCenter, StudentProgress
 
 
 OPENING_HOUR = 9
@@ -38,22 +38,37 @@ def get_progress(request):
     # if not isinstance(request.user, StudentAccount):
     #     return None
     
-    progress = StudentProgress.objects.filter(user=request.user).first()
+    current_review_center = CurrentReviewCenter.objects.filter(user=request.user).first()
+
+    if current_review_center is None or current_review_center.review_center is None:
+        return None
+
+    progress = StudentProgress.objects.filter(user=request.user, review_center=current_review_center.review_center).first()
     if progress is None:
         return None
+
+    
 
     excluded_fields = ('id', 'user')
 
     total = len(StudentProgress._meta.fields)-len(excluded_fields)
     ok_fields = []
+    last_step = None
 
     for field in StudentProgress._meta.fields:
         if field.name not in excluded_fields:
             value = getattr(progress, field.name)
             if value is not None:
                 ok_fields.append(field)
+                last_step = value
 
-    return int(((len(ok_fields)) / total) * 100)
+    step = len(ok_fields) + 1
+    return {
+            "percentage": int((step / total) * 100),
+            "step": step,
+            "total": total,
+            "last_step": last_step
+            }
 
 
 def get_correct_today(date=None, format=SCHEDULE_DATEFORMAT):

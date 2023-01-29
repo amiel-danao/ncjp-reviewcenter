@@ -15,47 +15,55 @@
 
 {% block content %}
 
+
     <div class="p-5">
-    {% if course %}
-    <div class="row">
-    <h1>Available videos for <strong>{{course.abbreviation}}</strong>:</h1>
-    <hr>
-    </div>
-    {% endif %}
+      {% if course %}
+        <div class="row">
+        <h1>Available videos for <strong>{{course.abbreviation}}</strong>:</h1>
+        <hr>
+        </div>
+      {% endif %}
 
-    <div class="row">
-        {% for video_instance in video_list %}
+      <div class="row">
+        <div class="d-flex align-items-start">
+      {%  include 'partials/_sidebar.html' %}
 
-        {% video video_instance.url as my_video %}
-        
 
-        <div class="card col-3 shadow m-2">
-          <img src="{{video_instance.url|youthumbnail:'l'}}" class="card-img-top" alt="{{video_instance.title}}">
-            <div class="card-body">
-              <h5 class="card-title">{{video_instance.title}}</h5>
-              <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse_{{ forloop.counter }}">
-                    {{video_instance.description|slice:"0:20"}}
-                    </button>
-                  </h2>
-                  <div id="collapse_{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        {{video_instance.description|slice:"20:"}}
+      <div class="col p-5">
+          {% for video_instance in video_list %}
+
+          {% video video_instance.url as my_video %}
+          
+
+          <div class="card col-4 shadow m-2">
+            <img src="{{video_instance.url|youthumbnail:'l'}}" class="card-img-top" alt="{{video_instance.title}}">
+              <div class="card-body">
+                <h5 class="card-title">{{video_instance.title}}</h5>
+                <div class="accordion" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse_{{ forloop.counter }}">
+                      {{video_instance.description|slice:"0:20"}}
+                      </button>
+                    </h2>
+                    <div id="collapse_{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                          {{video_instance.description|slice:"20:"}}
+                      </div>
                     </div>
                   </div>
                 </div>
+                <a href="{% url 'system:video_watch' course_slug=video_instance.course.category video_slug=video_instance.slug %}" class="btn btn-primary">Watch now</a>
               </div>
-              <a href="{% url 'system:video_watch' course_slug=video_instance.course.category video_slug=video_instance.slug %}" class="btn btn-primary">Watch now</a>
             </div>
-          </div>
-        {% endvideo %}
-          
-        {%empty%}
-            <h2 class="fst-italic">There's no available videos at this time...</h2>
-        {%endfor%}
+          {% endvideo %}
+            
+          {%empty%}
+              <h2 class="fst-italic">There's no available videos at this time...</h2>
+          {%endfor%}
+      </div>
     </div>
+  </div>
 
 
 </div>

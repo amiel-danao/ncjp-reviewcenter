@@ -75,7 +75,13 @@ class QuizAdmin(admin.ModelAdmin):
 
 class CourseAdmin(admin.ModelAdmin):
     search_fields = ('name', )
-    exclude = ('category', )
+    exclude = ('category', 'review_center')
+
+    def queryset(self, request):
+        qs = super(CourseAdmin, self).queryset(request)
+        if not request.user.review_center:
+            return qs
+        return qs.filter(review_center=request.user.review_center)
 
     def save_model(self, request, obj, form, change,):
         if request.user.review_center:

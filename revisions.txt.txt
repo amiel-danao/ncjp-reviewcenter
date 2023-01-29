@@ -19,18 +19,18 @@ Need to add to our system:
 2[]dapat ang review center may sariling requirements at pag add ng courses ,quizes and videos,review.and job listings bawat review center.
 
 3[]bago may proceed to payment kapag bumili sila ng courses sa review center na pinili nila dapat may fill up form sila..na proof of payment na papasok sa data base yung mga form na po yun nakalagay name ng user email address na active ,number name ng course at ng review center at i.d mag add po yun sa admin ng reviewcwnter yung details ng nag avail at makikita po doon kung magkano yung course
-4[]For quizez naman kailangan yung user kapag pumasa siya may comment siyang lalabas word na congrats tapos name ng user na nag take ng form at maaadd dapat ito sa data base ang kanyang pangalan at mga pumasa sa course na yon dapat papasok rin po yon sa admin  .yung course na pinili nila dapat connected eto sa pinili nilang review center.
+4[OK]For quizez naman kailangan yung user kapag pumasa siya may comment siyang lalabas word na congrats tapos name ng user na nag take ng form at maaadd dapat ito sa data base ang kanyang pangalan at mga pumasa sa course na yon dapat papasok rin po yon sa admin  .yung course na pinili nila dapat connected eto sa pinili nilang review center.
 
 5[]Quizzez ay connect sa review center na pinili nila once na pumasa sila makakapag job listings na sila.bago po yun makapag hanap ng jop mag wait yung user na bigyan namin siya ng certificate na pumasa po siya 
 
 6[]Sa job listings naman gayahin nalang  ang job finder na may pinapasang resume at add nalang po sa company na napili po ng user kapag may certificate na pumasa yung user yung certificate po hahanapin ng company yun iupload niya sa form picture ng certificate
 	filter job lists that is related to the employee's certificates
 
-7[]Sa prices naman po pilipino currency po ang lagay hnd daw po dollar
+7[OK]Sa prices naman po pilipino currency po ang lagay hnd daw po dollar
 Sa admin naman po kapag may nag avail po may income po na papasok sa revewcenter at may kickback po kami po doon automatic sa admin po ng system mag add po yun
 
 8[] terms and conditions in signup https://www.termsandconditionsgenerator.com/live.php?token=RwJaxop7KaxHdsdEwkjRKZh1jvWlOoYp
 reg form up to NC4
 course nc field
-rename sittings into quiz result(only review center)
+[OK]rename sittings into quiz result(only review center)
 

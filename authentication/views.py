@@ -10,9 +10,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from authentication.forms import LoginForm, RegisterForm, StudentProfileForm
-from authentication.models import CustomUser, StudentProgress
+from authentication.models import CurrentReviewCenter, CustomUser, StudentProgress
 from system.context_processors import EMAIL_VERIFY_SENDER, EMAIL_VERIFY_SUBJECT
 from authentication .models import Student
+from system.models import Course
 from system.views import StudentOnlyMixin
 
 
@@ -119,7 +120,7 @@ class CustomLoginView(auth_views.LoginView): # 1. <--- note: this is a class-bas
         return self.render_to_response(context)
 
 
-class StudentProfileCreateView(LoginRequiredMixin, CreateView):
+class StudentProfileCreateView(StudentOnlyMixin, LoginRequiredMixin, CreateView):
     model = Student
     form_class = StudentProfileForm
     template_name = 'system/review_center_regform.html'
@@ -129,24 +130,69 @@ class StudentProfileCreateView(LoginRequiredMixin, CreateView):
         form.instance.user = user if user else None
         return super(StudentProfileCreateView, self).form_valid(form)
 
-    def get_success_url(self):
-        return reverse('lawyer_detail', kwargs={'lawyer_slug': self.object.lawyer_slug})
+    # def get_success_url(self):
+    #     return reverse('lawyer_detail', kwargs={'lawyer_slug': self.object.lawyer_slug})
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentProfileCreateView, self).get_context_data(**kwargs)
+        
+        context['active_link'] = 'reg_form'
+            
+        return context
+
+    def form_invalid(self, form):
+        messages.error(self.request, form.errors)
+        return super().form_invalid(form)
 
 
     
-class StudentProfileUpdateView(LoginRequiredMixin, UpdateView):
+class StudentProfileUpdateView(StudentOnlyMixin, LoginRequiredMixin, UpdateView):
     model = Student
     form_class = StudentProfileForm
     template_name = 'system/review_center_regform.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(StudentProfileUpdateView, self).get_context_data(**kwargs)
+        
+        context['form'] = StudentProfileForm(initial=self.object.__dict__)
+        context['active_link'] = 'reg_form'
+            
+        return context
 
-class StudentProfileRedirectView(StudentOnlyMixin, RedirectView):
+    def form_invalid(self, form):
+        messages.error(self.request, form.errors)
+        return super().form_invalid(form)
 
-   def get_redirect_url(self):
+    def get_success_url(self):
+
+        current, _ = CurrentReviewCenter.objects.get_or_create(user=self.request.user)
+
+        course_slug = self.request.GET.get('course', None)
+        if current is None or current.review_center is None or course_slug is None:
+            return reverse('system:dashboard')
+        
+        course = Course.objects.filter(category=course_slug).first()
+        if course is None:
+            return reverse('system:dashboard')
+
+        progress, created = StudentProgress.objects.get_or_create(user=self.request.user, review_center=current.review_center)
+        progress.course = course
+        progress.save()
+
+
+        return reverse("system:check_course_payment", kwargs={'course_slug': course_slug})
+
+
+class StudentProfileRedirectView(RedirectView):
+
+   def get_redirect_url(self, *args, **kwargs):
 
         student = Student.objects.filter(user=self.request.user).first()
 
+        course_slug = kwargs.get('course_slug',"")
+
         if student is not None:
-            return reverse("authentication:update_reg_form", kwargs={'pk': student.pk})
+            url = f"%s?course={course_slug}" % reverse("authentication:update_reg_form", kwargs={'pk': student.pk})
+            return url#reverse("authentication:update_reg_form", kwargs={'pk': student.pk, 'course_slug': course_slug})
     
-        return reverse("authentication:registration_form")
+        return reverse("authentication:registration_form", kwargs={'course_slug': course_slug})

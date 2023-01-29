@@ -19,12 +19,8 @@
       {%  include 'partials/_sidebar.html' %}
 
 
-      <div class="tab-content w-100" id="v-pills-tabContent">
-          <!-- <div class="tab-pane fade {% if not request.GET.menu or request.GET.menu == 'home' %} show active {% endif %}" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">...</div> -->
-          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-              {% include 'partials/_reviewcenters.html' with reviewcenters=reviewcenters %}
-          </div>
-
+      <div class="col p-5">
+        
           <div class="tab-pane fade show active" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
             <form method="post" class="form">
               {% csrf_token %}
@@ -78,15 +74,7 @@
             </form>
           </div>
 
-          <div class="tab-pane fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab" tabindex="0">
-              {% include 'partials/_course_price_list.html' %}
-          </div>
-          
-          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">
-              <!-- {% include 'faq/question_form.html' %} -->
-              <!-- {% include 'faq/questions_list.html' %} -->
-              {% block forum %}{% endblock %}
-          </div>
+
       </div>
   </div>
 </div>

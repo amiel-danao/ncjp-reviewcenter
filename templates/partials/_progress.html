@@ -1,8 +1,8 @@
 <div class="row student_progress text-center">
     <div class="w-75 mx-auto bg-white p-3 border">
-        <h3> Progress </h3>
+        <h3> Step {{progress_value.step}} / {{progress_value.total}}</h3>
         <div class="progress" style="height: 20px;">
-            <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: {{progress_value}}%;" aria-valuenow="{{progress_value}}" aria-valuemin="0" aria-valuemax="100">{{progress_value}}%</div>
+            <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: {{progress_value.percentage}}%;" aria-valuenow="{{progress_value}}" aria-valuemin="0" aria-valuemax="100">{{progress_value.percentage}}%</div>
         </div>
     </div>
 </div>
