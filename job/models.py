@@ -19,7 +19,7 @@ class Company(models.Model):
     name = models.CharField(max_length=100, blank=False, default='')
     overview = models.CharField(max_length=1000, blank=False, default='')
     company_size = models.PositiveBigIntegerField(default=1, validators=(MinValueValidator(1),))
-    industry = models.ForeignKey(CompanyIndustry, on_delete=models.SET_NULL, null=True)
+    industry = models.ForeignKey(CompanyIndustry, on_delete=models.SET_NULL, null=True, default=None)
     average_processing_time = models.PositiveIntegerField(default=1, validators=(MinValueValidator(0),))
     benefits_and_others = models.CharField(max_length=256, blank=False, default='')
     thumbnail = models.ImageField(upload_to='company_thumbnails/', blank=True, default='')
@@ -49,7 +49,7 @@ class JobType(models.IntegerChoices):
 
 
 class Certificate(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, default=None)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, blank=False)
     file = models.FileField(upload_to='certificate/', blank=True, default='')
     date = models.DateField(auto_now_add=True)
@@ -69,7 +69,7 @@ class JobPost(models.Model):
     position = models.CharField(max_length=100, blank=False, default='')
     job_description = models.CharField(max_length=256, blank=False, default='')
     
-    company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
+    company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, default=None)
     job_type = models.PositiveSmallIntegerField(
         choices=JobType.choices,
         default=JobType.FULL_TIME
@@ -94,8 +94,8 @@ class JobPost(models.Model):
         return super().save(*args, **kwargs)
 
 class JobRequirements(models.Model):
-    certificate_quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, blank=False, default=None)
-    job_post = models.ForeignKey(JobPost, on_delete=models.SET_NULL, blank=True, default=None, null=True)
+    certificate_quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, blank=False, null=True, default=None)
+    job_post = models.ForeignKey(JobPost, on_delete=models.SET_NULL, blank=True, null=True, default=None)
     def __str__(self):
         return f'{self.certificate_quiz.title}'
 
@@ -111,10 +111,10 @@ class ApplicationStatus(models.IntegerChoices):
 
 
 class JobApplication(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, default=None)
     resume = models.FileField(upload_to='resumes/', blank=False, default='')
     expected_salary = models.PositiveBigIntegerField(blank=False, default=0)
-    job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, blank=True, default=None, null=True)
+    job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, blank=True, null=True, default=None)
     message_to_employer = models.CharField(max_length=255, default='', blank=True)
     status = models.PositiveSmallIntegerField(choices=ApplicationStatus.choices, default=ApplicationStatus.PENDING)
     date = models.DateField(auto_now_add=True)
