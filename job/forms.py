@@ -23,4 +23,4 @@ class JobApplicationForm(forms.ModelForm):
 
     class Meta:
         model = JobApplication
-        exclude = ('user', 'job_post')
+        exclude = ('user', 'job_post', 'status')
