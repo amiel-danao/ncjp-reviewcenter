@@ -1,0 +1,3349 @@
+[
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 1,
+    "fields": {
+        "title": "Quick links",
+        "module": "jet.dashboard.modules.LinkList",
+        "app_label": null,
+        "user": 1,
+        "column": 0,
+        "order": 0,
+        "settings": "{\"draggable\": false, \"deletable\": false, \"collapsible\": false, \"layout\": \"inline\"}",
+        "children": "[{\"title\": \"Return to site\", \"url\": \"/\"}, {\"title\": \"Change password\", \"url\": \"/admin/password_change/\"}, {\"title\": \"Log out\", \"url\": \"/admin/logout/\"}]",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 2,
+    "fields": {
+        "title": "Applications",
+        "module": "jet.dashboard.modules.AppList",
+        "app_label": null,
+        "user": 1,
+        "column": 1,
+        "order": 0,
+        "settings": "{\"models\": null, \"exclude\": [\"auth.*\"]}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 3,
+    "fields": {
+        "title": "Administration",
+        "module": "jet.dashboard.modules.AppList",
+        "app_label": null,
+        "user": 1,
+        "column": 2,
+        "order": 0,
+        "settings": "{\"models\": [\"auth.*\"], \"exclude\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 4,
+    "fields": {
+        "title": "Recent Actions",
+        "module": "jet.dashboard.modules.RecentActions",
+        "app_label": null,
+        "user": 1,
+        "column": 0,
+        "order": 1,
+        "settings": "{\"limit\": 10, \"include_list\": null, \"exclude_list\": null, \"user\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 5,
+    "fields": {
+        "title": "Latest Django News",
+        "module": "jet.dashboard.modules.Feed",
+        "app_label": null,
+        "user": 1,
+        "column": 1,
+        "order": 1,
+        "settings": "{\"feed_url\": \"http://www.djangoproject.com/rss/weblog/\", \"limit\": 5}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 6,
+    "fields": {
+        "title": "Support",
+        "module": "jet.dashboard.modules.LinkList",
+        "app_label": null,
+        "user": 1,
+        "column": 2,
+        "order": 1,
+        "settings": "{\"draggable\": true, \"deletable\": true, \"collapsible\": true, \"layout\": \"stacked\"}",
+        "children": "[{\"title\": \"Django documentation\", \"url\": \"http://docs.djangoproject.com/\", \"external\": true}, {\"title\": \"Django \\\"django-users\\\" mailing list\", \"url\": \"http://groups.google.com/group/django-users\", \"external\": true}, {\"title\": \"Django irc channel\", \"url\": \"irc://irc.freenode.net/django\", \"external\": true}]",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 7,
+    "fields": {
+        "title": "Quick links",
+        "module": "jet.dashboard.modules.LinkList",
+        "app_label": null,
+        "user": 3,
+        "column": 0,
+        "order": 0,
+        "settings": "{\"draggable\": false, \"deletable\": false, \"collapsible\": false, \"layout\": \"inline\"}",
+        "children": "[{\"title\": \"Return to site\", \"url\": \"/\"}, {\"title\": \"Change password\", \"url\": \"/admin/password_change/\"}, {\"title\": \"Log out\", \"url\": \"/admin/logout/\"}]",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 8,
+    "fields": {
+        "title": "Applications",
+        "module": "jet.dashboard.modules.AppList",
+        "app_label": null,
+        "user": 3,
+        "column": 1,
+        "order": 0,
+        "settings": "{\"models\": null, \"exclude\": [\"auth.*\"]}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 9,
+    "fields": {
+        "title": "Administration",
+        "module": "jet.dashboard.modules.AppList",
+        "app_label": null,
+        "user": 3,
+        "column": 2,
+        "order": 0,
+        "settings": "{\"models\": [\"auth.*\"], \"exclude\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 10,
+    "fields": {
+        "title": "Recent Actions",
+        "module": "jet.dashboard.modules.RecentActions",
+        "app_label": null,
+        "user": 3,
+        "column": 0,
+        "order": 1,
+        "settings": "{\"limit\": 10, \"include_list\": null, \"exclude_list\": null, \"user\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 11,
+    "fields": {
+        "title": "Latest Django News",
+        "module": "jet.dashboard.modules.Feed",
+        "app_label": null,
+        "user": 3,
+        "column": 1,
+        "order": 1,
+        "settings": "{\"feed_url\": \"http://www.djangoproject.com/rss/weblog/\", \"limit\": 5}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 12,
+    "fields": {
+        "title": "Support",
+        "module": "jet.dashboard.modules.LinkList",
+        "app_label": null,
+        "user": 3,
+        "column": 2,
+        "order": 1,
+        "settings": "{\"draggable\": true, \"deletable\": true, \"collapsible\": true, \"layout\": \"stacked\"}",
+        "children": "[{\"title\": \"Django documentation\", \"url\": \"http://docs.djangoproject.com/\", \"external\": true}, {\"title\": \"Django \\\"django-users\\\" mailing list\", \"url\": \"http://groups.google.com/group/django-users\", \"external\": true}, {\"title\": \"Django irc channel\", \"url\": \"irc://irc.freenode.net/django\", \"external\": true}]",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 13,
+    "fields": {
+        "title": "Application models",
+        "module": "jet.dashboard.modules.ModelList",
+        "app_label": "job",
+        "user": 3,
+        "column": 0,
+        "order": 0,
+        "settings": "{\"models\": [\"job.*\"], \"exclude\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 14,
+    "fields": {
+        "title": "Recent Actions",
+        "module": "jet.dashboard.modules.RecentActions",
+        "app_label": "job",
+        "user": 3,
+        "column": 1,
+        "order": 0,
+        "settings": "{\"limit\": 10, \"include_list\": [\"job.*\"], \"exclude_list\": null, \"user\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 15,
+    "fields": {
+        "title": "Application models",
+        "module": "jet.dashboard.modules.ModelList",
+        "app_label": "system",
+        "user": 3,
+        "column": 0,
+        "order": 0,
+        "settings": "{\"models\": [\"system.*\"], \"exclude\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 16,
+    "fields": {
+        "title": "Recent Actions",
+        "module": "jet.dashboard.modules.RecentActions",
+        "app_label": "system",
+        "user": 3,
+        "column": 1,
+        "order": 0,
+        "settings": "{\"limit\": 10, \"include_list\": [\"system.*\"], \"exclude_list\": null, \"user\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 17,
+    "fields": {
+        "title": "Application models",
+        "module": "jet.dashboard.modules.ModelList",
+        "app_label": "quiz",
+        "user": 3,
+        "column": 0,
+        "order": 0,
+        "settings": "{\"models\": [\"quiz.*\"], \"exclude\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 18,
+    "fields": {
+        "title": "Recent Actions",
+        "module": "jet.dashboard.modules.RecentActions",
+        "app_label": "quiz",
+        "user": 3,
+        "column": 1,
+        "order": 0,
+        "settings": "{\"limit\": 10, \"include_list\": [\"quiz.*\"], \"exclude_list\": null, \"user\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2023-01-29T04:50:05.054Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "ReviewCenter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2023-01-29T05:15:33.115Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "1",
+        "object_repr": "9.0 Niner IELTS Review Center Dasmariñas Cavite Branch",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2023-01-29T05:16:07.639Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "reviewcenter1@gmail.com",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2023-01-29T05:21:24.656Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "ReviewCenter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2023-01-29T05:24:33.221Z",
+        "user": 1,
+        "content_type": 17,
+        "object_id": "1",
+        "object_repr": "Computer Studies Department",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2023-01-29T05:27:34.232Z",
+        "user": 3,
+        "content_type": 16,
+        "object_id": "1",
+        "object_repr": "Bachelor of Science in Information Technology",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2023-01-29T10:24:16.378Z",
+        "user": 3,
+        "content_type": 20,
+        "object_id": "1",
+        "object_repr": "C++ Tutorial for Beginners - Learn C++ in 1 Hour",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2023-01-29T10:56:55.801Z",
+        "user": 3,
+        "content_type": 24,
+        "object_id": "1",
+        "object_repr": "Bachelor of Science in Information Technology",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2023-01-29T14:56:42.086Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "ReviewCenter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2023-01-29T15:07:54.111Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "ReviewCenter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2023-01-29T23:14:47.629Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "ReviewCenter",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2023-01-29T23:25:15.760Z",
+        "user": 3,
+        "content_type": 19,
+        "object_id": "1",
+        "object_repr": "C++ Reviewer",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"review material\", \"object\": \"C++ Introduction\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2023-01-29T23:40:04.090Z",
+        "user": 3,
+        "content_type": 33,
+        "object_id": "1",
+        "object_repr": "c++ quiz1",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2023-01-29T23:41:49.658Z",
+        "user": 3,
+        "content_type": 31,
+        "object_id": "1",
+        "object_repr": "Who develop c++?",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Answer\", \"object\": \"Bjarne Stroustrup\"}}, {\"added\": {\"name\": \"Answer\", \"object\": \"Bjarne Strousprut\"}}, {\"added\": {\"name\": \"Answer\", \"object\": \"Michael Myers\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2023-01-29T23:41:59.833Z",
+        "user": 3,
+        "content_type": 33,
+        "object_id": "1",
+        "object_repr": "c++ quiz1",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2023-01-30T00:24:44.268Z",
+        "user": 3,
+        "content_type": 33,
+        "object_id": "1",
+        "object_repr": "c++ quiz1",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Random Order\", \"Answers at end\", \"Exam Paper\", \"Single Attempt\", \"Pass Mark\", \"Success Text\", \"Fail Text\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2023-01-30T01:07:51.722Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "ReviewCenter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2023-01-30T01:30:41.531Z",
+        "user": 3,
+        "content_type": 33,
+        "object_id": "2",
+        "object_repr": "C++ mid Developer Exam",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2023-01-30T01:30:47.295Z",
+        "user": 3,
+        "content_type": 31,
+        "object_id": "2",
+        "object_repr": "Which among the following operators cannot be overloaded?",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2023-01-30T01:31:38.696Z",
+        "user": 3,
+        "content_type": 31,
+        "object_id": "2",
+        "object_repr": "Which among the following operators cannot be overloaded?",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"Answer\", \"object\": \"-\"}}, {\"added\": {\"name\": \"Answer\", \"object\": \"+\"}}, {\"added\": {\"name\": \"Answer\", \"object\": \"?:\"}}, {\"added\": {\"name\": \"Answer\", \"object\": \"%\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2023-01-30T01:31:49.146Z",
+        "user": 3,
+        "content_type": 31,
+        "object_id": "1",
+        "object_repr": "Who develop c++?",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"Answer\", \"object\": \"Bjarne Stroustrup\", \"fields\": [\"Correct\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2023-01-30T01:40:20.926Z",
+        "user": 3,
+        "content_type": 38,
+        "object_id": "1",
+        "object_repr": "amiel.tbpo@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"File\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2023-01-30T01:59:32.813Z",
+        "user": 3,
+        "content_type": 38,
+        "object_id": "1",
+        "object_repr": "amiel.tbpo@gmail.com",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2023-01-30T02:18:21.251Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "ReviewCenter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2023-01-30T02:18:48.187Z",
+        "user": 3,
+        "content_type": 39,
+        "object_id": "1",
+        "object_repr": "JobRequirements object (1)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2023-01-30T02:23:09.326Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "ReviewCenter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2023-01-30T02:28:19.587Z",
+        "user": 3,
+        "content_type": 14,
+        "object_id": "1",
+        "object_repr": "IT Industry",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2023-01-30T02:28:28.973Z",
+        "user": 3,
+        "content_type": 13,
+        "object_id": "1",
+        "object_repr": "C++ Company",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2023-01-30T02:28:51.664Z",
+        "user": 3,
+        "content_type": 15,
+        "object_id": "1",
+        "object_repr": "C++ Mid Developer",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"job requirements\", \"object\": \"C++ mid Developer Exam\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2023-01-30T02:30:42.606Z",
+        "user": 3,
+        "content_type": 13,
+        "object_id": "1",
+        "object_repr": "C++ Company",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Logo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2023-01-30T02:30:45.026Z",
+        "user": 3,
+        "content_type": 15,
+        "object_id": "1",
+        "object_repr": "C++ Mid Developer",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2023-01-30T02:58:20.642Z",
+        "user": 3,
+        "content_type": 15,
+        "object_id": "1",
+        "object_repr": "C++ Mid Developer",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"job requirements\", \"object\": \"c++ quiz1\", \"fields\": [\"Certificate quiz\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2023-01-30T03:01:19.334Z",
+        "user": 3,
+        "content_type": 15,
+        "object_id": "1",
+        "object_repr": "C++ Mid Developer",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"job requirements\", \"object\": \"C++ mid Developer Exam\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2023-01-30T03:16:07.595Z",
+        "user": 3,
+        "content_type": 13,
+        "object_id": "1",
+        "object_repr": "C++ Company",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Thumbnail\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2023-01-30T03:22:13.486Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "ReviewCenter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add user dashboard module",
+        "content_type": 1,
+        "codename": "add_userdashboardmodule"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change user dashboard module",
+        "content_type": 1,
+        "codename": "change_userdashboardmodule"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete user dashboard module",
+        "content_type": 1,
+        "codename": "delete_userdashboardmodule"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view user dashboard module",
+        "content_type": 1,
+        "codename": "view_userdashboardmodule"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add bookmark",
+        "content_type": 2,
+        "codename": "add_bookmark"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change bookmark",
+        "content_type": 2,
+        "codename": "change_bookmark"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete bookmark",
+        "content_type": 2,
+        "codename": "delete_bookmark"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view bookmark",
+        "content_type": 2,
+        "codename": "view_bookmark"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add pinned application",
+        "content_type": 3,
+        "codename": "add_pinnedapplication"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change pinned application",
+        "content_type": 3,
+        "codename": "change_pinnedapplication"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete pinned application",
+        "content_type": 3,
+        "codename": "delete_pinnedapplication"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view pinned application",
+        "content_type": 3,
+        "codename": "view_pinnedapplication"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 4,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 4,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 4,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 4,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 5,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 5,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 5,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 5,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 6,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 6,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 6,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 6,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 7,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 7,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 7,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 7,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 8,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 8,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 8,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 8,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add User",
+        "content_type": 9,
+        "codename": "add_customuser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change User",
+        "content_type": 9,
+        "codename": "change_customuser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete User",
+        "content_type": 9,
+        "codename": "delete_customuser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view User",
+        "content_type": 9,
+        "codename": "view_customuser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add review center account",
+        "content_type": 10,
+        "codename": "add_reviewcenteraccount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change review center account",
+        "content_type": 10,
+        "codename": "change_reviewcenteraccount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete review center account",
+        "content_type": 10,
+        "codename": "delete_reviewcenteraccount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view review center account",
+        "content_type": 10,
+        "codename": "view_reviewcenteraccount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add PayPal IPN",
+        "content_type": 11,
+        "codename": "add_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change PayPal IPN",
+        "content_type": 11,
+        "codename": "change_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete PayPal IPN",
+        "content_type": 11,
+        "codename": "delete_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view PayPal IPN",
+        "content_type": 11,
+        "codename": "view_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add company",
+        "content_type": 12,
+        "codename": "add_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change company",
+        "content_type": 12,
+        "codename": "change_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete company",
+        "content_type": 12,
+        "codename": "delete_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view company",
+        "content_type": 12,
+        "codename": "view_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can add company industry",
+        "content_type": 13,
+        "codename": "add_companyindustry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can change company industry",
+        "content_type": 13,
+        "codename": "change_companyindustry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can delete company industry",
+        "content_type": 13,
+        "codename": "delete_companyindustry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can view company industry",
+        "content_type": 13,
+        "codename": "view_companyindustry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+        "name": "Can add job post",
+        "content_type": 14,
+        "codename": "add_jobpost"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+        "name": "Can change job post",
+        "content_type": 14,
+        "codename": "change_jobpost"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+        "name": "Can delete job post",
+        "content_type": 14,
+        "codename": "delete_jobpost"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+        "name": "Can view job post",
+        "content_type": 14,
+        "codename": "view_jobpost"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+        "name": "Can add Course",
+        "content_type": 15,
+        "codename": "add_course"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can change Course",
+        "content_type": 15,
+        "codename": "change_course"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can delete Course",
+        "content_type": 15,
+        "codename": "delete_course"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can view Course",
+        "content_type": 15,
+        "codename": "view_course"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+        "name": "Can add department",
+        "content_type": 16,
+        "codename": "add_department"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+        "name": "Can change department",
+        "content_type": 16,
+        "codename": "change_department"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+        "name": "Can delete department",
+        "content_type": 16,
+        "codename": "delete_department"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+        "name": "Can view department",
+        "content_type": 16,
+        "codename": "view_department"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+        "name": "Can add review center",
+        "content_type": 17,
+        "codename": "add_reviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+        "name": "Can change review center",
+        "content_type": 17,
+        "codename": "change_reviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+        "name": "Can delete review center",
+        "content_type": 17,
+        "codename": "delete_reviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+        "name": "Can view review center",
+        "content_type": 17,
+        "codename": "view_reviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+        "name": "Can add review course",
+        "content_type": 18,
+        "codename": "add_reviewcourse"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+        "name": "Can change review course",
+        "content_type": 18,
+        "codename": "change_reviewcourse"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+        "name": "Can delete review course",
+        "content_type": 18,
+        "codename": "delete_reviewcourse"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+        "name": "Can view review course",
+        "content_type": 18,
+        "codename": "view_reviewcourse"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 73,
+    "fields": {
+        "name": "Can add student",
+        "content_type": 19,
+        "codename": "add_student"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 74,
+    "fields": {
+        "name": "Can change student",
+        "content_type": 19,
+        "codename": "change_student"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 75,
+    "fields": {
+        "name": "Can delete student",
+        "content_type": 19,
+        "codename": "delete_student"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 76,
+    "fields": {
+        "name": "Can view student",
+        "content_type": 19,
+        "codename": "view_student"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 77,
+    "fields": {
+        "name": "Can add video",
+        "content_type": 20,
+        "codename": "add_video"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 78,
+    "fields": {
+        "name": "Can change video",
+        "content_type": 20,
+        "codename": "change_video"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 79,
+    "fields": {
+        "name": "Can delete video",
+        "content_type": 20,
+        "codename": "delete_video"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 80,
+    "fields": {
+        "name": "Can view video",
+        "content_type": 20,
+        "codename": "view_video"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 81,
+    "fields": {
+        "name": "Can add video comment",
+        "content_type": 21,
+        "codename": "add_videocomment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 82,
+    "fields": {
+        "name": "Can change video comment",
+        "content_type": 21,
+        "codename": "change_videocomment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 83,
+    "fields": {
+        "name": "Can delete video comment",
+        "content_type": 21,
+        "codename": "delete_videocomment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 84,
+    "fields": {
+        "name": "Can view video comment",
+        "content_type": 21,
+        "codename": "view_videocomment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 85,
+    "fields": {
+        "name": "Can add review material",
+        "content_type": 22,
+        "codename": "add_reviewmaterial"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 86,
+    "fields": {
+        "name": "Can change review material",
+        "content_type": 22,
+        "codename": "change_reviewmaterial"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 87,
+    "fields": {
+        "name": "Can delete review material",
+        "content_type": 22,
+        "codename": "delete_reviewmaterial"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 88,
+    "fields": {
+        "name": "Can view review material",
+        "content_type": 22,
+        "codename": "view_reviewmaterial"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 89,
+    "fields": {
+        "name": "Can add payment",
+        "content_type": 23,
+        "codename": "add_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 90,
+    "fields": {
+        "name": "Can change payment",
+        "content_type": 23,
+        "codename": "change_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 91,
+    "fields": {
+        "name": "Can delete payment",
+        "content_type": 23,
+        "codename": "delete_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 92,
+    "fields": {
+        "name": "Can view payment",
+        "content_type": 23,
+        "codename": "view_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 93,
+    "fields": {
+        "name": "Can add course price",
+        "content_type": 24,
+        "codename": "add_courseprice"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 94,
+    "fields": {
+        "name": "Can change course price",
+        "content_type": 24,
+        "codename": "change_courseprice"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 95,
+    "fields": {
+        "name": "Can delete course price",
+        "content_type": 24,
+        "codename": "delete_courseprice"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 96,
+    "fields": {
+        "name": "Can view course price",
+        "content_type": 24,
+        "codename": "view_courseprice"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 97,
+    "fields": {
+        "name": "Can add answer",
+        "content_type": 25,
+        "codename": "add_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 98,
+    "fields": {
+        "name": "Can change answer",
+        "content_type": 25,
+        "codename": "change_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 99,
+    "fields": {
+        "name": "Can delete answer",
+        "content_type": 25,
+        "codename": "delete_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 100,
+    "fields": {
+        "name": "Can view answer",
+        "content_type": 25,
+        "codename": "view_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 101,
+    "fields": {
+        "name": "Can add category",
+        "content_type": 26,
+        "codename": "add_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 102,
+    "fields": {
+        "name": "Can change category",
+        "content_type": 26,
+        "codename": "change_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 103,
+    "fields": {
+        "name": "Can delete category",
+        "content_type": 26,
+        "codename": "delete_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 104,
+    "fields": {
+        "name": "Can view category",
+        "content_type": 26,
+        "codename": "view_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 105,
+    "fields": {
+        "name": "Can add question",
+        "content_type": 27,
+        "codename": "add_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 106,
+    "fields": {
+        "name": "Can change question",
+        "content_type": 27,
+        "codename": "change_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 107,
+    "fields": {
+        "name": "Can delete question",
+        "content_type": 27,
+        "codename": "delete_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 108,
+    "fields": {
+        "name": "Can view question",
+        "content_type": 27,
+        "codename": "view_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 109,
+    "fields": {
+        "name": "Can add question helpful",
+        "content_type": 28,
+        "codename": "add_questionhelpful"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 110,
+    "fields": {
+        "name": "Can change question helpful",
+        "content_type": 28,
+        "codename": "change_questionhelpful"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 111,
+    "fields": {
+        "name": "Can delete question helpful",
+        "content_type": 28,
+        "codename": "delete_questionhelpful"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 112,
+    "fields": {
+        "name": "Can view question helpful",
+        "content_type": 28,
+        "codename": "view_questionhelpful"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 113,
+    "fields": {
+        "name": "Can add FAQ Comment",
+        "content_type": 29,
+        "codename": "add_faqcomment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 114,
+    "fields": {
+        "name": "Can change FAQ Comment",
+        "content_type": 29,
+        "codename": "change_faqcomment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 115,
+    "fields": {
+        "name": "Can delete FAQ Comment",
+        "content_type": 29,
+        "codename": "delete_faqcomment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 116,
+    "fields": {
+        "name": "Can view FAQ Comment",
+        "content_type": 29,
+        "codename": "view_faqcomment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 117,
+    "fields": {
+        "name": "Can add answer helpful",
+        "content_type": 30,
+        "codename": "add_answerhelpful"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 118,
+    "fields": {
+        "name": "Can change answer helpful",
+        "content_type": 30,
+        "codename": "change_answerhelpful"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 119,
+    "fields": {
+        "name": "Can delete answer helpful",
+        "content_type": 30,
+        "codename": "delete_answerhelpful"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 120,
+    "fields": {
+        "name": "Can view answer helpful",
+        "content_type": 30,
+        "codename": "view_answerhelpful"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 121,
+    "fields": {
+        "name": "Can add Multiple Choice Question",
+        "content_type": 31,
+        "codename": "add_mcqquestion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 122,
+    "fields": {
+        "name": "Can change Multiple Choice Question",
+        "content_type": 31,
+        "codename": "change_mcqquestion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 123,
+    "fields": {
+        "name": "Can delete Multiple Choice Question",
+        "content_type": 31,
+        "codename": "delete_mcqquestion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 124,
+    "fields": {
+        "name": "Can view Multiple Choice Question",
+        "content_type": 31,
+        "codename": "view_mcqquestion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 125,
+    "fields": {
+        "name": "Can add Answer",
+        "content_type": 32,
+        "codename": "add_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 126,
+    "fields": {
+        "name": "Can change Answer",
+        "content_type": 32,
+        "codename": "change_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 127,
+    "fields": {
+        "name": "Can delete Answer",
+        "content_type": 32,
+        "codename": "delete_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 128,
+    "fields": {
+        "name": "Can view Answer",
+        "content_type": 32,
+        "codename": "view_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 129,
+    "fields": {
+        "name": "Can add Quiz",
+        "content_type": 33,
+        "codename": "add_quiz"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 130,
+    "fields": {
+        "name": "Can change Quiz",
+        "content_type": 33,
+        "codename": "change_quiz"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 131,
+    "fields": {
+        "name": "Can delete Quiz",
+        "content_type": 33,
+        "codename": "delete_quiz"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 132,
+    "fields": {
+        "name": "Can view Quiz",
+        "content_type": 33,
+        "codename": "view_quiz"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 133,
+    "fields": {
+        "name": "Can add sitting",
+        "content_type": 34,
+        "codename": "add_sitting"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 134,
+    "fields": {
+        "name": "Can change sitting",
+        "content_type": 34,
+        "codename": "change_sitting"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 135,
+    "fields": {
+        "name": "Can delete sitting",
+        "content_type": 34,
+        "codename": "delete_sitting"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 136,
+    "fields": {
+        "name": "Can view sitting",
+        "content_type": 34,
+        "codename": "view_sitting"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 137,
+    "fields": {
+        "name": "Can see completed exams.",
+        "content_type": 34,
+        "codename": "view_sittings"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 138,
+    "fields": {
+        "name": "Can add Question",
+        "content_type": 35,
+        "codename": "add_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 139,
+    "fields": {
+        "name": "Can change Question",
+        "content_type": 35,
+        "codename": "change_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 140,
+    "fields": {
+        "name": "Can delete Question",
+        "content_type": 35,
+        "codename": "delete_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 141,
+    "fields": {
+        "name": "Can view Question",
+        "content_type": 35,
+        "codename": "view_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 142,
+    "fields": {
+        "name": "Can add User Progress",
+        "content_type": 36,
+        "codename": "add_progress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 143,
+    "fields": {
+        "name": "Can change User Progress",
+        "content_type": 36,
+        "codename": "change_progress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 144,
+    "fields": {
+        "name": "Can delete User Progress",
+        "content_type": 36,
+        "codename": "delete_progress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 145,
+    "fields": {
+        "name": "Can view User Progress",
+        "content_type": 36,
+        "codename": "view_progress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 146,
+    "fields": {
+        "name": "Can add student progress",
+        "content_type": 10,
+        "codename": "add_studentprogress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 147,
+    "fields": {
+        "name": "Can change student progress",
+        "content_type": 10,
+        "codename": "change_studentprogress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 148,
+    "fields": {
+        "name": "Can delete student progress",
+        "content_type": 10,
+        "codename": "delete_studentprogress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 149,
+    "fields": {
+        "name": "Can view student progress",
+        "content_type": 10,
+        "codename": "view_studentprogress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 150,
+    "fields": {
+        "name": "Can add Student Profile",
+        "content_type": 11,
+        "codename": "add_student"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 151,
+    "fields": {
+        "name": "Can change Student Profile",
+        "content_type": 11,
+        "codename": "change_student"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 152,
+    "fields": {
+        "name": "Can delete Student Profile",
+        "content_type": 11,
+        "codename": "delete_student"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 153,
+    "fields": {
+        "name": "Can view Student Profile",
+        "content_type": 11,
+        "codename": "view_student"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 154,
+    "fields": {
+        "name": "Can add PayPal IPN",
+        "content_type": 12,
+        "codename": "add_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 155,
+    "fields": {
+        "name": "Can change PayPal IPN",
+        "content_type": 12,
+        "codename": "change_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 156,
+    "fields": {
+        "name": "Can delete PayPal IPN",
+        "content_type": 12,
+        "codename": "delete_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 157,
+    "fields": {
+        "name": "Can view PayPal IPN",
+        "content_type": 12,
+        "codename": "view_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 158,
+    "fields": {
+        "name": "Can add job post",
+        "content_type": 15,
+        "codename": "add_jobpost"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 159,
+    "fields": {
+        "name": "Can change job post",
+        "content_type": 15,
+        "codename": "change_jobpost"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 160,
+    "fields": {
+        "name": "Can delete job post",
+        "content_type": 15,
+        "codename": "delete_jobpost"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 161,
+    "fields": {
+        "name": "Can view job post",
+        "content_type": 15,
+        "codename": "view_jobpost"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 162,
+    "fields": {
+        "name": "Can add company",
+        "content_type": 13,
+        "codename": "add_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 163,
+    "fields": {
+        "name": "Can change company",
+        "content_type": 13,
+        "codename": "change_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 164,
+    "fields": {
+        "name": "Can delete company",
+        "content_type": 13,
+        "codename": "delete_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 165,
+    "fields": {
+        "name": "Can view company",
+        "content_type": 13,
+        "codename": "view_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 166,
+    "fields": {
+        "name": "Can add company industry",
+        "content_type": 14,
+        "codename": "add_companyindustry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 167,
+    "fields": {
+        "name": "Can change company industry",
+        "content_type": 14,
+        "codename": "change_companyindustry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 168,
+    "fields": {
+        "name": "Can delete company industry",
+        "content_type": 14,
+        "codename": "delete_companyindustry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 169,
+    "fields": {
+        "name": "Can view company industry",
+        "content_type": 14,
+        "codename": "view_companyindustry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 170,
+    "fields": {
+        "name": "Can add review center",
+        "content_type": 18,
+        "codename": "add_reviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 171,
+    "fields": {
+        "name": "Can change review center",
+        "content_type": 18,
+        "codename": "change_reviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 172,
+    "fields": {
+        "name": "Can delete review center",
+        "content_type": 18,
+        "codename": "delete_reviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 173,
+    "fields": {
+        "name": "Can view review center",
+        "content_type": 18,
+        "codename": "view_reviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 174,
+    "fields": {
+        "name": "Can add department",
+        "content_type": 17,
+        "codename": "add_department"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 175,
+    "fields": {
+        "name": "Can change department",
+        "content_type": 17,
+        "codename": "change_department"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 176,
+    "fields": {
+        "name": "Can delete department",
+        "content_type": 17,
+        "codename": "delete_department"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 177,
+    "fields": {
+        "name": "Can view department",
+        "content_type": 17,
+        "codename": "view_department"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 178,
+    "fields": {
+        "name": "Can add Course",
+        "content_type": 16,
+        "codename": "add_course"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 179,
+    "fields": {
+        "name": "Can change Course",
+        "content_type": 16,
+        "codename": "change_course"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 180,
+    "fields": {
+        "name": "Can delete Course",
+        "content_type": 16,
+        "codename": "delete_course"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 181,
+    "fields": {
+        "name": "Can view Course",
+        "content_type": 16,
+        "codename": "view_course"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 182,
+    "fields": {
+        "name": "Can add review course",
+        "content_type": 19,
+        "codename": "add_reviewcourse"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 183,
+    "fields": {
+        "name": "Can change review course",
+        "content_type": 19,
+        "codename": "change_reviewcourse"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 184,
+    "fields": {
+        "name": "Can delete review course",
+        "content_type": 19,
+        "codename": "delete_reviewcourse"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 185,
+    "fields": {
+        "name": "Can view review course",
+        "content_type": 19,
+        "codename": "view_reviewcourse"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 186,
+    "fields": {
+        "name": "Can add current review center",
+        "content_type": 37,
+        "codename": "add_currentreviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 187,
+    "fields": {
+        "name": "Can change current review center",
+        "content_type": 37,
+        "codename": "change_currentreviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 188,
+    "fields": {
+        "name": "Can delete current review center",
+        "content_type": 37,
+        "codename": "delete_currentreviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 189,
+    "fields": {
+        "name": "Can view current review center",
+        "content_type": 37,
+        "codename": "view_currentreviewcenter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 190,
+    "fields": {
+        "name": "Can add certificate",
+        "content_type": 38,
+        "codename": "add_certificate"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 191,
+    "fields": {
+        "name": "Can change certificate",
+        "content_type": 38,
+        "codename": "change_certificate"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 192,
+    "fields": {
+        "name": "Can delete certificate",
+        "content_type": 38,
+        "codename": "delete_certificate"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 193,
+    "fields": {
+        "name": "Can view certificate",
+        "content_type": 38,
+        "codename": "view_certificate"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 194,
+    "fields": {
+        "name": "Can add job requirements",
+        "content_type": 39,
+        "codename": "add_jobrequirements"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 195,
+    "fields": {
+        "name": "Can change job requirements",
+        "content_type": 39,
+        "codename": "change_jobrequirements"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 196,
+    "fields": {
+        "name": "Can delete job requirements",
+        "content_type": 39,
+        "codename": "delete_jobrequirements"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 197,
+    "fields": {
+        "name": "Can view job requirements",
+        "content_type": 39,
+        "codename": "view_jobrequirements"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 198,
+    "fields": {
+        "name": "Can add job application",
+        "content_type": 40,
+        "codename": "add_jobapplication"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 199,
+    "fields": {
+        "name": "Can change job application",
+        "content_type": 40,
+        "codename": "change_jobapplication"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 200,
+    "fields": {
+        "name": "Can delete job application",
+        "content_type": 40,
+        "codename": "delete_jobapplication"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 201,
+    "fields": {
+        "name": "Can view job application",
+        "content_type": 40,
+        "codename": "view_jobapplication"
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+        "name": "ReviewCenter",
+        "permissions": [
+            45,
+            46,
+            47,
+            48,
+            190,
+            191,
+            192,
+            193,
+            162,
+            49,
+            163,
+            50,
+            164,
+            51,
+            165,
+            52,
+            166,
+            53,
+            167,
+            54,
+            168,
+            55,
+            169,
+            56,
+            198,
+            199,
+            200,
+            201,
+            57,
+            58,
+            59,
+            60,
+            194,
+            195,
+            196,
+            197,
+            125,
+            126,
+            127,
+            128,
+            121,
+            122,
+            123,
+            124,
+            142,
+            143,
+            144,
+            145,
+            138,
+            139,
+            140,
+            141,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            178,
+            179,
+            180,
+            181,
+            93,
+            94,
+            95,
+            96,
+            89,
+            90,
+            91,
+            92,
+            69,
+            70,
+            71,
+            72,
+            76,
+            85,
+            86,
+            87,
+            88,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+        "name": "BasicAdmin",
+        "permissions": [
+            33,
+            34,
+            36,
+            37,
+            38,
+            39,
+            40,
+            103,
+            104,
+            113,
+            114,
+            115,
+            116,
+            105,
+            106,
+            107,
+            108,
+            136,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            92
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 3,
+    "fields": {
+        "name": "FullAdmin",
+        "permissions": [
+            13,
+            14,
+            15,
+            16,
+            21,
+            22,
+            23,
+            24,
+            17,
+            18,
+            19,
+            20,
+            33,
+            34,
+            35,
+            36,
+            41,
+            42,
+            43,
+            44,
+            37,
+            38,
+            39,
+            40,
+            25,
+            26,
+            27,
+            28,
+            1,
+            2,
+            3,
+            4,
+            97,
+            98,
+            99,
+            100,
+            117,
+            118,
+            119,
+            120,
+            101,
+            102,
+            103,
+            104,
+            113,
+            114,
+            115,
+            116,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            45,
+            46,
+            47,
+            48,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            125,
+            126,
+            127,
+            128,
+            121,
+            122,
+            123,
+            124,
+            142,
+            143,
+            144,
+            145,
+            138,
+            139,
+            140,
+            141,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            29,
+            30,
+            31,
+            32,
+            61,
+            62,
+            63,
+            64,
+            93,
+            94,
+            95,
+            96,
+            65,
+            66,
+            67,
+            68,
+            89,
+            90,
+            91,
+            92,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            85,
+            86,
+            87,
+            88,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84
+        ]
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "dashboard",
+        "model": "userdashboardmodule"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "jet",
+        "model": "bookmark"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "jet",
+        "model": "pinnedapplication"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "authentication",
+        "model": "customuser"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "authentication",
+        "model": "studentprogress"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "authentication",
+        "model": "student"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "ipn",
+        "model": "paypalipn"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "job",
+        "model": "company"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+        "app_label": "job",
+        "model": "companyindustry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "job",
+        "model": "jobpost"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "system",
+        "model": "course"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "system",
+        "model": "department"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+        "app_label": "system",
+        "model": "reviewcenter"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 19,
+    "fields": {
+        "app_label": "system",
+        "model": "reviewcourse"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 20,
+    "fields": {
+        "app_label": "system",
+        "model": "video"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 21,
+    "fields": {
+        "app_label": "system",
+        "model": "videocomment"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 22,
+    "fields": {
+        "app_label": "system",
+        "model": "reviewmaterial"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 23,
+    "fields": {
+        "app_label": "system",
+        "model": "payment"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 24,
+    "fields": {
+        "app_label": "system",
+        "model": "courseprice"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 25,
+    "fields": {
+        "app_label": "faq",
+        "model": "answer"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 26,
+    "fields": {
+        "app_label": "faq",
+        "model": "category"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 27,
+    "fields": {
+        "app_label": "faq",
+        "model": "question"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 28,
+    "fields": {
+        "app_label": "faq",
+        "model": "questionhelpful"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 29,
+    "fields": {
+        "app_label": "faq",
+        "model": "faqcomment"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 30,
+    "fields": {
+        "app_label": "faq",
+        "model": "answerhelpful"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 31,
+    "fields": {
+        "app_label": "mcq",
+        "model": "mcqquestion"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 32,
+    "fields": {
+        "app_label": "mcq",
+        "model": "answer"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 33,
+    "fields": {
+        "app_label": "quiz",
+        "model": "quiz"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 34,
+    "fields": {
+        "app_label": "quiz",
+        "model": "sitting"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 35,
+    "fields": {
+        "app_label": "quiz",
+        "model": "question"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 36,
+    "fields": {
+        "app_label": "quiz",
+        "model": "progress"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 37,
+    "fields": {
+        "app_label": "authentication",
+        "model": "currentreviewcenter"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 38,
+    "fields": {
+        "app_label": "job",
+        "model": "certificate"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 39,
+    "fields": {
+        "app_label": "job",
+        "model": "jobrequirements"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 40,
+    "fields": {
+        "app_label": "job",
+        "model": "jobapplication"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "f3wkiktn1t7txchwkygncfwe3fdcc31h",
+    "fields": {
+        "session_data": ".eJxVjEsKAjEQBe-StQTyNy7de4bQne6YUUlgPqvBu2tgFrp7vCpqFwm2taZt4TlNJC5Ci9Pvh5Cf3AagB7R7l7m3dZ5QDkUedJG3Tvy6Hu5foMJSR7Yorch5YKMNGxUA0cXiLTobotKEMWfDJZCJ4CKxjhiC_i5wtpy9eH8A4Rw35w:1pLziZ:UODXdFnxd3sVKK8uuK_LzklrJVQOJQwvQ8cw1kgy5yA",
+        "expire_date": "2023-02-12T04:55:03.741Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "fy1pqeuattaj5pjr4tx3j5xtri206ya8",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG8Co5L934DYZhBqoYmpV0Z_92QdKHbe865bxHTvtW4d17jTOIirDj9bpjyk9sA9Ejtvsi8tG2dUQ5FHrTL20L8uh7u30FNvY7am8zoUE8KlHNEWDyGkg1rk4P2BHkq_gzBJkvsrQmOAiilgBOCJvH5AvO9OAc:1pMKkW:SpPvymZ_VvueFT49hnM1-ps_iD-eneDYs8MuszLrSkI",
+        "expire_date": "2023-02-13T03:22:28.084Z"
+    }
+},
+{
+    "model": "authentication.customuser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$sysz2ZLHmWgdL1hZD3hs1N$QXJs5uyBcmVmUytIV90ssU2YakhNmDasMQmqtilWLVA=",
+        "last_login": "2023-01-30T03:21:50.223Z",
+        "is_superuser": true,
+        "email": "admin69@email.com",
+        "picture": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-01-29T04:49:07.673Z",
+        "review_center": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authentication.customuser",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$17G1ktI5ZMlazlvX4FXZ0v$v7Kg5HGPZCdJXLRYUO2Ggb65Lvd/O+w55zW60+r9ntQ=",
+        "last_login": "2023-01-29T04:55:03.694Z",
+        "is_superuser": false,
+        "email": "amiel.tbpo@gmail.com",
+        "picture": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-01-29T04:53:32.643Z",
+        "review_center": null,
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authentication.customuser",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$AUaRY8yPiC34jSCDOOe4y2$y5EZ3Xp/o0vYnYudO1HlYJYGDMId7kVTMYJJG8FFAu8=",
+        "last_login": "2023-01-30T03:22:28.071Z",
+        "is_superuser": false,
+        "email": "reviewcenter1@gmail.com",
+        "picture": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-01-29T05:16:07.140Z",
+        "review_center": 1,
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authentication.student",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "first_name": "Amiel",
+        "middle_name": "",
+        "last_name": "Danao",
+        "school": "NCST",
+        "date_of_graduation": "2023-02-03",
+        "deans_name": "John Calix",
+        "address": "Paliparan",
+        "contact_person_number": "09954261220",
+        "contact_person_name": "Danao",
+        "contact_person_relation": 1
+    }
+},
+{
+    "model": "authentication.studentprogress",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "review_center": 1,
+        "course": 1,
+        "review_video": 1,
+        "review_course": 1,
+        "quiz": 2,
+        "company": null,
+        "job": 1
+    }
+},
+{
+    "model": "authentication.currentreviewcenter",
+    "pk": 3,
+    "fields": {
+        "user": 2,
+        "review_center": 1
+    }
+},
+{
+    "model": "job.companyindustry",
+    "pk": 1,
+    "fields": {
+        "name": "IT Industry",
+        "review_center": 1
+    }
+},
+{
+    "model": "job.company",
+    "pk": 1,
+    "fields": {
+        "name": "C++ Company",
+        "overview": "C++ Company",
+        "company_size": 1,
+        "industry": 1,
+        "average_processing_time": 1,
+        "benefits_and_others": "No benefits",
+        "thumbnail": "company_thumbnails/niner.png",
+        "logo": "company_logos/niner.png",
+        "review_center": 1
+    }
+},
+{
+    "model": "job.certificate",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "quiz": 2,
+        "file": "certificate/Sample_Certificate.PNG",
+        "date": "2023-01-30",
+        "review_center": 1
+    }
+},
+{
+    "model": "job.jobpost",
+    "pk": 1,
+    "fields": {
+        "title": "C++ Mid Developer",
+        "position": "C++ Mid Developer",
+        "job_description": "C++ Mid Developer",
+        "company": 1,
+        "job_type": 1,
+        "career_level": "2",
+        "years_of_experience": 1,
+        "address": "Manila",
+        "salary_range": "50000",
+        "date_posted": "2023-01-30T02:28:51.586Z",
+        "slug": "c-mid-developer"
+    }
+},
+{
+    "model": "job.jobrequirements",
+    "pk": 1,
+    "fields": {
+        "certificate_quiz": 2,
+        "job_post": null
+    }
+},
+{
+    "model": "job.jobrequirements",
+    "pk": 2,
+    "fields": {
+        "certificate_quiz": 1,
+        "job_post": 1
+    }
+},
+{
+    "model": "job.jobrequirements",
+    "pk": 3,
+    "fields": {
+        "certificate_quiz": 2,
+        "job_post": 1
+    }
+},
+{
+    "model": "job.jobapplication",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "resume": "resumes/google-services_CYxkSR3.json",
+        "expected_salary": 0,
+        "job_post": 1,
+        "message_to_employer": "",
+        "status": 1,
+        "date": "2023-01-30"
+    }
+},
+{
+    "model": "system.reviewcenter",
+    "pk": 1,
+    "fields": {
+        "name": "9.0 Niner IELTS Review Center Dasmariñas Cavite Branch",
+        "thumbnail": "reviewcenters/niner.png",
+        "description": 
