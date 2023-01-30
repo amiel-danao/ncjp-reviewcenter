@@ -73,7 +73,7 @@ class QuizAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', )
     list_filter = ('category',)
     search_fields = ('description', 'category', )
-    exclude = ('url', 'review_center', 'single_attempt', 'exam_paper', 'answers_at_end', 'random_order')
+    exclude = ('url', 'single_attempt', 'exam_paper', 'answers_at_end', 'random_order')
 
     def queryset(self, request):
         qs = super(QuizAdmin, self).queryset(request)
@@ -90,7 +90,7 @@ class QuizAdmin(admin.ModelAdmin):
 
 class CourseAdmin(admin.ModelAdmin):
     search_fields = ('name', )
-    exclude = ('category', 'review_center')
+    exclude = ('category',)
 
     def queryset(self, request):
         qs = super(CourseAdmin, self).queryset(request)

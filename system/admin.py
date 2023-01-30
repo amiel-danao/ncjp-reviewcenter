@@ -99,7 +99,7 @@ class DepartmentAdmin(admin.ModelAdmin):
 @admin.register(CoursePrice)
 class CoursePriceAdmin(admin.ModelAdmin):
     list_display = ('course_name', 'price', 'previous_price', 'active')
-    exclude = ('review_center', )
+    exclude = ( )
 
     def course_name(self, obj):
         return obj.course.name
@@ -120,7 +120,7 @@ class CoursePriceAdmin(admin.ModelAdmin):
 @admin.register(Video)
 class VideoAdmin(AdminVideoMixin, admin.ModelAdmin):
     # prepopulated_fields = {"slug": ("title",)}
-    exclude = ('slug', 'review_center')
+    exclude = ('slug', )
 
     def save_model(self, request, obj, form, change,):
         if request.user.review_center:

@@ -36,7 +36,7 @@ class JobPostAdmin(admin.ModelAdmin):
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    exclude = ('review_center', )
+    exclude = ( )
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         formfield = super(CompanyAdmin, self).formfield_for_dbfield(db_field, **kwargs)
@@ -61,7 +61,7 @@ class CompanyAdmin(admin.ModelAdmin):
 
 @admin.register(CompanyIndustry)
 class CompanyIndustryAdmin(admin.ModelAdmin):
-    exclude = ('review_center', )
+    exclude = ( )
 
     def queryset(self, request):
         qs = super(CompanyIndustryAdmin, self).queryset(request)
@@ -82,7 +82,7 @@ class CertificateAdmin(admin.ModelAdmin):
     fields = ('user', 'quiz', 'file', 'date')
     readonly_fields = ('date', )
     list_display = ('user', 'quiz', 'date')
-    exclude = ('review_center', )
+    exclude = ( )
 
     def queryset(self, request):
         qs = super(CertificateAdmin, self).queryset(request)
