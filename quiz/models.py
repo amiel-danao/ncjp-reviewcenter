@@ -87,7 +87,7 @@ class Quiz(models.Model):
                     " taken by users who can edit"
                     " quizzes."))
                     
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.CASCADE, null=True, default=None)
 
     def save(self, force_insert=False, force_update=False, *args, **kwargs):
         # self.url = re.sub('\s+', '-', self.url).lower()
