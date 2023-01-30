@@ -8,7 +8,7 @@ from . import snippets
 
 # Create your models here.
 class Question(models.Model):
-    category = models.ForeignKey("category", on_delete=models.SET_NULL, null=True, blank=True)
+    category = models.ForeignKey("category", on_delete=models.CASCADE, null=True, blank=True)
     question = models.CharField(max_length=150, unique=True)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
     helpful = models.IntegerField(default=0)

@@ -25,7 +25,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
-    review_center = models.ForeignKey(ReviewCenter, blank=True, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, blank=True, on_delete=models.CASCADE, null=True, default=None)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -44,7 +44,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Student(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, default=None)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, default=None)
     first_name = models.CharField(blank=False, default='', max_length=50)
     middle_name = models.CharField(blank=True, max_length=50)
     last_name = models.CharField(blank=False, max_length=50, default='')
@@ -65,18 +65,18 @@ class Student(models.Model):
 
 
 class StudentProgress(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, default=None)
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
-    # profile = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, default=None)
-    course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, default=None)
-    review_video = models.ForeignKey(Video, on_delete=models.SET_NULL, null=True, default=None)
-    review_course = models.ForeignKey(ReviewCourse, on_delete=models.SET_NULL, null=True, default=None)
-    quiz = models.ForeignKey(Quiz, on_delete=models.SET_NULL, null=True, default=None)
-    company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, default=None)
-    job = models.ForeignKey(JobPost, on_delete=models.SET_NULL, null=True, default=None)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.CASCADE, null=True, default=None)
+    # profile = models.ForeignKey(Student, on_delete=models.CASCADE, null=True, default=None)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, default=None)
+    review_video = models.ForeignKey(Video, on_delete=models.CASCADE, null=True, default=None)
+    review_course = models.ForeignKey(ReviewCourse, on_delete=models.CASCADE, null=True, default=None)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True, default=None)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, default=None)
+    job = models.ForeignKey(JobPost, on_delete=models.CASCADE, null=True, default=None)
 
 
 
 class CurrentReviewCenter(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, default=None)
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.CASCADE, null=True, default=None)
