@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'embed_video',
     'paypal.standard.ipn',
     'job',
-    'system',
     'faq',
     'crispy_forms',
     'django_tables2',
@@ -56,6 +55,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'mcq',
     'quiz',
+    'system',
 ]
 
 MIDDLEWARE = [
