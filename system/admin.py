@@ -47,7 +47,7 @@ def basic_admin_changes(sender, instance, created, **kwargs):
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     search_fields = ('email', )
-    list_display = ('email', 'is_staff', 'is_active', 'date_joined')
+    list_display = ('email', 'is_staff', 'is_active', 'date_joined', 'review_center')
     # fields = ('email', 'is_staff', 'is_active', 'is_review_center', 'date_joined', 'password')
     readonly_fields = ('date_joined', 'last_login')
     ordering = ()
