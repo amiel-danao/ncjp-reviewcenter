@@ -55,18 +55,31 @@ class JobListView(LoginRequiredMixin, SingleTableView,):
             pass_quizzes_id = list(pass_certificates)
 
             if len(pass_quizzes_id) > 0:                
-                condition = Q(certificate_quiz__pk=pass_quizzes_id[0])
-                for string in pass_quizzes_id[1:]:
-                    condition &= Q(certificate_quiz__pk=string)
-                passed_job_post = JobRequirements.objects.filter(condition).values_list('job_post', flat=True)
+                # condition = Q(certificate_quiz__pk=pass_quizzes_id[0])
+                # for string in pass_quizzes_id[1:]:
+                #     condition &= Q(certificate_quiz__pk=string)
+                # passed_job_post = JobRequirements.objects.filter(condition).values_list('job_post', flat=True)
                 
+                passed_job_post = JobRequirements.objects.all()
+                q = Q()
+                for quiz_id in pass_quizzes_id:
+                    q = q | Q(certificate_quiz=quiz_id)
+                passed_job_post.filter(q).values_list('job_post', flat=True)
+
+
                 passed_job_post_id = [i for i in list(passed_job_post) if i is not None]
 
                 if len(passed_job_post_id) > 0:
-                    job_condition = Q(pk__contains=passed_job_post_id[0])
-                    for string in passed_job_post_id[1:]:
-                        job_condition &= Q(pk__contains=string)
-                    jobs_for_you = JobPost.objects.filter(job_condition, company__review_center=current.review_center)
+                    jobs_for_you = JobPost.objects.all()
+                    q = Q()
+                    for post_id in passed_job_post_id:
+                        q = q | Q(pk=post_id.id)
+                    jobs_for_you = jobs_for_you.filter(q, company__review_center=current.review_center)
+
+                    # job_condition = Q(pk__contains=passed_job_post_id[0])
+                    # for string in passed_job_post_id[1:]:
+                    #     job_condition &= Q(pk__contains=string)
+                    # jobs_for_you = JobPost.objects.filter(job_condition, company__review_center=current.review_center)
 
                     
 
@@ -80,7 +93,7 @@ class JobDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(JobDetailView, self).get_context_data(**kwargs)
-        context['form'] = JobPostForm(initial=self.object.__dict__)
+        context['form'] = JobPostForm(instance=self.object)
 
         context['applied'] = False
 
