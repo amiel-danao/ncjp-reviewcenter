@@ -430,3 +430,6 @@ def payment_done(request, course_slug):
 @csrf_exempt
 def payment_canceled(request):
     return render(request, 'system/payment_cancelled.html')
+
+
+

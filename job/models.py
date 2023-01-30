@@ -103,9 +103,17 @@ class JobRequirements(models.Model):
         verbose_name_plural = 'Job Requirements'
 
 
+class ApplicationStatus(models.IntegerChoices):
+    PENDING = 1, "Pending"
+    FOR_INTERVIEW = 2, "For interview"
+    FOR_REQUIREMENTS = 3, "For Requirements"
+    HIRED = 4, "HIRED"
+
+
 class JobApplication(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     resume = models.FileField(upload_to='resumes/', blank=False, default='')
     expected_salary = models.PositiveBigIntegerField(blank=False, default=0)
     job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, blank=True, default=None, null=True)
     message_to_employer = models.CharField(max_length=255, default='', blank=True)
+    status = models.PositiveSmallIntegerField(choices=ApplicationStatus.choices, default=ApplicationStatus.PENDING)

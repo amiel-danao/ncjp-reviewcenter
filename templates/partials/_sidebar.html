@@ -52,7 +52,7 @@ href="{% url 'job:job_list' %}">
     </a>
 
     <a class="list-group-item list-group-item-action  text-dark text-start {% if active_link == 'hired' or progress_value.step >= 7 %} active {% else %}disabled{% endif %}" id="v-pills-disabled-tab"  data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false"
-    href="#">
+    href="{% url 'job:job_applications' %}">
     <i class="bi bi-check-circle-fill"></i>
           Get Hired {% if active_link == 'hired' or progress_value.step > 7 %}<i class="bi bi-check2-circle"></i>{% endif %}
         </a>

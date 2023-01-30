@@ -5,11 +5,11 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django_tables2 import SingleTableView
 from django.views.generic import DetailView
-from authentication.models import CurrentReviewCenter
+from authentication.models import CurrentReviewCenter, StudentProgress
 from job.forms import JobApplicationForm, JobPostForm 
 
 from job.models import Certificate, JobApplication, JobPost, JobRequirements
-from job.tables import JobPostTable
+from job.tables import JobApplicationTable, JobPostTable
 from quiz.models import Quiz
 
 # Create your views here.
@@ -25,6 +25,18 @@ class JobListView(LoginRequiredMixin, SingleTableView,):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        current = CurrentReviewCenter.objects.filter(user=self.request.user).first()
+        if current is not None:
+            progress = StudentProgress.objects.filter(user=self.request.user, review_center=current.review_center).first()
+            if progress is not None:
+                applications = JobApplication.objects.filter(user=self.request.user, job_post__company__review_center=current.review_center).first()
+
+                if applications is not None:
+                    job_post = applications.job_post
+                    progress.job = job_post
+                    progress.save()
+
         return context
 
     def get_queryset(self):
@@ -54,6 +66,8 @@ class JobListView(LoginRequiredMixin, SingleTableView,):
                     for string in passed_job_post_id[1:]:
                         job_condition &= Q(pk__contains=string)
                     jobs_for_you = JobPost.objects.filter(job_condition, company__review_center=current.review_center)
+
+                    
 
                     return jobs_for_you
 
@@ -99,6 +113,13 @@ def submit_job_application(request, slug):
                 application.job_post = job_post
             application.save()
 
+            current = CurrentReviewCenter.objects.filter(user=request.user).first()
+            if current is not None:
+                progress = StudentProgress.objects.filter(user=request.user, review_center=current.review_center).filter()
+                if progress is not None:
+                    progress.job = job_post
+                    progress.save()
+
             # redirect to the detail page of the band we just created
             # we can provide the url pattern arguments as arguments to redirect function
             return redirect('job:jobpost_detail', slug=slug)
@@ -107,3 +128,24 @@ def submit_job_application(request, slug):
         form = JobApplicationForm()
 
     return redirect('job:jobpost_detail', slug=slug)
+
+
+class JobApplicationListView(LoginRequiredMixin, SingleTableView,):
+    model = JobApplication
+    table_class = JobApplicationTable
+    template_name = 'job/job_applications.html'
+    # table_pagination = {
+    #     'per_page': 5,
+    # }
+    # strict=False
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+
+    def get_queryset(self):
+        
+        
+
+        return JobApplication.objects.filter(user=self.request.user, )
