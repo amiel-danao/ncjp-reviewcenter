@@ -38,7 +38,7 @@ def get_progress(request):
     # if not isinstance(request.user, StudentAccount):
     #     return None
     
-    current_review_center = CurrentReviewCenter.objects.filter(user=request.user).first()
+    current_review_center =  CurrentReviewCenter.objects.get_or_create(user=request.user)
 
     if current_review_center is None or current_review_center.review_center is None:
         return None
