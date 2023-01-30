@@ -50,7 +50,7 @@ class JobListView(LoginRequiredMixin, SingleTableView,):
         current = CurrentReviewCenter.objects.filter(user=self.request.user).first()
         if current is not None:
 
-            pass_certificates = Certificate.objects.filter(~Q(file=''), user=self.request.user, review_center=current.review_center).values_list('quiz', flat=True)
+            pass_certificates = Certificate.objects.filter(user=self.request.user, review_center=current.review_center).exclude(file__in=['',None]).values_list('quiz', flat=True)
 
             pass_quizzes_id = list(pass_certificates)
 

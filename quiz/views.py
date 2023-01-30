@@ -80,7 +80,7 @@ class ViewQuizListByCourse(LoginRequiredMixin, ListView):
         current = CurrentReviewCenter.objects.filter(user=self.request.user).first()
         if current is not None:
 
-            pass_certificate = Certificate.objects.filter(~Q(file=''), user=self.request.user, review_center=current.review_center).first()
+            pass_certificate = Certificate.objects.filter(user=self.request.user, review_center=current.review_center).exclude(file__in=['',None]).first()
             if pass_certificate is not None:
                 progress = StudentProgress.objects.filter(user=self.request.user, review_center=current.review_center).first()
                 if progress is not None:
