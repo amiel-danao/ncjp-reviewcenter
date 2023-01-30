@@ -59,11 +59,11 @@ class Course(models.Model):
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=60, blank=False, default='', unique=True)
     abbreviation = models.CharField(max_length=16, blank=False, null=False, default='')
-    thumbnail = models.ImageField(upload_to='courses/', blank=False, null=True, default=None)
+    thumbnail = models.ImageField(upload_to='courses/', blank=False, null=True, )
     description = models.CharField(max_length=255, blank=True)
     nc_level = models.PositiveIntegerField(default=NCChoices.NC1, choices=NCChoices.choices)
     major = models.CharField(max_length=60, blank=True, default='')
-    review_center = models.ForeignKey(ReviewCenter, blank=True, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, blank=True, on_delete=models.SET_NULL, null=True, )
 
     category = models.SlugField(
         verbose_name=_("Category"),
@@ -94,8 +94,8 @@ class Payment(models.Model):
     # middle_name = models.CharField(blank=True, max_length=50)
     # last_name = models.CharField(blank=False, max_length=50, default='')
     # address = models.CharField(blank=False, max_length=50, default='')
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
-    student = models.ForeignKey(to='authentication.Student', on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, )
+    student = models.ForeignKey(to='authentication.Student', on_delete=models.SET_NULL, null=True, )
 
     def __str__(self):
         return f'{self.user}, {self.course}, {self.review_center}'
@@ -110,7 +110,7 @@ class CoursePrice(models.Model):
     price = models.FloatField(default=0, validators=(MinValueValidator(0),))
     previous_price = models.FloatField(default=0, validators=(MinValueValidator(0),))
     active = models.BooleanField(default=True)
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, )
 
     def __str__(self):
         return self.course.name
@@ -125,7 +125,7 @@ class Video(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
     slug = models.SlugField(max_length=255, default='', unique=True, allow_unicode=True)
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, )
 
     def save(self, *args, **kwargs):  # new
         self.slug = slugify(self.title)
@@ -139,7 +139,7 @@ class VideoComment(models.Model):
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
     text = models.CharField(max_length=400, blank=False, default='Anonymous comment')
     date_posted = models.DateTimeField(auto_now_add=True)
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, )
 
     def __str__(self):
         return f'{str(self.video)}, {self.sender}, {self.text[:20]}, {self.date_posted}'
@@ -148,7 +148,7 @@ class ReviewCourse(models.Model):
     title = models.CharField(max_length=120, blank=False, default='')
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
     active = models.BooleanField(default=True)
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, )
 
     def __str__(self):
         return self.title
@@ -158,7 +158,7 @@ class ReviewMaterial(models.Model):
     title = models.CharField(max_length=120, blank=False, default='')
     content = models.CharField(max_length=1024, blank=True, default='')
     image = models.ImageField(upload_to='review_materials/', blank=False)
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, )
 
     def __str__(self):
         return self.title
