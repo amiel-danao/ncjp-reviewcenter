@@ -52,7 +52,7 @@ class CustomUserAdmin(UserAdmin):
     readonly_fields = ('date_joined', 'last_login')
     ordering = ()
     fieldsets = (
-        (_("Info"), {"fields": ("email", "is_active", "last_login", "date_joined")}),
+        (_("Info"), {"fields": ("email", "is_active", 'is_staff', "last_login", "date_joined")}),
     )
     add_fieldsets = (
         (
