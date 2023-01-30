@@ -22,7 +22,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("email address"), unique=True)
     picture = models.ImageField(
         upload_to='images/', blank=True, null=True, default='')
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
     review_center = models.ForeignKey(ReviewCenter, blank=True, on_delete=models.CASCADE, null=True, )

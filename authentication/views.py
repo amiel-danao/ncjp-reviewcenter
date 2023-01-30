@@ -23,6 +23,7 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
+            user.is_staff = False
             user.is_active = False
             user.save()
             Student.objects.create(user=user,

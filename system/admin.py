@@ -65,17 +65,17 @@ class CustomUserAdmin(UserAdmin):
     )
 
 
-@receiver(post_save, sender=CustomUser)
-def student_account_changes(sender, instance, created, **kwargs):
-    if created:
-        try:
-            if instance.email != 'admin69@email.com':
-                instance.is_superuser = False
-                # instance.is_active = True
-                instance.is_staff = False
-                # instance.groups.add(Group.objects.get(name='BasicAdmin'))
-        except Exception as e:
-            print(e)
+# @receiver(post_save, sender=CustomUser)
+# def student_account_changes(sender, instance, created, **kwargs):
+#     if created:
+#         try:
+#             if instance.email != 'admin69@email.com':
+#                 instance.is_superuser = False
+#                 # instance.is_active = True
+#                 instance.is_staff = False
+#                 # instance.groups.add(Group.objects.get(name='BasicAdmin'))
+#         except Exception as e:
+#             print(e)
 
 
 @admin.register(Student)
