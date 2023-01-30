@@ -92,6 +92,9 @@ def dashboard(request):
 
     progress_value = get_progress(request)
 
+    if progress_value is None:
+        context['reviewcenters'] = ReviewCenter.objects.filter(active=True)
+        return render(request=request, template_name='system/dashboard.html', context=context)
     last_step = progress_value['last_step']
     if last_step is None:
         context['reviewcenters'] = ReviewCenter.objects.filter(active=True)
