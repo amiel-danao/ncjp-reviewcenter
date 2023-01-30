@@ -13,10 +13,16 @@
 	
 	  <div class="col p-5">
         <div class="row">
+            {% if applied %}
+            <button type="button" class="btn btn-success"  disabled>
+                Your job application is being processed!
+            </button>
+            {% else %}
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Apply Now
             </button>
+            {% endif %}
             
             <!-- Modal -->
             
@@ -51,7 +57,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form method="POST" action="{% url 'job:submit_job_application' slug=job_post.slug %}">
+        <form enctype="multipart/form-data" method="POST" action="{% url 'job:submit_job_application' slug=job_post.slug %}" >
             {% csrf_token %}
             {{ application_form|crispy }}
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

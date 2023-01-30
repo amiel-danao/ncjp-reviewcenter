@@ -107,5 +107,5 @@ class JobApplication(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     resume = models.FileField(upload_to='resumes/', blank=False, default='')
     expected_salary = models.PositiveBigIntegerField(blank=False, default=0)
-    job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, blank=False, default=None)
+    job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, blank=True, default=None, null=True)
     message_to_employer = models.CharField(max_length=255, default='', blank=True)

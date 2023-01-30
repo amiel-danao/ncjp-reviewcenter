@@ -67,6 +67,13 @@ class JobDetailView(LoginRequiredMixin, DetailView):
         context = super(JobDetailView, self).get_context_data(**kwargs)
         context['form'] = JobPostForm(initial=self.object.__dict__)
 
+        context['applied'] = False
+
+        job_application = JobApplication.objects.filter(user=self.request.user, job_post=self.object).first()
+
+        if job_application is not None:
+            context['applied'] = True
+
         context['application_form'] = JobApplicationForm()
         return context
 
@@ -80,10 +87,18 @@ def submit_job_application(request, slug):
 
     
     if request.method == 'POST':
-        form = JobApplicationForm(request.POST)
+        form = JobApplicationForm(request.POST, request.FILES)
         if form.is_valid():
             # create a new `Band` and save it to the db
+
             application = form.save()
+
+            application.user = request.user
+            job_post = JobPost.objects.filter(slug=slug).first()
+            if job_post is not None:
+                application.job_post = job_post
+            application.save()
+
             # redirect to the detail page of the band we just created
             # we can provide the url pattern arguments as arguments to redirect function
             return redirect('job:jobpost_detail', slug=slug)
