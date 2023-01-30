@@ -3,19 +3,30 @@
 {% block title %}{% trans "Quizzes related to" %} {{ category.category }}{% endblock %}
 
 {% block content %}
-<div class="p-5">
-<h1>{% trans "Quizzes in the" %} <strong>{{ category.abbreviation }} </strong>{% trans "course" %}</h1>
 
-  {% with object_list as quizzes %}
-    {% if quizzes %}
-    <div class="list-group">
-        {% for quiz in quizzes %}
-          <a href="{% url 'quiz:quiz_question' quiz_name=quiz.url %}" class="list-group-item list-group-item-action list-group-item-success">{{ quiz.title }}</a>
-        {% endfor %}
+<div class="p-5">
+  <div class="row">
+    <div class="d-flex align-items-start">
+  {%  include 'partials/_sidebar.html' %}
+  
+  
+    <div class="col p-5">
+
+      <h1>{% trans "Quizzes in the" %} <strong>{{ category.abbreviation }} </strong>{% trans "course" %}</h1>
+
+        {% with object_list as quizzes %}
+          {% if quizzes %}
+          <div class="list-group">
+              {% for quiz in quizzes %}
+                <a href="{% url 'quiz:quiz_question' quiz_name=quiz.url %}" class="list-group-item list-group-item-action list-group-item-success">{{ quiz.title }}</a>
+              {% endfor %}
+            </div>
+          {% else %}
+              <p>{% trans "There are no quizzes" %}</p>
+          {% endif %}
+        {% endwith %}
       </div>
-    {% else %}
-        <p>{% trans "There are no quizzes" %}</p>
-    {% endif %}
-  {% endwith %}
+    </div>
+  </div>
 </div>
 {% endblock %}

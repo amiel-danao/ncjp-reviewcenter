@@ -40,7 +40,7 @@ href="{% url 'system:review_materials' %}">
 
 
 <a class="list-group-item list-group-item-action  text-dark text-start {% if active_link == 'exam' or progress_value.step >= 5 %} active {% else %}disabled{% endif %}" id="v-pills-disabled-tab"  data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false"
-href="{% url 'system:dashboard' %}?menu=review">
+href="{% url 'system:done_review' %}">
 <i class="bi bi-question-octagon"></i>
       Exam {% if active_link == 'exam' or progress_value.step > 5 %}<i class="bi bi-check2-circle"></i>{% endif %}
     </a>

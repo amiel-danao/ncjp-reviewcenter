@@ -1,10 +1,15 @@
+from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
 
+from quiz.models import Quiz
+from system.models import ReviewCenter
+
 class CompanyIndustry(models.Model):
     name = models.CharField(max_length=100, blank=False, default='')
+    review_center = models.ForeignKey(ReviewCenter, blank=True, on_delete=models.SET_NULL, null=True, default=None)
     def __str__(self):
         return self.name
     class Meta:
@@ -18,7 +23,8 @@ class Company(models.Model):
     average_processing_time = models.PositiveIntegerField(default=1, validators=(MinValueValidator(0),))
     benefits_and_others = models.CharField(max_length=256, blank=False, default='')
     thumbnail = models.ImageField(upload_to='company_thumbnails/', blank=True, default='')
-    logo = models.ImageField(upload_to='company_logos/', blank=True, default='')
+    logo = models.ImageField(upload_to='company_logos/', blank=False, default='')
+    review_center = models.ForeignKey(ReviewCenter, blank=True, on_delete=models.SET_NULL, null=True, default=None)
     
     def __str__(self):
         return self.name
@@ -32,11 +38,37 @@ class JobType(models.IntegerChoices):
     PART_TIME = 2
 
 
+
+
+
+
+        
+
+
+
+
+
+class Certificate(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, blank=False)
+    file = models.FileField(upload_to='certificate/', blank=True, default='')
+    date = models.DateField(auto_now_add=True)
+    review_center = models.ForeignKey(ReviewCenter, blank=True, on_delete=models.SET_NULL, null=True, default=None)
+
+    class Meta:
+        unique_together = ('user', 'quiz')
+
+    def __str__(self):
+        return f'{self.user.email}'
+
+
+
+
 class JobPost(models.Model):
     title = models.CharField(max_length=100, blank=False, default='')
     position = models.CharField(max_length=100, blank=False, default='')
     job_description = models.CharField(max_length=256, blank=False, default='')
-    job_requirements = models.CharField(max_length=259, blank=False, default='')
+    
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
     job_type = models.PositiveSmallIntegerField(
         choices=JobType.choices,
@@ -60,3 +92,20 @@ class JobPost(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
+
+class JobRequirements(models.Model):
+    certificate_quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, blank=False, default=None)
+    job_post = models.ForeignKey(JobPost, on_delete=models.SET_NULL, blank=True, default=None, null=True)
+    def __str__(self):
+        return f'{self.certificate_quiz.title}'
+
+    class Meta:
+        verbose_name_plural = 'Job Requirements'
+
+
+class JobApplication(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    resume = models.FileField(upload_to='resumes/', blank=False, default='')
+    expected_salary = models.PositiveBigIntegerField(blank=False, default=0)
+    job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, blank=False, default=None)
+    message_to_employer = models.CharField(max_length=255, default='', blank=True)

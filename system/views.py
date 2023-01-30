@@ -233,7 +233,23 @@ class VideoListView(LoginRequiredMixin, PaidUserOnlyMixin, ListView):
             if course is None:
                 return redirect('authentication:registration_redirect')
     
+def done_review(request):
+    current = CurrentReviewCenter.objects.filter(user=request.user)
+    if current is None:
+        return redirect('system:reviewcenter_list')
+    progress = StudentProgress.objects.filter(user=request.user).first()
 
+    if progress is None or progress.course is None:
+        return redirect('system:reviewcenter_list')
+
+    review_course = ReviewCourse.objects.filter(course=progress.course).first()
+    if review_course is None:
+        return redirect('system:reviewcenter_list')
+
+    progress.review_course = review_course
+    progress.save()
+
+    return redirect('quiz:quiz_category_list_matching', category_name=progress.course.category)
 
             
 
@@ -244,13 +260,19 @@ class ReviewMaterialListView(LoginRequiredMixin, PaidUserOnlyMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        course_slug = self.kwargs.get('course_slug', None)
-        if course_slug is None:
+        
+        progress = StudentProgress.objects.filter(user=self.request.user).first()
+
+        if progress is None or progress.course is None:
             return context
-        pk = self.kwargs.get('pk', None)
-        if pk is None:
+
+
+        review_course = ReviewCourse.objects.filter(course=progress.course).first()
+        if review_course is None:
             return context
-        review_course = get_object_or_404(ReviewCourse, id=pk)
+
+        
+
         content_list = ReviewMaterial.objects.filter(review_course=review_course)
         paginator = Paginator(content_list, self.paginate_by)
 
@@ -365,6 +387,11 @@ def process_payment(request, course_slug):
 
     done_url = reverse('system:payment_done', kwargs={'course_slug': course_slug})
 
+    current = CurrentReviewCenter.objects.filter(user=request.user).first()
+    if current is None:
+        return redirect('system:reviewcenter_list')
+
+
     next_url = request.GET.get('next', None)
     if next_url:
         done_url = f"%s?next={next_url}" % reverse('system:payment_done', kwargs={'course_slug': course_slug})
@@ -373,7 +400,7 @@ def process_payment(request, course_slug):
         'business': settings.PAYPAL_RECEIVER_EMAIL,
         'amount': str(price),
         'item_name': course.name,
-        'invoice': f'{str(course.id)}-{str(request.user.email)}',
+        'invoice': f'{str(course.id)}-{str(request.user.email)}-{str(current.review_center.name)}',
         'currency_code': 'PHP',
         'notify_url': 'http://{}{}'.format(host,
                                            reverse('paypal-ipn')),

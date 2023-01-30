@@ -6,7 +6,7 @@ from quiz.models import Quiz
 from reviewcenter.managers import CustomUserManager
 from django.utils.translation import gettext_lazy as _
 
-from system.models import Course, ReviewCenter, ReviewMaterial, Video
+from system.models import Course, ReviewCenter, ReviewCourse, ReviewMaterial, Video
 
 class RelationChoices(models.IntegerChoices):
     FATHER_MOTHER = 1, "Father/Mother"
@@ -70,7 +70,7 @@ class StudentProgress(models.Model):
     # profile = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, default=None)
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, default=None)
     review_video = models.ForeignKey(Video, on_delete=models.SET_NULL, null=True, default=None)
-    review_material = models.ForeignKey(ReviewMaterial, on_delete=models.SET_NULL, null=True, default=None)
+    review_course = models.ForeignKey(ReviewCourse, on_delete=models.SET_NULL, null=True, default=None)
     quiz = models.ForeignKey(Quiz, on_delete=models.SET_NULL, null=True, default=None)
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, default=None)
     job = models.ForeignKey(JobPost, on_delete=models.SET_NULL, null=True, default=None)

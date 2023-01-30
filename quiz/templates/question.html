@@ -8,6 +8,13 @@
 
 {% block content %}
 <div class="p-5">
+	<div class="row">
+	  <div class="d-flex align-items-start">
+	{%  include 'partials/_sidebar.html' %}
+	
+	
+	  <div class="col p-5">
+
 	{% if previous.answers %}
 
 	<p class="muted"><small>{% trans "The previous question" %}:</small></p>
@@ -48,6 +55,7 @@
 	</div>
 	{% endif %}
 
+	<h1>{{ quiz.title }}</h1>
 	<p>
 	<small class="muted">{% trans "Question course" %}:</small>
 	<strong>{{ question.category }}</strong>
@@ -82,5 +90,10 @@
 
 	<hr>
 
+				</div>
+
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}

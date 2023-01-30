@@ -193,7 +193,13 @@ class PaymentAdmin(admin.ModelAdmin):
 
 class ReviewMaterialInline(admin.TabularInline):
     model = ReviewMaterial
+    exclude = ('review_center',)
 
+    def queryset(self, request):
+        qs = super(ReviewCourseAdmin, self).queryset(request)
+        if not request.user.review_center:
+            return qs
+        return qs.filter(review_center=request.user.review_center)
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         formfield = super(ReviewMaterialInline, self).formfield_for_dbfield(db_field, **kwargs)

@@ -12,7 +12,7 @@ from django.db.models.signals import pre_save, post_save
 import io
 from django.contrib.auth.models import User
 from django.contrib import messages
-from system.models import Course, Department
+from system.models import Course, Department, ReviewCenter
 
 
 class Quiz(models.Model):
@@ -35,7 +35,7 @@ class Quiz(models.Model):
         verbose_name=_("Course"), on_delete=models.CASCADE)
 
     random_order = models.BooleanField(
-        blank=False, default=False,
+        blank=False, default=True,
         verbose_name=_("Random Order"),
         help_text=_("Display the questions in "
                     "a random order or as they "
@@ -52,14 +52,14 @@ class Quiz(models.Model):
         verbose_name=_("Answers at end"))
 
     exam_paper = models.BooleanField(
-        blank=False, default=False,
+        blank=False, default=True,
         help_text=_("If yes, the result of each"
                     " attempt by a user will be"
                     " stored. Necessary for marking."),
         verbose_name=_("Exam Paper"))
 
     single_attempt = models.BooleanField(
-        blank=False, default=False,
+        blank=False, default=True,
         help_text=_("If yes, only one attempt by"
                     " a user will be permitted."
                     " Non users cannot sit this exam."),
@@ -86,6 +86,8 @@ class Quiz(models.Model):
                     " in the quiz list and can only be"
                     " taken by users who can edit"
                     " quizzes."))
+                    
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.SET_NULL, null=True, default=None)
 
     def save(self, force_insert=False, force_update=False, *args, **kwargs):
         # self.url = re.sub('\s+', '-', self.url).lower()
@@ -541,4 +543,6 @@ def create_user(data):
     user.is_admin=False
     user.is_staff=False
     user.save()
+
+
 

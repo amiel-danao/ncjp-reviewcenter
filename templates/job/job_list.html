@@ -4,20 +4,31 @@
 
 {% block content %}
 
+<div class="p-5">
+	<div class="row">
+	  <div class="d-flex align-items-start">
+	{%  include 'partials/_sidebar.html' %}
+	
+	
+	  <div class="col p-5">
+
 <div class="row p-3">
 <h1 class="mb-3">Job Listing</h1>
+<small class="fst-italic">Note: Only job listings that related to your certificates will appear here.</small>
 
-<div class="col-4 border-end">
-    {% for job in jobpost_list%}
+<div class="border-end">
+    {% for job in jobpost_list %}
     
-        <div class="card col shadow">
+        <div class="card col-6 shadow">
+            {% if job.company.logo %}
             <img src="{{job.company.logo.url}}" class="w-25 img-fluid p-2" alt="{{job.company.name}}">
+            {% endif %}
             <div class="card-body">
             <a href="{% url 'job:jobpost_detail' slug=job.slug %}"><h4 class="card-link">{{job.title}}</h4></a>
             <p class="card-text">{{job.company.name}}</p>
 
             <small>{{job.date_posted|timesince}} ago</small>
-            <a href="#" class="btn btn-primary">More info</a>
+            <a href="{% url 'job:jobpost_detail' slug=job.slug %}" class="btn btn-primary">More info</a>
             </div>
         </div>
     
@@ -29,5 +40,7 @@
 
 </div>
 
+</div>
+</div></div></div>
 </div>
 {% endblock %}

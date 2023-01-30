@@ -15,6 +15,7 @@ urlpatterns = [
     path('video_watch/<slug:course_slug>/<slug:video_slug>', views.VideoDetailView.as_view(), name='video_watch'),
     path('video_tutorials/', views.free_video_tutorials, name='free_video_tutorials'),
     path('review_materials/', views.ReviewMaterialListView.as_view(), name='review_materials'),
+    path('done_review/', views.done_review, name='done_review'),
     path('review_courses/', views.ReviewCourseListView.as_view(), name='review_courses'),
     path('check_course_payment/<slug:course_slug>', views.check_course_payment, name='check_course_payment'),
     path('payment/', views.PaymentView.as_view(), name='payment'),

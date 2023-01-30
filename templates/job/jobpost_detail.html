@@ -1,8 +1,64 @@
+
 {% extends 'base.html' %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="p-5">
+	<div class="row">
+	  <div class="d-flex align-items-start">
+	{%  include 'partials/_sidebar.html' %}
+	
 
+	
+	  <div class="col p-5">
+        <div class="row">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Apply Now
+            </button>
+            
+            <!-- Modal -->
+            
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <h1 class="text-center">{{job_post.title}}</h1>
+            </div>
+            <div class="col-4">
+                {% if job_post.company.logo %}
+                <img src="{{job_post.company.logo.url}}" class="w-50 img-fluid p-2" alt="{{job_post.company.name}}">
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if job_post.company.thumbnail %}
+                <img src="{{job_post.company.thumbnail.url}}" class="w-100 img-fluid" alt="{{job_post.company.name}}">
+                {% endif %}
+            </div>
+    </div>
     {% crispy form %}
+
+    </div>
+</div>
+</div> </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Apply</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form method="POST" action="{% url 'job:submit_job_application' slug=job_post.slug %}">
+            {% csrf_token %}
+            {{ application_form|crispy }}
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Apply now</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
 {% endblock %}

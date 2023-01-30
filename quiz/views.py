@@ -1,3 +1,4 @@
+from django.db.models import Q
 import random
 
 from django.contrib.auth.decorators import login_required, permission_required
@@ -6,7 +7,10 @@ from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import FormView
+
+from authentication.models import CurrentReviewCenter, StudentProgress
 from .forms import QuestionForm
+from job.models import Certificate
 from .models import Quiz, Course, Progress, Sitting, Question
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -72,6 +76,16 @@ class ViewQuizListByCourse(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(ViewQuizListByCourse, self)\
             .get_context_data(**kwargs)
+
+        current = CurrentReviewCenter.objects.filter(user=self.request.user).first()
+        if current is not None:
+
+            pass_certificate = Certificate.objects.filter(~Q(file=''), user=self.request.user, review_center=current.review_center).first()
+            if pass_certificate is not None:
+                progress = StudentProgress.objects.filter(user=self.request.user, review_center=current.review_center).first()
+                if progress is not None:
+                    progress.quiz = pass_certificate.quiz
+                    progress.save()
 
         context['category'] = self.category
         return context
@@ -152,7 +166,21 @@ class QuizTake(LoginRequiredMixin, FormView):
             self.sitting = Sitting.objects.user_sitting(request.user,
                                                         self.quiz)
         if self.sitting is False:
-            return render(request, 'single_complete.html', context={'quiz':self.quiz})
+            sitting = Sitting.objects.filter(user=request.user,
+                                                        quiz=self.quiz).first()
+            if sitting is None:
+                results = {
+                    'quiz': self.quiz,
+                }
+            else:
+                results = {
+                    'quiz': self.quiz,
+                    'score': sitting.get_current_score,
+                    'max_score': sitting.get_max_score,
+                    'percent': sitting.get_percent_correct,
+                    'sitting': sitting,
+                }
+            return render(request, 'single_complete.html', results)
 
         return super(QuizTake, self).dispatch(request, *args, **kwargs)
 
@@ -231,6 +259,10 @@ class QuizTake(LoginRequiredMixin, FormView):
 
         if self.quiz.exam_paper is False:
             self.sitting.delete()
+
+        if self.sitting.check_if_passed:
+            Certificate.objects.get_or_create(user=self.request.user, quiz=self.quiz)
+
 
         return render(self.request, 'result.html', results)
 

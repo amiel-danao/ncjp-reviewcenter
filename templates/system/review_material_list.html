@@ -93,11 +93,13 @@
             {% endif %}
             </div>
 
-            {% else %}
-            <div class="row mb-4">
-                <h1 class="p-5 text-center">There's no review materials for this course yet...</h1>
-            </div>
-            {% endif %}
+        <a type="button" href="{% url 'system:done_review' %}" class="btn btn-success float-end">Done Reviewing</a>
+        {% else %}
+        <div class="row mb-4">
+            <h1 class="p-5 text-center">There's no review materials for this course yet...</h1>
+        </div>
+        {% endif %}
+        
     </div>
 </div>
 </div>

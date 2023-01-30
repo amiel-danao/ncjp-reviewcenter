@@ -24,7 +24,10 @@ class ReadOnlyAdmin(admin.ModelAdmin):
         return False
 
 class SittingAdmin(ReadOnlyAdmin):
-    pass
+    list_display = ('user', 'quiz', 'start', 'end', 'complete', 'result')
+
+    def result(self, obj):
+        return 'Passed' if obj.check_if_passed else 'Failed'
 
 class AnswerInline(admin.TabularInline):
     model = Answer
@@ -70,7 +73,19 @@ class QuizAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', )
     list_filter = ('category',)
     search_fields = ('description', 'category', )
-    exclude = ('url', )
+    exclude = ('url', 'review_center', 'single_attempt', 'exam_paper', 'answers_at_end', 'random_order')
+
+    def queryset(self, request):
+        qs = super(QuizAdmin, self).queryset(request)
+        if not request.user.review_center:
+            return qs
+        return qs.filter(review_center=request.user.review_center)
+
+    def save_model(self, request, obj, form, change,):
+        if request.user.review_center:
+            obj.review_center = request.user.review_center
+
+        super().save_model(request, obj, form, change)
 
 
 class CourseAdmin(admin.ModelAdmin):
@@ -114,12 +129,8 @@ class MCQuestionAdmin(admin.ModelAdmin):
     inlines = [AnswerInline]
 
 
-# class ProgressAdmin(ReadOnlyAdmin):
-#     """
-#     to do:
-#             create a user section
-#     """
-#     search_fields = ('user', 'score', )
+
+
 
 
 admin.site.register(Sitting, SittingAdmin)
