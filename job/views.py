@@ -35,6 +35,7 @@ class JobListView(LoginRequiredMixin, SingleTableView,):
                 if applications is not None:
                     job_post = applications.job_post
                     progress.job = job_post
+                    progress.company = job_post.company
                     progress.save()
 
         return context
