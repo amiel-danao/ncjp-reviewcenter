@@ -1,6 +1,6 @@
 from django.forms.models import BaseInlineFormSet
 from django.contrib import admin
-from authentication.models import CustomUser, Student
+from authentication.models import CustomUser, Student, StudentProgress
 from system.models import CoursePrice, Department, Payment, ReviewCenter, ReviewCourse, ReviewMaterial, Video, VideoComment
 from django.contrib.auth.models import Group
 from  embed_video.admin  import  AdminVideoMixin
@@ -217,6 +217,10 @@ class ReviewCourseAdmin(admin.ModelAdmin):
         if not request.user.review_center:
             return qs
         return qs.filter(review_center=request.user.review_center)
+
+@admin.register(StudentProgress)
+class StudentProgressAdmin(admin.ModelAdmin):
+    pass
 
 admin.site.site_header = "NCST Review Center"
 admin.site.site_title = "Review Center Admin"
