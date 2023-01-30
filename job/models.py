@@ -107,7 +107,7 @@ class ApplicationStatus(models.IntegerChoices):
     PENDING = 1, "Pending"
     FOR_INTERVIEW = 2, "For interview"
     FOR_REQUIREMENTS = 3, "For Requirements"
-    HIRED = 4, "HIRED"
+    HIRED = 4, "Hired"
 
 
 class JobApplication(models.Model):
@@ -117,3 +117,8 @@ class JobApplication(models.Model):
     job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, blank=True, default=None, null=True)
     message_to_employer = models.CharField(max_length=255, default='', blank=True)
     status = models.PositiveSmallIntegerField(choices=ApplicationStatus.choices, default=ApplicationStatus.PENDING)
+    date = models.DateField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f'{self.user} - {self.job_post}'

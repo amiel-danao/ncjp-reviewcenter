@@ -98,6 +98,7 @@ class CertificateAdmin(admin.ModelAdmin):
 
 @admin.register(JobApplication)
 class JobApplicationAdmin(admin.ModelAdmin):
+    readonly_fields = ('user', 'job_post', 'resume' ,'expected_salary', 'message_to_employer')
 
     def has_add_permission(self, request):
         return False
