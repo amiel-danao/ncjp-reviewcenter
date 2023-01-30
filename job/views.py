@@ -115,7 +115,7 @@ def submit_job_application(request, slug):
 
             current = CurrentReviewCenter.objects.filter(user=request.user).first()
             if current is not None:
-                progress = StudentProgress.objects.filter(user=request.user, review_center=current.review_center).filter()
+                progress = StudentProgress.objects.filter(user=request.user, review_center=current.review_center).first()
                 if progress is not None:
                     progress.job = job_post
                     progress.save()
