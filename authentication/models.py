@@ -65,15 +65,18 @@ class Student(models.Model):
 
 
 class StudentProgress(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, )
-    review_center = models.ForeignKey(ReviewCenter, on_delete=models.CASCADE, null=True, )
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
+    review_center = models.ForeignKey(ReviewCenter, on_delete=models.CASCADE, null=True, blank=True)
     # profile = models.ForeignKey(Student, on_delete=models.CASCADE, null=True, )
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, )
-    review_video = models.ForeignKey(Video, on_delete=models.CASCADE, null=True, )
-    review_course = models.ForeignKey(ReviewCourse, on_delete=models.CASCADE, null=True, )
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True, )
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, )
-    job = models.ForeignKey(JobPost, on_delete=models.CASCADE, null=True, )
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
+    review_video = models.ForeignKey(Video, on_delete=models.CASCADE, null=True, blank=True)
+    review_course = models.ForeignKey(ReviewCourse, on_delete=models.CASCADE, null=True, blank=True)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True, blank=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    job = models.ForeignKey(JobPost, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.user.email}' if self.user else 'None'
 
 
 
