@@ -173,6 +173,8 @@ class QuizTake(LoginRequiredMixin, FormView):
                     'quiz': self.quiz,
                 }
             else:
+                
+
                 results = {
                     'quiz': self.quiz,
                     'score': sitting.get_current_score,
@@ -180,6 +182,9 @@ class QuizTake(LoginRequiredMixin, FormView):
                     'percent': sitting.get_percent_correct,
                     'sitting': sitting,
                 }
+
+                certificate, _ = Certificate.objects.get_or_create(user=self.request.user, quiz=self.quiz)
+                results['certificate'] = certificate.file
             return render(request, 'single_complete.html', results)
 
         return super(QuizTake, self).dispatch(request, *args, **kwargs)
@@ -261,7 +266,8 @@ class QuizTake(LoginRequiredMixin, FormView):
             self.sitting.delete()
 
         if self.sitting.check_if_passed:
-            Certificate.objects.get_or_create(user=self.request.user, quiz=self.quiz)
+            certificate, _ = Certificate.objects.get_or_create(user=self.request.user, quiz=self.quiz)
+            results['certificate'] = certificate.file
 
 
         return render(self.request, 'result.html', results)

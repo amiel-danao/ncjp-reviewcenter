@@ -63,6 +63,7 @@ def get_progress(request):
                 last_step = value
 
     step = len(ok_fields) + 1
+    step = min(step, total)
     return {
             "percentage": int((step / total) * 100),
             "step": step,

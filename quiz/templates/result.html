@@ -38,6 +38,9 @@
       <hr>
             <h1 class="lead">Congratulations! You Passed<br>Please wait for your certificate.<br>It will appear here once it was processed</h1>
       <hr>
+      {% if certificate %}
+      <img src="{{ certificate.url }}" class="img-fluid">
+      {% endif %}
       {% endif %}
   
       <p>{% trans "Review the questions below and try the exam again in the future"%}.</p>
